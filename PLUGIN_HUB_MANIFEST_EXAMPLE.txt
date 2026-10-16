@@ -1,0 +1,6 @@
+# Reference only: add the following two lines (without comments) to your
+# FORK of runelite/plugin-hub in plugins/smart-bank-search AFTER pushing
+# your public source repository. You must use its real 40-character SHA.
+
+repository=https://github.com/steeltype-ux/smart-bank-search.git
+commit=REPLACE_WITH_THE_REAL_40_CHARACTER_COMMIT_SHA

@@ -1,0 +1,22 @@
+# Gradle / Java
+.gradle/
+build/
+out/
+*.class
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Sensitive local RuneLite files (never commit Jagex credentials)
+.runelite/
+credentials.properties
+*.keystore
+*.p12
+.env
+
+# OS noise
+.DS_Store
+Thumbs.db

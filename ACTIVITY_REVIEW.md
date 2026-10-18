@@ -36,7 +36,7 @@ All 67 new searches return **candidate items already in the player's bank**. A s
 
 | Search | Curated examples | Shared candidate supplies |
 |---|---|---|
-| `@gargoyles` | rock hammer, rock thrownhammer, granite hammer, granite maul, slayer ring, guthan, abyssal whip | Slayer equipment, high-healing food, prayer-restoring supplies, melee boosts |
+| `@gargoyles` | rock hammer, rock thrownhammer, granite hammer, granite maul, dual macuahuitl, slayer ring, guthan, abyssal whip | Slayer equipment, high-healing food, prayer-restoring supplies, melee boosts |
 | `@dust devils` | facemask, masked earmuffs, slayer helmet, black mask, ancient staff, ancient sceptre, kodai wand | prayer-restoring supplies, magic boosts |
 | `@nechryaels` | slayer helmet, black mask, ancient staff, ancient sceptre, kodai wand, blood rune, death rune | prayer-restoring supplies, magic boosts |
 | `@aberrant spectres` | nose peg, slayer helmet, black mask, salve graveyard teleport, slayer ring, herb sack, ranging potion | high-healing food, prayer-restoring supplies, ranged boosts |

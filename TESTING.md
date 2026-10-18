@@ -1,12 +1,14 @@
-# Smart Bank Search pre-publication test checklist
+# Smart Bank Search release regression checklist
 
-**Do not mark a test passed unless it was actually performed.** This checklist is for Windows IntelliJ RuneLite and the official RuneLite Plugin Hub CI.
+**Do not mark a test passed unless it was actually performed.** The initial plugin was merged in [PR #18725](https://github.com/runelite/plugin-hub/pull/18725) and confirmed working in the official RuneLite client. This is a reusable checklist for **future updates**. Unchecked items are not claims of past failure. Record the source SHA, date, tester, logs, and manual results for each release.
 
 ## Automated
 
+- [ ] Record the exact source commit SHA to be published.
+
 - [ ] Run `gradle clean test` on a machine with RuneLite dependencies installed; capture Gradle success output.
 - [ ] Run `gradle run` with the project configured for a development RuneLite client; confirm the plugin loads and can be enabled.
-- [ ] After pushing the public repository and creating Plugin Hub PR, confirm the RuneLite `build` and `Plugin Hub Checks` statuses.
+- [ ] After opening the new update PR against the existing Plugin Hub entry, confirm the RuneLite `build` and `Plugin Hub Checks` statuses.
 
 ## Manual bank checks
 
@@ -30,6 +32,22 @@ Keep **Bank Tags** installed to exercise real-world coexistence. Bank results sh
 - [ ] `tag:<customtag>`: Bank Tags-specific search still works.
 - [ ] Toggle plugin off, confirm vanilla search behavior returns.
 - [ ] Search rapidly, switch bank tabs, open/close bank, relog; confirm no freezes or stack errors.
+
+## Activity regression checks
+
+- [ ] `@herb run`: herb seeds, patch teleports, tools and compost match; tree seeds and harvested herbs are excluded.
+- [ ] `@tree run`: saplings and planting supplies match.
+- [ ] `@birdhouse run`: clockworks and relevant supplies match, unrelated armour is excluded.
+- [ ] `@cox`, `@tob`, `@toa`: verify representative items while noting these are not full boss loadouts.
+- [ ] For every newly added activity, test at least two intended inclusions, two exclusions, and its supported aliases.
+
+## Test record
+
+- Commit SHA: (record)
+- Date, environment and tester: (record)
+- Automated test results and logs: (record)
+- Manual test results and limitations: (record)
+- Plugin Hub update PR and checks: (record)
 
 ## Known limitation
 

@@ -2,6 +2,14 @@
 
 **Do not mark a test passed unless it was actually performed.** The initial plugin was merged in [PR #18725](https://github.com/runelite/plugin-hub/pull/18725) and confirmed working in the official RuneLite client. This is a reusable checklist for **future updates**. Unchecked items are not claims of past failure. Record the source SHA, date, tester, logs, and manual results for each release.
 
+## v1.5 activity-kit regression checks
+
+- [ ] Run `ActivityCategoriesSelfTest` with Java 11, alongside existing category self-tests.
+- [ ] Run `ActivityCategoriesTest` through `gradle clean test`; capture the output and any failures.
+- [ ] Check `@herbrun` and `@herb run` show identical results in a bank with representative herb seeds, compost and teleports.
+- [ ] Test `@wintertodt`, `@tempoross`, `@gotr`, `@giants foundry`, `@mahogany homes`, `@zulrah`, `@vorkath`, `@jad`, `@revenants`, `@cluekit`, `@questprep` with actual bank contents.
+- [ ] Inspect 2+ expected positives and 2+ expected negatives per new activity; log any omissions or overly broad items. The standalone tests include fixtures but do not replace in-game testing.
+
 ## Automated
 
 - [ ] Record the exact source commit SHA to be published.

@@ -54,7 +54,7 @@ final class ActivityCategories
         registry.add("Inferno preparation", any(names("twisted bow", "bow of faerdhinen", "crystal armour", "crystal armor", "ancestral", "masori", "justiciar", "toxic blowpipe", "ancient sceptre", "kodai wand", "blood rune", "death rune", "water rune", "rune pouch", "elysian spirit shield", "crystal shield", "occult necklace"), HEALS, PRAYER, BREWS, RANGE_BOOST, MAGE_BOOST),
             "inferno", "inferno prep");
         registry.add("Nex preparation", any(names("zaryte crossbow", "armadyl crossbow", "dragon crossbow", "ruby dragon bolts", "diamond dragon bolts", "torva", "masori", "armadyl", "ancient ceremonial", "frozen key", "ecumenical key", "ancient godsword", "bandos godsword", "fang", "osmumten's fang", "lightbearer", "blood fury", "amulet of blood fury", "dragon warhammer"), HEALS, PRAYER, BREWS, RANGE_BOOST, MELEE_BOOST, ENERGY),
-            "nex", "nex prep", "nex gear");
+            "nex", "nex prep", "nex trip");
         registry.add("Nightmare preparation", any(names("inquisitor", "bludgeon", "scythe of vitur", "sanguinesti staff", "harmonised nightmare staff", "harmonized nightmare staff", "trident", "mace", "crush weapon", "crush weapons", "eldritch nightmare staff", "slepey tablet", "drakan's medallion", "ectophial", "dragon warhammer"), HEALS, PRAYER, BREWS, MELEE_BOOST, ENERGY),
             "nightmare boss", "nightmare prep", "phosani", "phosani's nightmare");
         registry.add("Cerberus preparation", any(names("primordial crystal", "pegasian crystal", "pegasian crystal", "eternal crystal", "spectral spirit shield", "arclight", "emberlight", "scythe of vitur", "abyssal bludgeon", "dragon claws", "slayer helmet", "black mask", "key master teleport"), HEALS, PRAYER, BREWS, MELEE_BOOST),

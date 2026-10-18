@@ -55,7 +55,7 @@ public class SmartBankSearchPlugin extends Plugin
 
     @Override protected void startUp()
     {
-        LOG.info("[SmartBankSearch] v1.4 started; {} categories", CategoryMatcher.catalog().size());
+        LOG.info("[SmartBankSearch] v1.5 started; {} categories", CategoryMatcher.catalog().size());
     }
 
     @Override protected void shutDown()

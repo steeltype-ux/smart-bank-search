@@ -94,7 +94,7 @@ final class ActivityCategories
         registry.add("Demonic gorillas trip", any(names("arclight", "emberlight", "demonbane", "toxic blowpipe", "bow of faerdhinen", "crossbow", "rune pouch", "royal seed pod", "ring of dueling", "slayer helmet", "black mask"), HEALS, PRAYER, MELEE_BOOST, RANGE_BOOST),
             "demonic gorillas", "demonics", "demonic gorilla prep");
         registry.add("Burst and barrage Slayer", any(names("ancient staff", "ancient sceptre", "kodai wand", "master wand", "blood rune", "death rune", "water rune", "chaos rune", "rune pouch", "occult necklace", "ancestral", "virtus", "prayer potion", "bracelet of slaughter"), PRAYER, MAGE_BOOST),
-            "barrage tasks", "barrage slayer", "burst tasks", "burst slayer");
+            "barrage tasks", "barrage", "barrage slayer", "burst tasks", "burst slayer");
         registry.add("Cannon Slayer trips", any(names("cannonball", "dwarf multicannon", "cannon base", "cannon stand", "cannon barrels", "cannon furnace", "slayer helmet", "black mask", "stamina potion", "expeditious bracelet", "bracelet of slaughter"), HEALS, PRAYER),
             "cannon tasks", "cannon slayer", "cannon trip");
         registry.add("Kraken task", any(names("trident of the seas", "trident of the swamp", "sanguinesti staff", "occult necklace", "ancestral", "ahrim", "tome of fire", "slayer helmet", "black mask", "fishing explosive", "magic potion"), HEALS, PRAYER, MAGE_BOOST),

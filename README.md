@@ -41,7 +41,7 @@ Classification uses curated rules and may have false positives or omissions, esp
 
 ## v1.5 development status
 
-This activity expansion is **under review on a feature branch**, not yet released through RuneLite Plugin Hub. The official client continues using the approved v1.4 code until a separate Plugin Hub update PR is merged. Activity searches are candidate supplies, not optimized loadouts. New aliases include `herbrun` and `herbruns` for the existing herb-run category.
+This activity expansion is **under review on a feature branch**, not yet released through RuneLite Plugin Hub. The official client continues using the approved v1.4 code until a separate Plugin Hub update PR is merged. Activity searches are candidate supplies, not optimized loadouts. New aliases include `herbrun` and `herbruns` for the existing herb-run category. To review exactly which activities and example supplies are included, see [the v1.5 activity review guide](ACTIVITY_REVIEW.md).
 
 ## Installation
 

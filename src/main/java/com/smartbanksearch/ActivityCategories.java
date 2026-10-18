@@ -75,7 +75,7 @@ final class ActivityCategories
             "gwd prep", "god wars prep", "godwars prep");
 
         // Slayer tasks
-        registry.add("Gargoyles task", any(names("rock hammer", "rock thrownhammer", "granite hammer", "granite maul", "slayer ring", "guthan", "abyssal whip", "rune pouch"), SLAYER, HEALS, PRAYER, MELEE_BOOST),
+        registry.add("Gargoyles task", any(names("rock hammer", "rock thrownhammer", "granite hammer", "granite maul", "dual macuahuitl", "slayer ring", "guthan", "abyssal whip", "rune pouch"), SLAYER, HEALS, PRAYER, MELEE_BOOST),
             "gargoyles", "gargoyle task", "gargoyles prep");
         registry.add("Dust devils task", any(names("facemask", "masked earmuffs", "slayer helmet", "black mask", "ancient staff", "ancient sceptre", "kodai wand", "blood rune", "death rune", "water rune", "ice rune", "rune pouch", "bonecrusher", "ash sanctifier"), PRAYER, MAGE_BOOST),
             "dust devils", "dustdevils", "dust devil task");

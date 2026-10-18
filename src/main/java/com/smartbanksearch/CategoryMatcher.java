@@ -166,7 +166,7 @@ public final class CategoryMatcher
     {
         return s == null ? "" : s.toLowerCase(Locale.ROOT).replace('’', '\'').replace('-', ' ').replace('_', ' ').trim().replaceAll("\\s+", " ");
     }
-    private static boolean matchesName(String name, String... terms)
+    static boolean matchesName(String name, String... terms)
     {
         String n = normalize(name);
         for (String term : terms)
@@ -391,7 +391,7 @@ public final class CategoryMatcher
             f -> matchesName(f.name, "seed") && matchesName(f.name, "guam", "marrentill", "tarromin", "harralander", "ranarr", "toadflax", "irit", "avantoe", "kwuarm", "snapdragon", "cadantine", "lantadyme", "dwarf", "torstol"),
             // Common quick herb-patch teleports. Avoid showing every single teleport item.
             names("ectophial", "ardougne cloak", "explorer's ring", "stony basalt", "icy basalt", "trollheim teleport", "catherby teleport", "camelot teleport", "falador teleport", "ardougne teleport", "fenkenstrain's castle teleport", "salve graveyard teleport", "kharyrll teleport", "xeric's talisman", "xeric's glade", "skills necklace", "ring of the elements", "amulet of glory", "farming guild teleport", "spirit tree", "drakan's medallion", "harmony island teleport", "teleport to house", "rune pouch")),
-            "herb run", "herb runs", "herb farming run", "herb farm run", "quick herb run", "herblore run", "farm run", "farming run", "herb run gear", "herb run setup", "herb run kit");
+            "herb run", "herb runs", "herbrun", "herbruns", "herb farming run", "herb farm run", "quick herb run", "herblore run", "farm run", "farming run", "herb run gear", "herb run setup", "herb run kit");
         add("Tree run kit", any(names("spade", "gardening trowel", "plant pot", "watering can", "ultracompost", "supercompost", "compost", "basket", "sack", "farming cape", "farming hood", "stamina potion", "seed dibber", "ring of wealth", "skills necklace", "teleport to house", "spirit tree", "crystal teleport seed", "amulet of glory"),
             f -> matchesName(f.name, "sapling") || (matchesName(f.name, "seed") && matchesName(f.name, "oak", "willow", "maple", "yew", "magic", "palm", "dragonfruit", "papaya", "pineapple", "calquat", "teak", "mahogany", "redwood", "celastrus", "hespori"))),
             "tree run", "tree runs", "fruit tree run", "tree farm run", "tree farming run", "tree run gear", "tree run setup");
@@ -401,6 +401,9 @@ public final class CategoryMatcher
             "sailing repair", "boat repairs", "ship repair", "boat repair kit");
         add("Sailing salvage kit", names("salvaging hook", "salvage", "shipwreck", "cargo hold", "repair kit", "sailing cape", "ship's log", "captain's logbook"),
             "sailing salvage", "salvaging gear", "shipwreck salvage", "salvaging setup");
+
+        // Activity preparation kits are kept separate from general item categories.
+        ActivityCategories.register(CategoryMatcher::add);
     }
 
     private static Category find(String q, boolean strict)

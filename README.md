@@ -37,9 +37,9 @@ Classification uses curated rules and may have false positives or omissions, esp
 
 ## Installation
 
-After RuneLite Plugin Hub approval, open RuneLite through the Jagex Launcher, select **Plugin Hub**, search **Smart Bank Search**, and install it.
+Smart Bank Search is available in the official RuneLite Plugin Hub ([initial submission merged in PR #18725](https://github.com/runelite/plugin-hub/pull/18725)). Open RuneLite, select **Plugin Hub**, search **Smart Bank Search**, and install it.
 
-Before approval, developers can run this project in IntelliJ using the Gradle `run` task (JDK 17 recommended for Gradle, Java 11 source compatibility).
+For local development, use IntelliJ with the Gradle `run` task (JDK 17 recommended for Gradle, Java 11 source compatibility).
 
 ## Development / testing
 
@@ -53,14 +53,14 @@ Before approval, developers can run this project in IntelliJ using the Gradle `r
   java -cp out com.smartbanksearch.CategoryMatcherSkillSelfTest
   ```
 
-For Windows PowerShell, prefer running the test task through IntelliJ's Gradle panel. See [TESTING.md](TESTING.md) for a release smoke-test checklist and [PUBLISHING.md](PUBLISHING.md) for official Plugin Hub submission instructions.
+For Windows PowerShell, prefer running the test task through IntelliJ's Gradle panel. See [TESTING.md](TESTING.md) for a release smoke-test checklist and [PUBLISHING.md](PUBLISHING.md) for future Plugin Hub update instructions.
 
 ## Compatibility and support
 
-Designed for the normal bank interface, not a replacement bank UI. The core category matcher is unit tested, and an earlier v1.2 bank-filter implementation was verified manually in-game. **The v1.4 expanded category rules still require a full RuneLite build and in-game regression testing before final submission.**
+Designed for the normal bank interface, not a replacement bank UI. The core category matcher is unit tested, and an earlier v1.2 bank-filter implementation was verified manually in-game. **The initial Plugin Hub build passed, and the plugin has been confirmed working in the official RuneLite client. This does not prove every category or compatibility case has been regression-tested. Follow the release checklist for every update.**
 
 Please use [GitHub Issues](https://github.com/steeltype-ux/smart-bank-search/issues) to report false positives, missing items or compatibility problems.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+BSD 2-Clause. See [LICENSE](LICENSE).

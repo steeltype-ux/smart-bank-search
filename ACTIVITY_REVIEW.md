@@ -53,7 +53,9 @@ All 67 new searches return **candidate items already in the player's bank**. A s
 
 | Search | Curated examples | Shared candidate supplies |
 |---|---|---|
-| `@wintertodt` | tinderbox, bruma torch, pyromancer, clue hunter, warm gloves, firemaking cape, firemaking hood | high-healing food |
+| `@wintertodt` | tinderbox, bruma torch, pyromancer, warm clothing, **regen bracelet**, Hitpoints cape, cakes, chocolate cakes, pizzas, pies | multi-bite food, cooked hunter meat, single-bite high-healing food, rejuvenation potions |
+
+**Wintertodt warmth mechanics:** A food bite that normally heals at least 4 HP restores 35% warmth. Cake has three bites (up to 105% total theoretical warmth restoration per inventory slot); suitable pizzas and pies offer two (up to 70%). Regen bracelet enhances warmth regeneration and is already part of this kit. Food items like cake tins, pizza bases, uncooked pizzas and burnt pies are intentionally excluded. The filter matches curated names, not actual HP/heal values, and warmth caps at 100%.
 | `@tempoross` | harpoon, hammer, rope, bucket, bucket of water, angler, spirit angler | stamina/energy |
 | `@gotr` | pickaxe, chisel, essence pouch, colossal pouch, raiments of the eye, abyssal lantern, abyssal needle | stamina/energy |
 | `@giants foundry` | bronze bar, iron bar, steel bar, mithril bar, adamantite bar, rune bar, steel platebody | None |

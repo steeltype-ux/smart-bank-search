@@ -40,6 +40,17 @@ final class ActivityCategories
     private static final Predicate<ItemFacts> SLAYER = names("slayer helmet", "slayer helm", "black mask", "bracelet of slaughter", "expeditious bracelet");
     private static final Predicate<ItemFacts> WILDY = names("blighted", "royal seed pod", "burning amulet", "looting bag", "wilderness sword", "amulet of glory", "ring of dueling");
 
+    // Wintertodt warmth: each food bite that normally heals >=4 HP restores 35%
+    // warmth. Multi-bite cakes (3) and pizzas/pies (2) are especially slot-efficient.
+    // Avoid uncooked components that share the same item-name substrings.
+    private static final Predicate<ItemFacts> WINTERTODT_MULTIBITE_FOOD = f ->
+        (CategoryMatcher.matchesName(f.name, "cake", "pizza", "pie")
+            && !CategoryMatcher.matchesName(f.name, "raw", "uncooked", "burnt", "dough",
+                "mix", "tin", "dish", "shell", "base", "flour"))
+        || CategoryMatcher.matchesName(f.name, "cooked sunlight antelope",
+            "cooked moonlight antelope", "cooked dashing kebbit", "cooked wild kebbit",
+            "cooked larupia", "cooked graahk", "cooked kyatt", "cooked fox");
+
     static void register(Registrar registry)
     {
         // Bosses and raids
@@ -101,7 +112,7 @@ final class ActivityCategories
             "kraken boss", "kraken task", "cave kraken");
 
         // Minigames
-        registry.add("Wintertodt kit", any(names("tinderbox", "bruma torch", "pyromancer", "clue hunter", "warm gloves", "firemaking cape", "firemaking hood", "axe", "hammer", "knife", "regen bracelet", "hitpoints cape", "yak hide", "santa hat", "jug of wine", "cake", "rejuvenation potion"), HEALS),
+        registry.add("Wintertodt kit", any(names("tinderbox", "bruma torch", "pyromancer", "clue hunter", "warm gloves", "firemaking cape", "firemaking hood", "axe", "hammer", "knife", "regen bracelet", "hitpoints cape", "yak hide", "santa hat", "jug of wine", "rejuvenation potion"), WINTERTODT_MULTIBITE_FOOD, HEALS),
             "wintertodt", "wintertodt prep", "wt prep");
         registry.add("Tempoross kit", any(names("harpoon", "hammer", "rope", "bucket", "bucket of water", "angler", "spirit angler", "fishing cape", "fishing hood", "fishing barrel", "fish barrel", "infernal harpoon", "dragon harpoon", "crystal harpoon", "imcando hammer", "tackle box", "ring of endurance"), ENERGY),
             "tempoross", "tempoross prep");

@@ -61,7 +61,7 @@ public final class ActivityCategoriesSelfTest
         yes("@toa prep", "osmumten's fang"); yes("@toa prep", "keris partisan"); no("@toa prep", "Grimy ranarr weed"); no("@toa prep", "Rune platebody");
         yes("@barrows prep", "barrows teleport"); yes("@barrows prep", "drakan's medallion"); no("@barrows prep", "Grimy ranarr weed"); no("@barrows prep", "Rune platebody");
         yes("@gwd prep", "ecumenical key"); yes("@gwd prep", "frozen key"); no("@gwd prep", "Grimy ranarr weed"); no("@gwd prep", "Rune platebody");
-        yes("@gargoyles", "rock hammer"); yes("@gargoyles", "rock thrownhammer"); no("@gargoyles", "Grimy ranarr weed"); no("@gargoyles", "Rune platebody");
+        yes("@gargoyles", "rock hammer"); yes("@gargoyles", "rock thrownhammer"); yes("@gargoyles", "Dual macuahuitl"); no("@gargoyles", "Grimy ranarr weed"); no("@gargoyles", "Rune platebody");
         yes("@dust devils", "facemask"); yes("@dust devils", "masked earmuffs"); no("@dust devils", "Grimy ranarr weed"); no("@dust devils", "Rune platebody");
         yes("@nechryaels", "slayer helmet"); yes("@nechryaels", "black mask"); no("@nechryaels", "Grimy ranarr weed"); no("@nechryaels", "Rune platebody");
         yes("@aberrant spectres", "nose peg"); yes("@aberrant spectres", "slayer helmet"); no("@aberrant spectres", "Grimy ranarr weed"); no("@aberrant spectres", "Rune platebody");

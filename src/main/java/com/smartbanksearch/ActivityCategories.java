@@ -57,7 +57,7 @@ final class ActivityCategories
             "nex", "nex prep", "nex gear");
         registry.add("Nightmare preparation", any(names("inquisitor", "bludgeon", "scythe of vitur", "sanguinesti staff", "harmonised nightmare staff", "harmonized nightmare staff", "trident", "mace", "crush weapon", "crush weapons", "eldritch nightmare staff", "slepey tablet", "drakan's medallion", "ectophial", "dragon warhammer"), HEALS, PRAYER, BREWS, MELEE_BOOST, ENERGY),
             "nightmare boss", "nightmare prep", "phosani", "phosani's nightmare");
-        registry.add("Cerberus preparation", any(names("primordial crystal", "pega sian crystal", "pegasian crystal", "eternal crystal", "spectral spirit shield", "arclight", "emberlight", "scythe of vitur", "abyssal bludgeon", "dragon claws", "slayer helmet", "black mask", "key master teleport"), HEALS, PRAYER, BREWS, MELEE_BOOST),
+        registry.add("Cerberus preparation", any(names("primordial crystal", "pegasian crystal", "pegasian crystal", "eternal crystal", "spectral spirit shield", "arclight", "emberlight", "scythe of vitur", "abyssal bludgeon", "dragon claws", "slayer helmet", "black mask", "key master teleport"), HEALS, PRAYER, BREWS, MELEE_BOOST),
             "cerberus", "cerberus prep");
         registry.add("Alchemical Hydra preparation", any(names("dragon hunter crossbow", "dragon hunter lance", "twisted bow", "bow of faerdhinen", "toxic blowpipe", "ranging potion", "antipoison", "slayer helmet", "brimstone ring", "brimstone boots", "konar", "kourend"), HEALS, PRAYER, BREWS, RANGE_BOOST),
             "hydra boss", "alchemical hydra", "hydra prep");
@@ -157,11 +157,11 @@ final class ActivityCategories
             "artio", "artio prep");
         registry.add("Chaos Elemental kit", any(names("webweaver bow", "craw's bow", "bow of faerdhinen", "black d'hide", "looting bag", "blighted", "royal seed pod", "burning amulet", "stamina potion"), WILDY, HEALS, PRAYER, RANGE_BOOST),
             "chaos elemental", "chaosele", "chaos ele");
-        registry.add("Chaos Altar prayer kit", any(names("dragon bones", "superior dragon bones", "wyvern bones", "hydra bones", "dagannoth bones", "burning amulet", "wilderness sword", "looting bag", "royal seed pod", "gilded altar", "stamina potion"), WILDY, HEALS),
+        registry.add("Chaos Altar prayer kit", any(names("dragon bones", "superior dragon bones", "wyvern bones", "hydra bones", "dagannoth bones", "burning amulet", "wilderness sword", "looting bag", "royal seed pod", "stamina potion"), WILDY, HEALS),
             "chaos altar", "wildy altar", "wilderness altar");
         registry.add("Wilderness bosses kit", any(names("webweaver bow", "craw's bow", "ursine chainmace", "viggora's chainmace", "accursed sceptre", "thammaron's sceptre", "salve amulet", "blighted", "looting bag", "burning amulet", "royal seed pod"), WILDY, HEALS, PRAYER),
             "wildy bosses", "wilderness bosses", "wildybosses");
-        registry.add("Wilderness escape kit", any(names("royal seed pod", "amulet of glory", "ring of wealth", "ring of dueling", "burning amulet", "wilderness sword", "entangle", "ice barrage", "blood rune", "death rune", "water rune", "sara domin brew", "saradomin brew", "black d'hide", "looting bag"), WILDY, HEALS, PRAYER),
+        registry.add("Wilderness escape kit", any(names("royal seed pod", "amulet of glory", "ring of wealth", "ring of dueling", "burning amulet", "wilderness sword", "entangle", "ice barrage", "blood rune", "death rune", "water rune", "saradomin brew", "black d'hide", "looting bag"), WILDY, HEALS, PRAYER),
             "wildy escape", "wilderness escape", "pvp escape");
         registry.add("Anti-PK kit", any(names("dragon claws", "voidwaker", "abyssal dagger", "dragon dagger", "granite maul", "ags", "armadyl godsword", "ice barrage", "entangle", "black d'hide", "blighted", "rune pouch", "looting bag", "royal seed pod"), WILDY, HEALS, PRAYER),
             "anti pk", "antipk", "antipking");

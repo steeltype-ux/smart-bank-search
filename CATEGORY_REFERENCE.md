@@ -264,7 +264,7 @@ These **67 new categories** complement the existing 141 searches, for **208 tota
 
 | Search | Activity | Other aliases |
 |---|---|---|
-| `@wintertodt` | Wintertodt kit | `wintertodt prep`, `wt prep` |
+| `@wintertodt` | Wintertodt kit: tools, warm clothing, regen bracelet, cakes/pizzas/pies and other healing | `wintertodt prep`, `wt prep` |
 | `@tempoross` | Tempoross kit | `tempoross prep` |
 | `@gotr` | Guardians of the Rift kit | `guardians of the rift`, `guardians rift` |
 | `@giants foundry` | Giant's Foundry kit | `giantsfoundry`, `giant foundry` |

@@ -75,6 +75,26 @@ public final class ActivityCategoriesSelfTest
         yes("@cannon tasks", "cannonball"); yes("@cannon tasks", "dwarf multicannon"); no("@cannon tasks", "Grimy ranarr weed"); no("@cannon tasks", "Rune platebody");
         yes("@kraken boss", "trident of the seas"); yes("@kraken boss", "trident of the swamp"); no("@kraken boss", "Grimy ranarr weed"); no("@kraken boss", "Rune platebody");
         yes("@wintertodt", "tinderbox"); yes("@wintertodt", "bruma torch"); no("@wintertodt", "Grimy ranarr weed"); no("@wintertodt", "Rune platebody");
+        // Regen bracelet was already in the kit; confirm it remains present.
+        yes("@wintertodt", "Regen bracelet");
+        yes("@wintertodt", "Hitpoints cape");
+        // Wintertodt warmth heals per qualifying bite, not proportionally to HP healed.
+        yes("@wintertodt", "Cake");
+        yes("@wintertodt", "2/3 cake");
+        yes("@wintertodt", "Chocolate cake");
+        yes("@wintertodt", "Meat pizza");
+        yes("@wintertodt", "Half an anchovy pizza");
+        yes("@wintertodt", "Summer pie");
+        yes("@wintertodt", "Half a summer pie");
+        yes("@wintertodt", "Cooked sunlight antelope");
+        yes("@wintertodt", "Shark"); // existing single-bite healing food still supported
+        no("@wintertodt", "Cake tin");
+        no("@wintertodt", "Cake mix");
+        no("@wintertodt", "Uncooked pizza");
+        no("@wintertodt", "Pizza base");
+        no("@wintertodt", "Burnt pie");
+        no("@wintertodt", "Pie dish");
+        no("@wintertodt", "Raw shark");
         yes("@tempoross", "harpoon"); yes("@tempoross", "hammer"); no("@tempoross", "Grimy ranarr weed"); no("@tempoross", "Rune platebody");
         yes("@gotr", "pickaxe"); yes("@gotr", "chisel"); no("@gotr", "Grimy ranarr weed"); no("@gotr", "Rune platebody");
         yes("@giants foundry", "bronze bar"); yes("@giants foundry", "iron bar"); no("@giants foundry", "Grimy ranarr weed");

@@ -256,7 +256,7 @@ These **67 new categories** complement the existing 141 searches, for **208 tota
 | `@skeletal wyverns` | Skeletal wyverns task | `wyvern task`, `skeletal wyvern` |
 | `@abyssal demons` | Abyssal demons task | `abby demons`, `abyssal task` |
 | `@demonic gorillas` | Demonic gorillas trip | `demonics`, `demonic gorilla prep` |
-| `@barrage tasks` | Burst and barrage Slayer | `barrage slayer`, `burst tasks`, `burst slayer` |
+| `@barrage tasks` | Burst and barrage Slayer | `barrage`, `barrage slayer`, `burst tasks`, `burst slayer` |
 | `@cannon tasks` | Cannon Slayer trips | `cannon slayer`, `cannon trip` |
 | `@kraken boss` | Kraken task | `kraken task`, `cave kraken` |
 

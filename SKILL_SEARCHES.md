@@ -1,6 +1,6 @@
 # Smart Bank Search v1.4 — Complete category reference
 
-**141 built-in category groups**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
+**208 category groups in the v1.5 candidate build (141 original + 67 new activity kits)**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
 All searches use the normal RuneLite bank search field and show only items actually in your bank.
 
 - `mining` — mining resources, tools, clothing and enhancements.
@@ -57,6 +57,10 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 | `@fletching gear` | Knife and fletching boosts; use `@fletching` for all supplies |
 | `@sailing repair` | Repair kits, planks, nails and boat repair tools |
 | `@sailing salvage` | Salvage-related tools and supplies |
+
+## Extended activity searches in v1.5
+
+The release candidate adds boss preparation, Slayer monster tasks, minigame kits (including Wintertodt, Tempoross and Guardians of the Rift), skilling activities, Wilderness and PvP, clue preparation, and quest travel. Search for the complete list and all aliases in [CATEGORY_REFERENCE.md](CATEGORY_REFERENCE.md). The existing herb-run filter is unchanged and also accepts `herbrun` and `herbruns`.
 
 ## Limitations and use
 

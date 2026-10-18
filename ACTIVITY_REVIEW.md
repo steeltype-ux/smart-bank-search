@@ -45,7 +45,7 @@ All 67 new searches return **candidate items already in the player's bank**. A s
 | `@skeletal wyverns` | elemental shield, mind shield, ancient wyvern shield, dragonfire shield, dragonfire ward, slayer helmet, black mask | high-healing food, prayer-restoring supplies, ranged boosts |
 | `@abyssal demons` | arclight, emberlight, abyssal whip, abyssal dagger, slayer helmet, black mask, scythe of vitur | high-healing food, prayer-restoring supplies, melee boosts |
 | `@demonic gorillas` | arclight, emberlight, demonbane, toxic blowpipe, bow of faerdhinen, crossbow, rune pouch | high-healing food, prayer-restoring supplies, melee boosts, ranged boosts |
-| `@barrage tasks` | ancient staff, ancient sceptre, kodai wand, master wand, blood rune, death rune, water rune | prayer-restoring supplies, magic boosts |
+| `@barrage tasks` / `@barrage` | ancient staff, ancient sceptre, kodai wand, master wand, blood rune, death rune, water rune | prayer-restoring supplies, magic boosts |
 | `@cannon tasks` | cannonball, dwarf multicannon, cannon base, cannon stand, cannon barrels, cannon furnace, slayer helmet | high-healing food, prayer-restoring supplies |
 | `@kraken boss` | trident of the seas, trident of the swamp, sanguinesti staff, occult necklace, ancestral, ahrim, tome of fire | high-healing food, prayer-restoring supplies, magic boosts |
 

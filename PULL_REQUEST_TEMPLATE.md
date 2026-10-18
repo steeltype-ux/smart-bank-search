@@ -1,20 +1,29 @@
-# Add Smart Bank Search
+# Update Smart Bank Search
 
-Smart Bank Search extends RuneLite's normal OSRS bank search with automatic item category filtering. Players can find herbs, seeds, equipment slots, combat-style gear, skilling tools, and activity supplies without manually tagging every item.
+**Repository:** https://github.com/steeltype-ux/smart-bank-search  
+**Existing Plugin Hub entry:** https://github.com/runelite/plugin-hub/blob/master/plugins/smart-bank-search
 
-**Features**
-- Native bank search integration through `bankSearchFilter`; no extra banking interface.
-- 141 category groups and aliases spanning all 24 OSRS skills.
-- Equipment slot / combat-stat matching with item-name fallbacks.
-- Ordinary additive category queries (`herb`); opt-in exclusive (`@herb`) and two-category intersection queries (`@ranged boots`).
-- Local-only processing; no network requests, credential handling, bank-data transmission, or gameplay automation.
+## What changed
 
-**Similar plugins**
-Better Bank Search and Semantic Bank Search cover related needs. This plugin additionally emphasizes broad skill/activity categorization and composable native bank searches.
+- (Summarize feature additions or bug fixes.)
+- (State any behavior changes or write "No search behavior changes.")
 
-**Testing**
-- Dependency-free Java category regression tests: 148 passed locally against v1.4 sources.
-- Full RuneLite build and in-game verification of v1.4: **pending**; update this paragraph with actual results before opening the PR.
+## Testing — only report checks actually performed
 
-**Maintainer**
-Your public GitHub handle goes here, and you can respond to reviewer requests/issues.
+- Source commit SHA: `<FULL_40_CHARACTER_SHA>`
+- `gradle clean test`: (passed / failed / not run; attach logs as appropriate)
+- Standalone matcher tests: (passed / failed / not run)
+- RuneLite development client: (tested / not tested)
+- Official RuneLite client: (tested / not tested)
+- Manual bank searches / exclusions: (summarize tests)
+- Known limitations: (list)
+
+## Safety and compatibility
+
+- Native bank search integration; no withdrawals, equipment automation or external bank-data transmission.
+- Confirm existing bank search and Bank Tags coexistence, or explain any limitations.
+
+**Maintainer:** [@steeltype-ux](https://github.com/steeltype-ux)  
+**Support:** https://github.com/steeltype-ux/smart-bank-search/issues
+
+Remove placeholders before submitting an update PR.

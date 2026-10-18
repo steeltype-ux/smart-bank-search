@@ -15,10 +15,14 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `boots`, `gloves`, `legs` | Equipment matched by actual equipment slot when RuneLite provides stats |
 | `ranged gear`, `prayer gear` | Equipment identified using combat and prayer bonuses plus curated fallback names |
 | `mining`, `fletching`, `sailing` | Relevant skill tools and supplies |
-| `herb run` | Herb seeds, farming tools, compost and common patch teleports |
+| `herb run`, `herbrun` | Herb seeds, farming tools, compost and common patch teleports |
 | `dragon fighting equipment` | Dragonbane weapons, antifire protection and related items |
 | `@rune` | Rune resources exclusively, not Rune platebodies |
 | `@ranged boots` | Items matching both ranged gear and the boots slot |
+| `@wintertodt`, `@tempoross`, `@gotr` | Curated minigame preparation supplies in your bank |
+| `@zulrah`, `@vorkath`, `@jad` | Boss preparation supplies and suitable equipment |
+| `@gargoyles`, `@dustdevils`, `@revenants` | Activity-specific Slayer and Wilderness supplies |
+| `@cluekit`, `@questprep` | Travel equipment, general tools and preparation supplies |
 
 ### Search modes
 
@@ -27,13 +31,17 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 - **Two-category intersection** (`@prayer legs`): both categories must match.
 - An unknown query is left to RuneLite's normal bank search.
 
-The plugin provides **141 category groups**, covering all 24 OSRS skills, equipment slots, weapons, resources, combat, skilling and selected activity kits. See [CATEGORY_REFERENCE.md](CATEGORY_REFERENCE.md) and [SKILL_SEARCHES.md](SKILL_SEARCHES.md) for the complete guide.
+The v1.5 source branch expands the plugin to **208 category groups** (141 original + 67 activity kits), covering all 24 OSRS skills, equipment slots, weapons, resources, combat, skilling and selected activity kits. See [CATEGORY_REFERENCE.md](CATEGORY_REFERENCE.md) and [SKILL_SEARCHES.md](SKILL_SEARCHES.md) for the complete guide.
 
 ## How it works
 
 Smart Bank Search listens to the `bankSearchFilter` callback to extend the bank's normal item filter. Item names, equipment slots and combat/prayer stats are retrieved locally through RuneLite's API and cached within the client. It **does not** read account credentials, communicate with external servers, automate gameplay, or send bank contents anywhere.
 
 Classification uses curated rules and may have false positives or omissions, especially for newer items and activity-based searches. Activity searches are *candidate supplies*, not guaranteed optimal loadouts. Search matching is case-insensitive. The `@` feature can interact with other plugins that modify the same bank-search callback.
+
+## v1.5 development status
+
+This activity expansion is **under review on a feature branch**, not yet released through RuneLite Plugin Hub. The official client continues using the approved v1.4 code until a separate Plugin Hub update PR is merged. Activity searches are candidate supplies, not optimized loadouts. New aliases include `herbrun` and `herbruns` for the existing herb-run category.
 
 ## Installation
 

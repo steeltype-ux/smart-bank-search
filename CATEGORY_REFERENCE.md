@@ -1,6 +1,6 @@
-# Smart Bank Search v1.4 — Complete category reference
+# Smart Bank Search v1.5 — Complete category reference
 
-**141 built-in category groups**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
+**208 built-in category groups (141 existing + 67 new activity kits)**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
 All searches use the normal RuneLite bank search field and show only items actually in your bank.
 
 - `mining` — mining resources, tools, clothing and enhancements.
@@ -199,7 +199,7 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 - **Cosmetics / ornament kits** — `cosmetic`, `cosmetics`, `fashionscape`, `ornament kits`, `orn kits`, `fashion`
 - **Pets and pet items** — `pets`, `pet items`, `pet supplies`
 - **Consumables** — `consumables`, `supplies`, `useables`, `usables`
-### Skills and activity loadouts (new in v1.4)
+### Skills and existing activity loadouts (introduced in v1.4)
 
 - **Attack skill** — `attack`, `attack skill`, `attack training`, `attack gear`, `attack equipment`
 - **Strength skill** — `strength`, `strength skill`, `strength training`, `strength equipment`
@@ -215,3 +215,109 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 - **Birdhouse run kit** — `birdhouse run`, `birdhouse runs`, `bird house run`, `birdhouse kit`, `birdhouse setup`
 - **Sailing repair kit** — `sailing repair`, `boat repairs`, `ship repair`, `boat repair kit`
 - **Sailing salvage kit** — `sailing salvage`, `salvaging gear`, `shipwreck salvage`, `salvaging setup`
+
+
+## New v1.5 activity preparation kits (proposed release)
+
+These **67 new categories** complement the existing 141 searches, for **208 total categories**. Search any activity name below directly (additive) or prepend `@` (exclusive). These are **curated candidate supplies already in your bank**, not guaranteed best-in-slot setups or a complete gear checklist. For example, `@wintertodt` includes warm clothing, tools and supplies; `@zulrah` includes venom protection, suitable equipment and consumables. Existing `@toa`, `@cox` and `@tob` retain their earlier meaning; use the new `@toa prep`, `@cox prep` or `@tob prep` aliases for broader preparation kits.
+
+**Herb-run alias:** The existing `@herb run` category also supports `@herbrun` and `@herbruns`. These aliases use identical matching rules; nothing about herb-run item selection changes.
+
+### Bosses and raids
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@zulrah` | Zulrah preparation | `zulrah prep`, `zulrah gear` |
+| `@vorkath` | Vorkath preparation | `vorkath prep`, `vorkath gear` |
+| `@muspah` | Phantom Muspah preparation | `phantom muspah`, `muspah prep` |
+| `@jad` | Fight Caves preparation | `fight caves`, `jad prep`, `fight caves prep` |
+| `@inferno` | Inferno preparation | `inferno prep` |
+| `@nex` | Nex preparation | `nex prep`, `nex trip` |
+| `@nightmare boss` | Nightmare preparation | `nightmare prep`, `phosani`, `phosani's nightmare` |
+| `@cerberus` | Cerberus preparation | `cerberus prep` |
+| `@hydra boss` | Alchemical Hydra preparation | `alchemical hydra`, `hydra prep` |
+| `@scurrius` | Scurrius preparation | `scurrius prep` |
+| `@cox prep` | CoX raid preparation | `chambers prep`, `olm prep` |
+| `@tob prep` | ToB raid preparation | `theatre of blood prep`, `theater of blood prep` |
+| `@toa prep` | ToA raid preparation | `tombs of amascut prep`, `raids 3 prep` |
+| `@barrows prep` | Barrows run preparation | `barrows run`, `barrows trip` |
+| `@gwd prep` | God Wars trip preparation | `god wars prep`, `godwars prep` |
+
+### Slayer tasks
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@gargoyles` | Gargoyles task | `gargoyle task`, `gargoyles prep` |
+| `@dust devils` | Dust devils task | `dustdevils`, `dust devil task` |
+| `@nechryaels` | Nechryaels task | `nechs`, `nech task`, `nechryael task` |
+| `@aberrant spectres` | Aberrant spectres task | `spectres task`, `aberrants` |
+| `@basilisks` | Basilisks task | `basilisk knights`, `basilisk task` |
+| `@kurasks` | Kurasks task | `kurask task` |
+| `@skeletal wyverns` | Skeletal wyverns task | `wyvern task`, `skeletal wyvern` |
+| `@abyssal demons` | Abyssal demons task | `abby demons`, `abyssal task` |
+| `@demonic gorillas` | Demonic gorillas trip | `demonics`, `demonic gorilla prep` |
+| `@barrage tasks` | Burst and barrage Slayer | `barrage slayer`, `burst tasks`, `burst slayer` |
+| `@cannon tasks` | Cannon Slayer trips | `cannon slayer`, `cannon trip` |
+| `@kraken boss` | Kraken task | `kraken task`, `cave kraken` |
+
+### Minigames
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@wintertodt` | Wintertodt kit | `wintertodt prep`, `wt prep` |
+| `@tempoross` | Tempoross kit | `tempoross prep` |
+| `@gotr` | Guardians of the Rift kit | `guardians of the rift`, `guardians rift` |
+| `@giants foundry` | Giant's Foundry kit | `giantsfoundry`, `giant foundry` |
+| `@mahogany homes` | Mahogany Homes kit | `mahoganyhomes`, `mahogany homes prep` |
+| `@hallowed sepulchre` | Hallowed Sepulchre kit | `sepulchre`, `sepulchre prep` |
+| `@pyramid plunder` | Pyramid Plunder kit | `pyramidplunder`, `plunder prep` |
+| `@tithe farm` | Tithe Farm kit | `tithefarm`, `tithe farming` |
+| `@pest control` | Pest Control kit | `pestcontrol`, `pc minigame` |
+| `@barbarian assault` | Barbarian Assault kit | `barb assault`, `ba minigame` |
+| `@soul wars` | Soul Wars kit | `soulwars` |
+| `@nightmare zone` | Nightmare Zone kit | `nmz`, `nightmarezone` |
+| `@shades of mortton` | Shades of Mort'ton kit | `shades of mort'ton`, `shades minigame` |
+| `@fishing trawler` | Fishing Trawler kit | `trawler`, `fishing trawler prep` |
+| `@volcanic mine` | Volcanic Mine kit | `volcanicmine`, `vm mining` |
+| `@blast furnace` | Blast Furnace kit | `blastfurnace`, `bf smithing` |
+
+### Farming and skilling
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@farming contracts` | Farming contracts kit | `farm contracts`, `farm contract` |
+| `@giant seaweed` | Giant seaweed runs | `seaweed run`, `seaweed farming` |
+| `@motherlode mine` | Motherlode Mine kit | `motherlode`, `mlm` |
+| `@bird snaring` | Bird snaring and hunter kit | `bird snare run`, `hunter birds` |
+| `@chinchompa hunting` | Chinchompa hunting kit | `red chins`, `black chins`, `chin hunting` |
+
+### Wilderness and PvP
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@revenants` | Revenant caves kit | `revenant caves`, `rev caves`, `revs prep` |
+| `@calvarion` | Calvar'ion kit | `calvar'ion`, `calvarion prep` |
+| `@spindel` | Spindel kit | `spindel prep` |
+| `@artio` | Artio kit | `artio prep` |
+| `@chaos elemental` | Chaos Elemental kit | `chaosele`, `chaos ele` |
+| `@chaos altar` | Chaos Altar prayer kit | `wildy altar`, `wilderness altar` |
+| `@wildy bosses` | Wilderness bosses kit | `wilderness bosses`, `wildybosses` |
+| `@wildy escape` | Wilderness escape kit | `wilderness escape`, `pvp escape` |
+| `@anti pk` | Anti-PK kit | `antipk`, `antipking` |
+
+### Clues and quests
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@clue kit` | Clue solving kit | `cluekit`, `clue prep`, `clue solving` |
+| `@easy clue kit` | Easy clue kit | `easy clue prep`, `easyclue` |
+| `@medium clue kit` | Medium clue kit | `medium clue prep`, `mediumclue` |
+| `@hard clue kit` | Hard clue kit | `hard clue prep`, `hardclue` |
+| `@elite clue kit` | Elite clue kit | `elite clue prep`, `eliteclue` |
+| `@master clue kit` | Master clue kit | `master clue prep`, `masterclue` |
+| `@quest prep` | General quest preparation | `questprep`, `quest toolkit` |
+| `@quest travel` | Quest travel kit | `quest teleports`, `questtravel` |
+| `@quest combat` | Quest combat supplies | `quest fight prep`, `questcombat` |
+| `@fairy rings` | Fairy ring travel kit | `fairy ring kit`, `fairyrings` |
+
+These filters do not withdraw, bank, equip or move items. They cannot know your account unlocks or preferred setup. Use shorter/broader named categories when an activity-specific selection omits an item, and report missing or overinclusive item matches through GitHub Issues.

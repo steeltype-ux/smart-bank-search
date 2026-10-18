@@ -70,7 +70,8 @@ public final class ActivityCategoriesSelfTest
         yes("@skeletal wyverns", "elemental shield"); yes("@skeletal wyverns", "mind shield"); no("@skeletal wyverns", "Grimy ranarr weed"); no("@skeletal wyverns", "Rune platebody");
         yes("@abyssal demons", "arclight"); yes("@abyssal demons", "emberlight"); no("@abyssal demons", "Grimy ranarr weed"); no("@abyssal demons", "Rune platebody");
         yes("@demonic gorillas", "arclight"); yes("@demonic gorillas", "emberlight"); no("@demonic gorillas", "Grimy ranarr weed"); no("@demonic gorillas", "Rune platebody");
-        yes("@barrage tasks", "ancient staff"); yes("@barrage tasks", "ancient sceptre"); no("@barrage tasks", "Grimy ranarr weed"); no("@barrage tasks", "Rune platebody");
+        yes("@barrage tasks", "ancient staff"); yes("@barrage tasks", "ancient sceptre"); yes("@barrage", "ancient staff"); yes("@barrage", "Death rune");
+        check(CategoryMatcher.parse("@barrage", true).getCategoryName().equals(CategoryMatcher.parse("@barrage tasks", true).getCategoryName()), "barrage and barrage tasks must resolve to the same category"); no("@barrage tasks", "Grimy ranarr weed"); no("@barrage tasks", "Rune platebody");
         yes("@cannon tasks", "cannonball"); yes("@cannon tasks", "dwarf multicannon"); no("@cannon tasks", "Grimy ranarr weed"); no("@cannon tasks", "Rune platebody");
         yes("@kraken boss", "trident of the seas"); yes("@kraken boss", "trident of the swamp"); no("@kraken boss", "Grimy ranarr weed"); no("@kraken boss", "Rune platebody");
         yes("@wintertodt", "tinderbox"); yes("@wintertodt", "bruma torch"); no("@wintertodt", "Grimy ranarr weed"); no("@wintertodt", "Rune platebody");

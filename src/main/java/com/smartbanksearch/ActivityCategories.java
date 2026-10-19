@@ -100,6 +100,35 @@ final class ActivityCategories
         "fire rune", "water rune", "steam rune", "tome of fire",
         "tome of water", "fishing potion", "admiral pie", "fish pie");
 
+
+    // Guardians of the Rift normal setup: equipment that helps mine, carry and
+    // craft guardian essence, plus ways to avoid or repair pouch degradation.
+    // Pouch names are "Small pouch" etc., not "Essence pouch" in actual banks.
+    private static final Pattern GOTR_POUCH = Pattern.compile(
+        "^(?:essence|small|medium|large|giant|colossal) pouch(?: [(]degraded[)])?$");
+
+    private static final Predicate<ItemFacts> GOTR_ESSENCE_POUCH = f ->
+        GOTR_POUCH.matcher(f.name.toLowerCase(Locale.ROOT).trim()).matches();
+
+    private static final Predicate<ItemFacts> GOTR_MAIN_GEAR = names(
+        "pickaxe", "chisel", "abyssal lantern",
+        "hat of the eye", "robe top of the eye", "robe bottoms of the eye",
+        "boots of the eye", "varrock armour", "celestial ring",
+        "celestial signet", "ghommal's lucky penny", "mining cape",
+        "runecraft cape", "runecrafting cape", "max cape",
+        "prospector", "graceful", "penance gloves", "spottier cape",
+        "lightbearer", "amulet of the eye", "necklace of passage");
+
+    // Higher-effort combination-rune method: binding necklace and Magic Imbue
+    // (Lunar spellbook), plus Astral Contact to repair degraded pouches.
+    // Most players do not need these for normal/relaxed rounds.
+    private static final Predicate<ItemFacts> GOTR_COMBINATION = names(
+        "binding necklace", "rune pouch", "divine rune pouch",
+        "air rune", "water rune", "earth rune", "fire rune",
+        "steam rune", "smoke rune", "astral rune", "cosmic rune",
+        "tome of fire", "tome of water", "steam battlestaff",
+        "twinflame staff");
+
     static void register(Registrar registry)
     {
         // Bosses and raids
@@ -166,7 +195,8 @@ final class ActivityCategories
         registry.add("Tempoross kit",
             any(TEMPOROSS_TOOLS, TEMPOROSS_OUTFITS, TEMPOROSS_OPTIONAL),
             "tempoross", "tempoross prep", "temp");
-        registry.add("Guardians of the Rift kit", any(names("pickaxe", "chisel", "essence pouch", "colossal pouch", "raiments of the eye", "abyssal lantern", "abyssal needle", "binding necklace", "elemental talisman", "catalytic talisman", "celestial ring", "runecraft cape", "runecrafting cape", "hat of the eye"), ENERGY),
+        registry.add("Guardians of the Rift kit",
+            any(GOTR_ESSENCE_POUCH, GOTR_MAIN_GEAR, GOTR_COMBINATION),
             "gotr", "guardians of the rift", "guardians rift");
         // Metal material candidates plus only the relevant worn/portable equipment.
         // Ice gloves / smiths gloves (i) are convenient for handling the hot preform.

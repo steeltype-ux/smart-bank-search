@@ -1,5 +1,7 @@
 # Smart Bank Search
 
+![Smart Bank Search Plugin Hub icon](icon.png)
+
 Maintained by **[@steeltype-ux](https://github.com/steeltype-ux)**.
 
 **Search OSRS bank items by what they are, not just what they're called.**

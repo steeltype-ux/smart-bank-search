@@ -276,10 +276,10 @@ The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mit
 | `@hallowed sepulchre` | Hallowed upgrades and Agility clothing; optional coffin tools, planks/nails, grapple, enchant and poison protection | `sepulchre`, `sepulchre prep` |
 | `@pyramid plunder` | Pharaoh's sceptre, snake charm, lockpick, poison/prayer prevention, food, regeneration and optional travel | `pyramidplunder`, `plunder prep`, `plunder` |
 | `@tithe farm` | Spade/dibber/watering cans, Farmer's outfit, graceful, optional Humidify, stamina and Hosidius travel | `tithefarm`, `tithe farming`, `tithe` |
-| `@pest control` | Pest Control kit | `pestcontrol`, `pc minigame`, `pest` |
-| `@barbarian assault` | Barbarian Assault kit | `barb assault`, `ba minigame`, `ba` |
-| `@soul wars` | Soul Wars kit | `soulwars` |
-| `@nightmare zone` | Nightmare Zone kit | `nmz`, `nightmarezone` |
+| `@pest control` | Combat weapons, Void gear, optional boosts and Ancients; no routine food or Prayer potions | `pestcontrol`, `pc minigame`, `pest` |
+| `@barbarian assault` | Attacker and defence gear, Imcando hammer, limited combat boosts; no outside runes, rune pouches or food | `barb assault`, `ba minigame`, `ba` |
+| `@soul wars` | Magic-defence armour, Ancient Magicks runes and PvP equipment; in-game bandages and potions excluded | `soulwars` |
+| `@nightmare zone` | Low-HP tools, Dharok/Obsidian sets, prayer/combat setup and coins; NMZ-only overload/absorption excluded | `nmz`, `nightmarezone` |
 | `@shades of mortton` | Shades of Mort'ton kit | `shades of mort'ton`, `shades minigame`, `shades` |
 | `@fishing trawler` | Fishing Trawler kit | `trawler`, `fishing trawler prep` |
 | `@volcanic mine` | Volcanic Mine kit | `volcanicmine`, `vm mining`, `vm` |

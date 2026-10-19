@@ -243,7 +243,7 @@ public final class CategoryMatcher
         add("Darts", names("dart", "darts", "dart tip", "dart tips"), "dart", "darts", "dart tips");
         add("Thrown weapons", names("throwing knife", "javelin", "chinchompa", "throwing axe", "throwing ring", "darts"), "throwing", "throwing weapons", "knives", "javelins", "chins", "chinchompas");
         add("Blowpipes", names("toxic blowpipe", "blowpipe"), "blowpipe", "blowpipes", "bp");
-        add("Cannon supplies", names("cannonball", "granite cannonball", "cannon base", "cannon stand", "cannon barrels", "cannon furnace", "dwarf multicannon", "cannonball mould", "double ammo mould"), "cannon", "cannons", "cannonballs", "cannon supplies", "multicannon");
+        add("Cannon supplies", names("cannonball", "granite cannonball", "cannon base", "cannon stand", "cannon barrels", "cannon furnace", "dwarf multicannon", "cannonball mould", "double ammo mould"), "cannons", "cannonballs", "cannon supplies", "multicannon");
         add("Staves / wands", names("staff", "staves", "wand", "battlestaff", "trident", "sceptre", "scepter", "kodai", "harmonised", "sanguinesti", "tumeken's shadow", "purging staff"), "staff", "staves", "wands", "wand", "magic staffs", "magic staves");
         add("Swords", names("sword", "scimitar", "longsword", "shortsword", "godsword", "rapier", "sabre", "saber", "blade of saeldor", "whip"), "sword", "swords", "sword weapons");
         add("Scimitars", names("scimitar", "blade of saeldor"), "scimitar", "scimitars", "scim", "scims");
@@ -394,9 +394,9 @@ public final class CategoryMatcher
             "herb run", "herb runs", "herbrun", "herbruns", "herb farming run", "herb farm run", "quick herb run", "herblore run", "farm run", "farming run", "herb run gear", "herb run setup", "herb run kit");
         add("Tree run kit", any(names("spade", "gardening trowel", "plant pot", "watering can", "ultracompost", "supercompost", "compost", "basket", "sack", "farming cape", "farming hood", "stamina potion", "seed dibber", "ring of wealth", "skills necklace", "teleport to house", "spirit tree", "crystal teleport seed", "amulet of glory"),
             f -> matchesName(f.name, "sapling") || (matchesName(f.name, "seed") && matchesName(f.name, "oak", "willow", "maple", "yew", "magic", "palm", "dragonfruit", "papaya", "pineapple", "calquat", "teak", "mahogany", "redwood", "celastrus", "hespori"))),
-            "tree run", "tree runs", "fruit tree run", "tree farm run", "tree farming run", "tree run gear", "tree run setup");
+            "tree run", "tree runs", "treerun", "treeruns", "fruit tree run", "tree farm run", "tree farming run", "tree run gear", "tree run setup");
         add("Birdhouse run kit", names("bird house", "birdhouse", "clockwork", "hammer", "chisel", "logs", "seed", "digsite pendant", "fossil island", "mushroom meadow", "verdant valley", "ruby necklace", "stamina potion", "hunter cape", "hunter hood", "teleport to house"),
-            "birdhouse run", "birdhouse runs", "bird house run", "birdhouse kit", "birdhouse setup");
+            "birdhouse run", "birdhouse runs", "birdhouse", "birdhouses", "bird house run", "birdhouse kit", "birdhouse setup");
         add("Sailing repair kit", names("repair kit", "sailcloth", "rigging", "boat building supplies", "hammer", "saw", "nails", "plank", "swamp paste", "shipwright", "sailing cape"),
             "sailing repair", "boat repairs", "ship repair", "boat repair kit");
         add("Sailing salvage kit", names("salvaging hook", "salvage", "shipwreck", "cargo hold", "repair kit", "sailing cape", "ship's log", "captain's logbook"),

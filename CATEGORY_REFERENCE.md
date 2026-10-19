@@ -280,10 +280,10 @@ The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mit
 | `@barbarian assault` | Attacker and defence gear, Imcando hammer, limited combat boosts; no outside runes, rune pouches or food | `barb assault`, `ba minigame`, `ba` |
 | `@soul wars` | Magic-defence armour, Ancient Magicks runes and PvP equipment; in-game bandages and potions excluded | `soulwars` |
 | `@nightmare zone` | Low-HP tools, Dharok/Obsidian sets, prayer/combat setup and coins; NMZ-only overload/absorption excluded | `nmz`, `nightmarezone` |
-| `@shades of mortton` | Shades of Mort'ton kit | `shades of mort'ton`, `shades minigame`, `shades` |
-| `@fishing trawler` | Fishing Trawler kit | `trawler`, `fishing trawler prep` |
-| `@volcanic mine` | Volcanic Mine kit | `volcanicmine`, `vm mining`, `vm` |
-| `@blast furnace` | Blast Furnace kit | `blastfurnace`, `bf smithing`, `bf` |
+| `@shades of mortton` | Temple construction, Flamtaer gear, oils, all named remains/pyre logs and coloured shade keys | `shades of mort'ton`, `shades minigame`, `shades` |
+| `@fishing trawler` | Swamp paste, rope, bailing bucket, hammer and axes; excludes Angler outfit rewards | `trawler`, `fishing trawler prep` |
+| `@volcanic mine` | Mining/prayer gear, food, numulite, teleport and optional solo stamina; excludes generic ore/energy | `volcanicmine`, `vm mining`, `vm` |
+| `@blast furnace` | Exact smeltable ores and coal, coal bag, cooling gloves, goldsmith gauntlets, coins, stamina | `blastfurnace`, `bf smithing`, `bf` |
 
 ### Farming and skilling
 

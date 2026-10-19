@@ -34,6 +34,10 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `@sepulchre` | Hallowed upgrades and optional coffin-looting tools, nails/planks, poison cures and rune pouch |
 | `@plunder` | Pharaoh's sceptre, snake charm, prayer and poison protection, food and restoration gear |
 | `@tithe` | Watering cans, Gricoller's can, all Farmer's outfit pieces, optional Humidify runes |
+| `@pest` | Pest Control weapons and Void gear; no routine food/prayer consumables |
+| `@ba` | Barbarian Assault attacker/defensive gear and optional boosts, excluding prohibited outside runes/pouches |
+| `@soulwars` | Soul Wars PvP, anti-magic and Ancient Magicks supplies; in-game bandages/potions excluded |
+| `@nmz` | Rock cake/orb, Dharok and Obsidian setups, combat/prayer equipment; not NMZ-only potions |
 
 ### Search modes
 

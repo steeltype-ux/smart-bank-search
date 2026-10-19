@@ -1064,6 +1064,10 @@ public final class ActivityCategoriesSelfTest
         check(CategoryMatcher.parse("chinchompa", true).isCategory(), "Natural chinchompa query missing");
 
         // One-shot optimization audit: new banked essentials, plus reward/spell exclusions.
+        no("@muspah", "Greater corruption");
+        no("@gwd prep", "Blood shard");
+        no("@cerb", "Ghostly boots");
+
         yes("@zulrah", "Serpentine helm");
         yes("@vorkath", "Ruby dragon bolts (e)");
         yes("@muspah", "Forgotten brew(4)");

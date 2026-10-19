@@ -4,6 +4,8 @@
 
 ## v1.5 activity-kit regression checks
 
+- [ ] **Attack & combat potion search:** check `attack` and `@attack` against actual doses of regular Attack potion, Super attack, Divine super attack, Attack mix, Superattack mix, Combat potion/mix, Super combat and Divine super combat. Confirm `@combat pots` also finds regular Strength and Defence potions; `@strength` finds Combat potions, while `@defence` finds Super combat but not normal Combat potions. Non-Attack boost potions should not appear for `@attack`.
+
 **One-shot audit:** [All 51 remaining optimized activity filters](ONE_SHOT_ACTIVITY_AUDIT.md) must be individually reviewed in addition to the 16 minigame kits.
 
 - [ ] For all **51 boss/Slayer/farming/Wilderness/clue/quest categories**, verify a relevant banked weapon/tool, a situational alternative and a distinct false positive in RuneLite (normal and `@` mode). Run all 67 categories before publishing.

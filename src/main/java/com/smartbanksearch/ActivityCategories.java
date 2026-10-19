@@ -147,7 +147,7 @@ final class ActivityCategories
         // Ice gloves / smiths gloves (i) are convenient for handling the hot preform.
         // Buckets are optional because the minigame provides them on site.
         registry.add("Giant's Foundry kit", any(FOUNDRY_METAL, FOUNDRY_EQUIPMENT),
-            "giants foundry", "giantsfoundry", "giant foundry");
+            "giants foundry", "giantsfoundry", "giant foundry", "giant's foundry", "foundry");
         registry.add("Mahogany Homes kit", any(names("plank", "oak plank", "teak plank", "mahogany plank", "steel bar", "saw", "amy's saw", "hammer", "imcando hammer", "plank sack", "rune pouch", "air rune", "astral rune", "cosmic rune", "varrock teleport", "ardougne teleport", "falador teleport", "xeric's talisman", "ring of wealth", "skills necklace", "teleport to house", "carpenter's outfit"), ENERGY),
             "mahogany homes", "mahoganyhomes", "mahogany homes prep");
         registry.add("Hallowed Sepulchre kit", names("hallowed grapple", "hallowed hammer", "hallowed focus", "hallowed ring", "hallowed symbol", "strange old lockpick", "graceful", "stamina potion", "vampyre dust", "plank", "nails", "ring of endurance", "drakan's medallion"),

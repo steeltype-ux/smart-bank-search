@@ -15,6 +15,8 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | Type in the bank search | Matching items in your bank (examples) |
 | --- | --- |
 | `herb` | Ranarr weed, grimy torstol, guam leaf |
+| `attack`, `@attack` | Attack potion(4), Super attack(4), Combat potion(4), Divine super combat potion(4), melee equipment |
+| `combat pots` | Normal Attack/Strength/Defence potions, Barbarian mixes, super/divine boosts and other combat-boosting drinks |
 | `seeds` | Herb seeds, tree seeds, saplings |
 | `boots`, `gloves`, `legs` | Equipment matched by actual equipment slot when RuneLite provides stats |
 | `ranged gear`, `prayer gear` | Equipment identified using combat and prayer bonuses plus curated fallback names |

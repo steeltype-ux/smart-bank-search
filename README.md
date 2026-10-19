@@ -30,6 +30,10 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `wt`, `temp`, `mh`, `ba`, `vm`, `bf` | Fast minigame aliases for Wintertodt, Tempoross, Mahogany Homes, Barbarian Assault, Volcanic Mine and Blast Furnace |
 | `@tempoross`, `@temp` | Spirit/regular Angler outfit, harpoons, rope and repair tools, optional fishing upgrades; excludes general stamina items |
 | `@gotr` | Small-to-colossal essence pouches, each Raiments piece, pickaxes, mining bonuses, optional binding necklace and Magic Imbue rune supplies |
+| `@mh` | Contract planks/bars, saw and hammer, Carpenter's pieces, teleports, optional contact runes |
+| `@sepulchre` | Hallowed upgrades and optional coffin-looting tools, nails/planks, poison cures and rune pouch |
+| `@plunder` | Pharaoh's sceptre, snake charm, prayer and poison protection, food and restoration gear |
+| `@tithe` | Watering cans, Gricoller's can, all Farmer's outfit pieces, optional Humidify runes |
 
 ### Search modes
 

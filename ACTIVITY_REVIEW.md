@@ -51,6 +51,15 @@ All 67 new searches return **candidate items already in the player's bank**. A s
 
 ## Minigames (16)
 
+**Giant's Foundry kit — optimized based on OSRS Wiki strategy:**
+- **Materials:** The crucible takes 28 bars' worth of bronze, iron, steel, mithril, adamantite or runite metal, either as bars or eligible smithable equipment.
+- **Recycling:** Platebodies count for **4 units**; platelegs, plateskirts, chainbodies, kiteshields, battleaxes, warhammers and 2h swords count for **2**; full helms, square shields, scimitars, longswords and claws count for **1**. These metal items count as one fewer bar than they originally cost to smith. Decorated, ornamental and unprocessable equipment is intentionally excluded.
+- **Recommended alloys:** Iron/steel for early access, steel/mithril from 50 Smithing, mithril/adamant from 70, and adamant/rune from 85 when affordable. **14/14** is a simple balanced start; a lower-tier-heavy mix such as **19/9** may improve cost or reduce refinement stages for certain tiers. Ratios are strategic choices, not automatic bank filtering.
+- **What to prioritize:** Use bars directly if already owned. Do **not** smith bars into items just to recycle them. If buying materials, compare the price of eligible secondhand equipment (notably platebodies and warhammers) to purchasing bars.
+- **Useful equipment:** Smiths' tunic/trousers/gloves/boots improve refining progress; ice gloves or smiths gloves (i) conveniently handle hot preforms. A **bucket of water**, supplied at the Foundry, is the alternative. **Ring of dueling** and **amulet of glory** are optional travel conveniences. Ordinary hammers/Imcando hammer are not needed for the Foundry stations.
+
+Sources: [OSRS Wiki: Giant's Foundry](https://oldschool.runescape.wiki/w/Giants%27_Foundry), [Strategies](https://oldschool.runescape.wiki/w/Giants_foundry/strategies), [Smiths' uniform](https://oldschool.runescape.wiki/w/Smiths%27_Uniform).
+
 **Wintertodt warmth mechanics:** A food bite that normally heals at least 4 HP restores 35% warmth. Cake has three bites (up to 105% total theoretical warmth restoration per inventory slot); suitable pizzas and pies offer two (up to 70%). Regen bracelet enhances warmth regeneration and is already part of this kit. Food items like cake tins, pizza bases, uncooked pizzas and burnt pies are intentionally excluded. The filter matches curated names, not actual HP/heal values, and warmth caps at 100%.
 
 | Search | Curated examples | Shared candidate supplies |
@@ -58,7 +67,7 @@ All 67 new searches return **candidate items already in the player's bank**. A s
 | `@wintertodt` | tinderbox, bruma torch, pyromancer, warm clothing, **regen bracelet**, Hitpoints cape, cakes, chocolate cakes, pizzas, pies | multi-bite food, cooked hunter meat, single-bite high-healing food, rejuvenation potions |
 | `@tempoross` | harpoon, hammer, rope, bucket, bucket of water, angler, spirit angler | stamina/energy |
 | `@gotr` | pickaxe, chisel, essence pouch, colossal pouch, raiments of the eye, abyssal lantern, abyssal needle | stamina/energy |
-| `@giants foundry` | bronze bar, iron bar, steel bar, mithril bar, adamantite bar, rune bar, steel platebody | None |
+| `@giants foundry` / `@foundry` | Bronze, iron, steel, mithril, adamantite and **runite** bars; eligible smithable metal weapons/armour; Smiths' outfit, ice gloves, bucket, transport jewellery | No gold/silver bars, ores, ordinary smithing tools or ornamental gear |
 | `@mahogany homes` | plank, oak plank, teak plank, mahogany plank, steel bar, saw, amy's saw | stamina/energy |
 | `@hallowed sepulchre` | hallowed grapple, hallowed hammer, hallowed focus, hallowed ring, hallowed symbol, strange old lockpick, graceful | None |
 | `@pyramid plunder` | pharaoh's sceptre, lockpick, antipoison, antidote, serpentine helm, stamina potion, energy potion | high-healing food |

@@ -102,6 +102,59 @@ public class CategoryMatcherTest
         yes("wilderness", "Blighted super restore(4)");
         yes("cannonballs", "Cannonball"); yes("spec weapons", "Dragon claws");
     }
+    @Test public void attackSearchIncludesAllActualAttackBoostPotionTiers()
+    {
+        // Regular Attack was already a term, but the super-combat and mixes
+        // were missing from the Attack skill category.
+        for (String item : new String[] {
+            "Attack potion(1)", "Attack potion(2)", "Attack potion(3)", "Attack potion(4)",
+            "Attack mix(1)", "Attack mix(2)",
+            "Super attack(1)", "Super attack(4)",
+            "Divine super attack potion(4)",
+            "Superattack mix(2)",
+            "Combat potion(1)", "Combat potion(4)", "Combat mix(2)",
+            "Super combat potion(1)", "Super combat potion(4)",
+            "Divine super combat potion(4)", "Zamorak brew(4)"
+        })
+        {
+            yes("@attack", item);
+            yes("attack", item);
+            yes("@combat pots", item);
+        }
+        for (String item : new String[] {
+            "Ranging potion(4)", "Magic potion(4)",
+            "Strength potion(4)", "Super strength(4)",
+            "Defence potion(4)", "Super defence(4)",
+            "Bastion potion(4)", "Battlemage potion(4)",
+            "Prayer potion(4)", "Raw shark", "Rune platebody"
+        })
+        {
+            no("@attack", item);
+        }
+        // The multi-stat boosts should also be visible for Strength/Defence.
+        for (String item : new String[] {
+            "Combat potion(4)", "Combat mix(2)",
+            "Super combat potion(4)", "Divine super combat potion(4)",
+            "Zamorak brew(4)"
+        })
+        {
+            yes("@strength", item);
+        }
+        for (String item : new String[] {
+            "Super combat potion(4)", "Divine super combat potion(4)",
+            "Bastion potion(4)", "Divine bastion potion(4)",
+            "Battlemage potion(4)", "Divine battlemage potion(4)"
+        })
+        {
+            yes("@defence", item);
+        }
+        no("@defence", "Combat potion(4)"); // Only Attack and Strength.
+        no("@defence", "Zamorak brew(4)"); // Decreases Defence.
+        yes("@combat pots", "Defence potion(4)");
+        yes("@combat pots", "Strength potion(4)");
+        yes("@combat pots", "Super str. mix(2)");
+    }
+
     @Test public void noUnexpectedNativeOverrides()
     {
         assertFalse(CategoryMatcher.isCategoryQuery("dragon scim",true));

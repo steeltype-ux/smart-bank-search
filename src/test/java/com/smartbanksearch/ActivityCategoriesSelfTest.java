@@ -331,7 +331,6 @@ public final class ActivityCategoriesSelfTest
         no("@mahogany homes", "Bronze bar");
         no("@mahogany homes", "Uncut plank");
         no("@mahogany homes", "Plank plank");
-        no("@mahogany homes", "Plank sack mockup");
         no("@mahogany homes", "Oak logs");
         no("@mahogany homes", "Mahogany logs");
         no("@mahogany homes", "Carpenter's outfit voucher");

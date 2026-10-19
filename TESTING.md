@@ -4,6 +4,11 @@
 
 ## v1.5 activity-kit regression checks
 
+- [ ] **Category directory**: the original chest icon appears in RuneLite's sidebar; filter `@gotr`, `cerb`, `attack`, `chinchompa`, and `fishing`. Confirm alias list and selection, copying valid `@search` to the clipboard, and proper sidebar removal/recreation on disable/re-enable. The full list must contain 208 groups.
+- [ ] **Real-name regression gate**: run `python3 tools/audit_osrs_item_names.py --strict --report build/reports/osrs-item-name-audit.md` with JDK 17 and network access. Verify all category names, boost combinations, and curated false positives. Check the GitHub Actions audit artifact, but do not confuse it with real RuneLite equipment-stat or bank testing.
+- [ ] **Skill boost coverage**: ensure regular, mixed, super/divine combat potions, Fishing potion/mix and pies, Dwarven stouts, Hunter potion, botanical/garden/mushroom/dragonfruit pies, Ancient/Forgotten brew, and spicy stew are found in their appropriate skill searches.
+- [ ] **Clue tiers**: `@easyclue` through `@masterclue` should find respective **Scroll box** items but must **exclude Reward caskets**, which are received after completion.
+
 - [ ] **Attack & combat potion search:** check `attack` and `@attack` against actual doses of regular Attack potion, Super attack, Divine super attack, Attack mix, Superattack mix, Combat potion/mix, Super combat and Divine super combat. Confirm `@combat pots` also finds regular Strength and Defence potions; `@strength` finds Combat potions, while `@defence` finds Super combat but not normal Combat potions. Non-Attack boost potions should not appear for `@attack`.
 
 **One-shot audit:** [All 51 remaining optimized activity filters](ONE_SHOT_ACTIVITY_AUDIT.md) must be individually reviewed in addition to the 16 minigame kits.

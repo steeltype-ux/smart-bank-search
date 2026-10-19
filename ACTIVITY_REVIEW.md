@@ -4,6 +4,26 @@
 
 All 67 new searches return **candidate items already in the player's bank**. A search is not an authoritative checklist or optimal loadout. The lists below show the leading **curated matching name terms** (examples, not exact item IDs), plus shared supplies used by a kit. The implementation may match more item names than shown.
 
+### Easier search names
+
+You can type these **without** `@` for additive native bank search results, or with `@` for category-only results. The original longer activity names still work.
+
+| Short search | What it prepares | Full activity |
+|---|---|---|
+| `cannon` | Multicannon, ammunition, Slayer task equipment, food and prayer supplies | `cannon tasks` |
+| `chinchompa` | Box traps, chinchompas and Hunter preparation | `chinchompa hunting` |
+| `birdhouse` | Birdhouse-run tools and supplies | `birdhouse run` |
+| `treerun` | Tree-farming run items | `tree run` |
+| `cerb`, `hydra` | Boss preparation | `cerberus`, `hydra boss` |
+| `gargs`, `nech`, `basilisk`, `kurask`, `abbys`, `gorillas` | Slayer tasks | Their full monster names |
+| `burst` | Bursting/barraging Slayer supplies | `barrage tasks` |
+| `wt`, `temp` | Wintertodt, Tempoross | `wintertodt`, `tempoross` |
+| `mh`, `plunder`, `tithe`, `pest`, `ba` | Other minigame kits | Full minigame names |
+| `shades`, `vm`, `bf` | Shades of Mort'ton, Volcanic Mine, Blast Furnace | Full minigame names |
+| `contracts`, `revs`, `calv` | Farming contracts, Revenants, Calvar'ion | Full activity names |
+
+**Legacy compatibility:** `cannon` is intentionally now the **Cannon Slayer trip kit**, but `cannon supplies`, `cannonballs`, `cannons`, and `multicannon` still return the original narrow cannon-items category. Similarly, `chinchompa` is now the hunting kit while `chins` and `chinchompas` remain in the original thrown-weapon category. Ambiguous established shortcuts like `clues`, `slayer`, `hunter`, and `barrows` are **not** repurposed.
+
 ### How to review
 
 1. Check that each search returns relevant items for the activity and does not overwhelm the bank with unrelated matches.

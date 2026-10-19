@@ -177,6 +177,44 @@ public class CategoryMatcherTest
         assertTrue(CategoryMatcher.matches("strength gear", gear("Unknown new ring", 12,0,0,0,8,0,0,0), true));
     }
 
+    @Test public void attackAndDefenceSearchesFocusConsumableBoosts()
+    {
+        for (String item : new String[] {
+            "Attack potion(4)", "Attack mix(2)", "Super attack(4)",
+            "Superattack mix(2)", "Divine super attack potion(4)",
+            "Combat potion(4)", "Combat mix(2)", "Super combat potion(4)",
+            "Divine super combat potion(4)", "Zamorak brew(4)"
+        })
+        {
+            yes("attack", item);
+        }
+        for (String item : new String[] {
+            "Defence potion(4)", "Defence mix(2)", "Super defence(4)",
+            "Super def. mix(2)", "Divine super defence potion(4)",
+            "Super combat potion(4)", "Divine super combat potion(4)",
+            "Bastion potion(4)", "Divine bastion potion(4)",
+            "Battlemage potion(4)", "Divine battlemage potion(4)",
+            "Saradomin brew(4)"
+        })
+        {
+            yes("defence", item);
+            yes("defense", item);
+        }
+        no("attack", "Dragon defender");
+        no("attack", "Strength potion(4)");
+        no("defence", "Justiciar chestguard");
+        no("defence", "Attack potion(4)");
+        yes("@attack", "Dragon defender");
+        yes("@defence", "Justiciar chestguard");
+        yes("@defense", "Justiciar chestguard");
+        yes("attack pot", "Super attack(4)");
+        yes("defence pot", "Super defence(4)");
+        assertEquals("Attack boosts", CategoryMatcher.parse("attack", true).getCategoryName());
+        assertEquals("Defence boosts", CategoryMatcher.parse("defence", true).getCategoryName());
+        assertEquals("Attack skill", CategoryMatcher.parse("@attack", true).getCategoryName());
+        assertEquals("Defence skill", CategoryMatcher.parse("@defence", true).getCategoryName());
+    }
+
     @Test public void noUnexpectedNativeOverrides()
     {
         assertFalse(CategoryMatcher.isCategoryQuery("dragon scim",true));

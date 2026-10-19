@@ -26,8 +26,12 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `@gargoyles`, `@dustdevils`, `@revenants` | Activity-specific Slayer and Wilderness supplies |
 | `@cluekit`, `@questprep` | Travel equipment, general tools and preparation supplies |
 | `@giants foundry`, `@foundry` | Eligible bars, recyclable metal weapons/armour, Smiths' uniform and cooling items |
+| `cannon`, `chinchompa` | Slayer cannon-trip supplies and Hunter chinchompa-trapping supplies |
+| `wt`, `temp`, `mh`, `ba`, `vm`, `bf` | Fast minigame aliases for Wintertodt, Tempoross, Mahogany Homes, Barbarian Assault, Volcanic Mine and Blast Furnace |
 
 ### Search modes
+
+For quick activity searches, use the full name or intuitive shortcut: `@cannon` and `@cannon tasks` use the same Slayer trip kit; `@chinchompa` and `@chinchompa hunting` show the same trapping supplies. The existing `@cannon supplies`/`@cannonballs` still show cannon components only; `@chins`/`@chinchompas` still mean thrown weapons.
 
 - **Ordinary search** (`herb`): adds automatic category hits without intentionally removing native RuneLite or Bank Tags matches.
 - **Exclusive category** (`@herb`): only show items matching that category, overriding ordinary name matches.

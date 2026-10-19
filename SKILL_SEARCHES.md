@@ -1,5 +1,27 @@
 # Smart Bank Search v1.4 — Complete category reference
 
+
+## v1.5 Skill-boost audit
+
+The skill searches below now include relevant consumable item families, not just high-level gear. Results are always filtered to what is actually in the bank.
+
+| Search | Relevant boosts and variants |
+|---|---|
+| `attack` | Attack potion/mix, Super attack/Superattack mix, Combat potion/mix, Super/Divine super combat, Zamorak brew |
+| `strength` | Strength potions/mixes, super and divine variants, Combat potions, Zamorak brew |
+| `defence` | Defence potions and mixes, Super/Divine super combat, Bastion/Battlemage, Saradomin brew |
+| `ranged` | Ranging potion/mix, Divine ranging, Bastion/Divine bastion |
+| `magic` | Magic potion/mix, Battlemage, Ancient/Forgotten brews, Wizard's mind bomb, imbued/saturated heart |
+| `mining` / `smithing` | Dwarven stout, mature Dwarven stout, spicy stew; pickaxe specials for Mining |
+| `fishing` | Fishing potion/mix, Fish pie, Admiral pie, harpoon specials, spicy stew |
+| `farming` / `herblore` | Garden pie, Botanical pie, spicy stew |
+| `hunter` / `thieving` | Hunter potion, sq'irkjuice variants, spicy stew |
+| `crafting` / `fletching` | Mushroom pie, Fletching potion, Dragonfruit pie, spicy stew |
+| `construction` | Crystal saw, House tea, spicy stew |
+| `agility` / `slayer` / `runecrafting` | Agility potion, Summer pie, Wild pie, spicy stew |
+
+For proof against actual item names, the [2026 item-name audit](tools/audit_osrs_item_names.py) runs all 208 production predicates with a pinned third-party dataset. It does not cover stat-driven slot/equipment predicates without RuneLite metadata.
+
 **208 category groups in the v1.5 candidate build (141 original + 67 new activity kits)**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
 All searches use the normal RuneLite bank search field and show only items actually in your bank.
 

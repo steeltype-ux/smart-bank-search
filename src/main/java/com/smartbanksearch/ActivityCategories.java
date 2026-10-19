@@ -280,10 +280,12 @@ final class ActivityCategories
         "ancient mace", "dragon claws", "void knight", "elite void",
         "proselyte", "initiate", "venator bow", "toxic blowpipe",
         "rune pouch", "divine rune pouch", "holy wrench");
-    private static final Predicate<ItemFacts> NIGHTMARE_ZONE_CONSUMABLES = names(
-        "super combat potion", "divine super combat potion",
-        "prayer potion", "super restore", "ranging potion",
-        "magic potion", "coins");
+    private static final Predicate<ItemFacts> NIGHTMARE_ZONE_CONSUMABLES = f ->
+        !CategoryMatcher.matchesName(f.name, "nightmare zone", "absorption", "overload")
+            && CategoryMatcher.matchesName(f.name,
+                "super combat potion", "divine super combat potion",
+                "prayer potion", "super restore", "ranging potion",
+                "magic potion", "coins");
 
     static void register(Registrar registry)
     {

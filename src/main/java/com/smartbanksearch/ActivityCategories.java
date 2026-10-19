@@ -164,7 +164,7 @@ final class ActivityCategories
         return n.equals("plank") || n.equals("oak plank")
             || n.equals("teak plank") || n.equals("mahogany plank")
             || n.equals("hammer") || n.equals("saw")
-            || n.matches("^(bronze|iron|steel|mithril|adamantite|rune) nails$");
+            || n.matches("^(bronze|iron|steel|mithril|adamant|rune) nails$");
     };
 
     private static final Predicate<ItemFacts> SEPULCHRE_CORE = names(

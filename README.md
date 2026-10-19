@@ -25,6 +25,7 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `@zulrah`, `@vorkath`, `@jad` | Boss preparation supplies and suitable equipment |
 | `@gargoyles`, `@dustdevils`, `@revenants` | Activity-specific Slayer and Wilderness supplies |
 | `@cluekit`, `@questprep` | Travel equipment, general tools and preparation supplies |
+| `@giants foundry`, `@foundry` | Eligible bars, recyclable metal weapons/armour, Smiths' uniform and cooling items |
 
 ### Search modes
 

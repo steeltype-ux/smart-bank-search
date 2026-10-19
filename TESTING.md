@@ -4,6 +4,10 @@
 
 ## v1.5 activity-kit regression checks
 
+- [ ] Verify `@cannon` and `@cannon tasks` yield identical Slayer-trip candidates including cannon supplies, Slayer helm and prayer potions; `@cannon supplies`/`@cannonballs` remain restricted to cannon equipment, ammunition and moulds.
+- [ ] Verify `@chinchompa` and `@chinchompa hunting` match box traps and Hunter gear, while legacy `@chins`/`@chinchompas` still select thrown weapons, not traps.
+- [ ] Verify common aliases (`wt`, `temp`, `mh`, `ba`, `vm`, `bf`, `cerb`, `hydra`, `gargs`, `burst`, `revs`, `calv`, `contracts`) and farming shortcuts (`birdhouse`, `treerun`) in normal and `@` search modes.
+
 - [ ] Run `ActivityCategoriesSelfTest` with Java 11, alongside existing category self-tests.
 - [ ] Run `ActivityCategoriesTest` through `gradle clean test`; capture the output and any failures.
 - [ ] Check `@herbrun` and `@herb run` show identical results in a bank with representative herb seeds, compost and teleports.

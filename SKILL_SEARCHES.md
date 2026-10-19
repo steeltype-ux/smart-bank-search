@@ -51,8 +51,8 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 |---|---|
 | `@herb run` | Herb seeds, secateurs, spade, compost/bucket, herb sack and patch teleports |
 | `@herblore run` | Alias of herb run; **farming herbs**, not potion mixing |
-| `@tree run` | Tree seeds/saplings, planting supplies and common transports |
-| `@birdhouse run` | Birdhouse materials, clockworks, logs, seed and transport items |
+| `@tree run`, `@treerun` | Tree seeds/saplings, planting supplies and common transports |
+| `@birdhouse run`, `@birdhouse` | Birdhouse materials, clockworks, logs, seed and transport items |
 | `@mining gear` | Pickaxes, prospector, Varrock armour, gloves, mining rings |
 | `@fletching gear` | Knife and fletching boosts; use `@fletching` for all supplies |
 | `@sailing repair` | Repair kits, planks, nails and boat repair tools |

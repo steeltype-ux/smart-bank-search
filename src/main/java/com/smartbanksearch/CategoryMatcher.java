@@ -355,13 +355,19 @@ public final class CategoryMatcher
         // intentionally cover useful gear + materials; narrower "... gear" aliases keep results lean.
         // Regular Attack, super/divine, Barbarian mixes, and multi-stat drinks:
         // combat boosts Attack+Strength, super combat boosts Attack+Strength+Defence.
+        // Bare attack/defence searches find consumable boosts rather than all combat gear.
+        add("Attack boosts", names(
+            "attack potion", "attack mix", "super attack", "superattack mix",
+            "divine super attack", "combat potion", "combat mix", "super combat",
+            "divine super combat", "zamorak brew"),
+            "attack", "attack pot", "attack pots");
         add("Attack skill", any(MELEE, names(
             "attack cape", "attack hood",
             "attack potion", "attack mix", "super attack", "superattack mix",
             "combat potion", "combat mix", "super combat", "divine super combat",
             "zamorak brew",
             "warrior ring", "warrior helm", "dragon defender", "avernic defender")),
-            "attack", "attack skill", "attack training", "attack gear", "attack equipment");
+            "attack skill", "attack training", "attack gear", "attack equipment");
         // Bare "strength" is a focused potion/boost search; @strength remains the broad skill category.
         add("Strength boosts", names(
             "strength potion", "strength mix", "super strength", "super str. mix",
@@ -375,13 +381,19 @@ public final class CategoryMatcher
             "dragon battleaxe", "berserker ring", "fighter torso",
             "ferocious gloves", "inquisitor's mace")),
             "strength skill", "strength training", "strength equipment");
+        add("Defence boosts", names(
+            "defence potion", "defence mix", "super defence", "super def. mix",
+            "divine super defence", "super combat", "divine super combat",
+            "bastion potion", "divine bastion", "battlemage potion",
+            "divine battlemage", "saradomin brew"),
+            "defence", "defense", "defence pot", "defence pots", "defense pot", "defense pots");
         add("Defence skill", any(f -> f.worn() && f.defence > 0, names(
             "defence cape", "defence hood", "defence potion", "defence mix",
             "super defence", "super def. mix", "divine super defence",
             "super combat", "bastion potion", "battlemage potion", "saradomin brew",
             "justiciar", "dinh's bulwark", "elysian spirit shield",
             "ring of suffering", "dragonfire shield")),
-            "defence", "defense", "defence skill", "defence training", "defense gear", "defence equipment");
+            "defence skill", "defence training", "defense gear", "defence equipment");
         add("Hitpoints skill", any(f -> edible(f.name), names("hitpoints cape", "hitpoints hood", "regen bracelet", "rapid heal", "rejuvenation pool", "sara domin brew", "saradomin brew", "anglerfish", "rejuvenation potion", "guthix rest", "phoenix necklace", "amulet of blood fury", "dwarven rock cake", "locator orb", "purple sweets")),
             "hitpoints", "hitpoints skill", "hp gear", "hp training", "hp supplies", "healing gear");
         add("Herblore skill", any(f -> herb(f.name), names("pestle and mortar", "vial", "eye of newt", "limpwurt root", "red spiders' eggs", "snape grass", "wine of zamorak", "white berries", "mort myre fungus", "potato cactus", "unicorn horn", "dragon scale dust", "amylase crystal", "crushed nest", "goat horn dust", "kebbit teeth dust", "coconut milk", "chocolate dust", "potion (unf)", "potion(unf)", "herblore cape", "herblore hood", "botanical pie", "spicy stew", "amulet of chemistry", "alchemist's amulet", "prescription goggles", "mixology", "mox", "aga", "lye", "harralander tar")),
@@ -460,10 +472,11 @@ public final class CategoryMatcher
         boolean exclusive = normalized.startsWith("@");
         String q = exclusive ? normalize(normalized.substring(1)) : normalized;
         if (q.isEmpty()) { return new Query(input, false, Collections.emptyList()); }
-        // Explicit @strength retains the complete Strength skill category.
-        if (exclusive && q.equals("strength"))
+        // The @ form of bare combat skill names keeps the original broad skill search.
+        if (exclusive && (q.equals("strength") || q.equals("attack") || q.equals("defence") || q.equals("defense")))
         {
-            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("strength skill")));
+            String skill = q.equals("defense") ? "defence" : q;
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get(skill + " skill")));
         }
         Category direct = find(q, strict);
         if (direct != null) { return new Query(input, exclusive, Collections.singletonList(direct)); }

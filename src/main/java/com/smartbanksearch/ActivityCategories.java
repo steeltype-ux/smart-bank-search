@@ -212,6 +212,79 @@ final class ActivityCategories
         "fire rune", "water rune", "steam rune", "tome of fire",
         "tome of water", "water battlestaff", "steam battlestaff");
 
+
+    // Pest Control restores combat stats and Prayer between rounds. Players
+    // normally take combat gear and use their offensive prayers freely rather
+    // than withdrawing food or Prayer potions for short mass-world games.
+    private static final Predicate<ItemFacts> PEST_CONTROL_GEAR = names(
+        "void knight", "elite void", "dragon scimitar", "abyssal whip",
+        "abyssal tentacle", "dragon defender", "avernic defender",
+        "ghrazi rapier", "osmumten's fang", "scythe of vitur",
+        "bow of faerdhinen", "crystal bow", "magic shortbow",
+        "venator bow", "toxic blowpipe", "chinchompa",
+        "ancient staff", "ancient sceptre", "kodai wand",
+        "bandos godsword", "dragon claws", "dragon dagger",
+        "voidwaker", "pest control teleport");
+    private static final Predicate<ItemFacts> PEST_CONTROL_SPECIALIST = names(
+        "rune pouch", "divine rune pouch", "blood rune", "death rune",
+        "water rune", "ice ancient sceptre", "super combat potion",
+        "divine super combat potion", "combat potion",
+        "ranging potion", "divine ranging potion");
+
+    // Barbarian Assault uses its own arrows, runes, horns, bait and food.
+    // Prayers are disabled, and rune pouches cannot enter the arena. Equip
+    // attacker damage and defender/healer/collector survivability options.
+    private static final Predicate<ItemFacts> BARBARIAN_ASSAULT_GEAR = names(
+        "fighter torso", "granite body", "penance", "dragon scimitar",
+        "abyssal whip", "abyssal tentacle", "dragon defender",
+        "avernic defender", "zamorakian hasta", "dinh's bulwark",
+        "excalibur", "dragonfire shield", "rune kiteshield",
+        "imcando hammer", "magic shortbow", "crystal bow",
+        "bow of faerdhinen", "venator bow", "toxic blowpipe",
+        "void knight", "elite void", "karil's", "torag's",
+        "bandos chestplate", "justiciar", "torva",
+        "games necklace", "combat bracelet");
+    private static final Predicate<ItemFacts> BARBARIAN_ASSAULT_BOOSTS = names(
+        "super combat potion", "divine super combat potion",
+        "super attack", "super strength", "super defence",
+        "ranging potion", "divine ranging potion", "bastion potion");
+
+    // Soul Wars gives bandages, combat potions, barricades and explosives in
+    // the match. Before entering, players primarily bank-switch armour,
+    // spec weapons and the runes needed for Ancient Magicks.
+    private static final Predicate<ItemFacts> SOUL_WARS_GEAR = names(
+        "soul cape", "soul wars", "black d'hide", "blessed d'hide",
+        "karil's", "armadyl", "masori", "void knight", "elite void",
+        "bandos", "torva", "dragon defender", "avernic defender",
+        "ancient staff", "ancient sceptre", "kodai wand", "master wand",
+        "nightmare staff", "ahrim's staff", "rune pouch", "divine rune pouch",
+        "blood rune", "death rune", "water rune", "soul rune",
+        "ancient godsword", "armadyl godsword", "dragon claws",
+        "dragon dagger", "voidwaker", "toxic blowpipe",
+        "bow of faerdhinen", "crystal bow", "twisted bow",
+        "rune crossbow", "zaryte crossbow", "magic shortbow",
+        "amulet of glory", "combat bracelet");
+
+    // Nightmare Zone overload/absorption are minigame-only doses drawn from
+    // Dominic's barrels, NOT bankable supplies. Instead match banked low-HP
+    // tools, common training sets, ordinary consumables and spec weapons.
+    private static final Predicate<ItemFacts> NIGHTMARE_ZONE_GEAR = names(
+        "dwarven rock cake", "locator orb", "dharok's",
+        "obsidian helmet", "obsidian platebody", "obsidian platelegs",
+        "toktz-xil-ak", "berserker necklace", "berserker ring",
+        "abyssal whip", "abyssal tentacle", "dragon scimitar",
+        "dragon defender", "avernic defender", "soulreaper axe",
+        "torva", "bandos chestplate", "neitiznot faceguard",
+        "amulet of torture", "amulet of rancour", "ferocious gloves",
+        "sarasword", "saradomin sword", "saradomin godsword",
+        "ancient mace", "dragon claws", "void knight", "elite void",
+        "proselyte", "initiate", "venator bow", "toxic blowpipe",
+        "rune pouch", "divine rune pouch", "holy wrench");
+    private static final Predicate<ItemFacts> NIGHTMARE_ZONE_CONSUMABLES = names(
+        "super combat potion", "divine super combat potion",
+        "prayer potion", "super restore", "ranging potion",
+        "magic potion", "coins");
+
     static void register(Registrar registry)
     {
         // Bosses and raids
@@ -294,13 +367,13 @@ final class ActivityCategories
             "pyramid plunder", "pyramidplunder", "plunder prep", "plunder");
         registry.add("Tithe Farm kit", any(TITHE_FARM_CORE, TITHE_FARM_HUMIDIFY),
             "tithe farm", "tithefarm", "tithe farming", "tithe");
-        registry.add("Pest Control kit", any(names("void knight", "elite void", "dragon scimitar", "abyssal whip", "dragon defender", "chinchompa", "toxic blowpipe", "rune pouch", "prayer potion", "ranging potion", "super combat potion", "combat potion"), HEALS),
+        registry.add("Pest Control kit", any(PEST_CONTROL_GEAR, PEST_CONTROL_SPECIALIST),
             "pest control", "pestcontrol", "pc minigame", "pest");
-        registry.add("Barbarian Assault kit", any(names("fighter torso", "granite body", "penance", "barbarian assault", "horn of glory", "dragon scimitar", "abyssal whip", "ranged potion", "prayer potion", "rune pouch"), HEALS, MELEE_BOOST, RANGE_BOOST),
+        registry.add("Barbarian Assault kit", any(BARBARIAN_ASSAULT_GEAR, BARBARIAN_ASSAULT_BOOSTS),
             "barbarian assault", "barb assault", "ba minigame", "ba");
-        registry.add("Soul Wars kit", any(names("soul cape", "soul wars", "barrage", "ancient staff", "ancient sceptre", "blood rune", "death rune", "water rune", "rune pouch", "dragon claws", "toxic blowpipe", "black d'hide", "ranging potion", "super combat potion"), HEALS, PRAYER),
+        registry.add("Soul Wars kit", SOUL_WARS_GEAR,
             "soul wars", "soulwars");
-        registry.add("Nightmare Zone kit", any(names("dwarven rock cake", "locator orb", "absorption", "overload", "berserker ring", "black mask", "abyssal whip", "obsidian", "dharok", "rune pouch", "super combat potion", "ranging potion", "prayer potion"), HEALS),
+        registry.add("Nightmare Zone kit", any(NIGHTMARE_ZONE_GEAR, NIGHTMARE_ZONE_CONSUMABLES),
             "nightmare zone", "nmz", "nightmarezone");
         registry.add("Shades of Mort'ton kit", names("olive oil", "sacred oil", "pyre log", "pyre logs", "shade remains", "serum 207", "silver key", "bronze key", "black key", "steel key", "gold key", "yew logs", "magic logs", "redwood logs", "tinderbox"),
             "shades of mortton", "shades of mort'ton", "shades minigame", "shades");

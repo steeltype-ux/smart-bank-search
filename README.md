@@ -4,6 +4,8 @@
 
 Maintained by **[@steeltype-ux](https://github.com/steeltype-ux)**.
 
+**v1.5 draft activity audit:** All 67 new minigame, boss, Slayer, farming, Wilderness, clue and quest categories have received a first optimization pass. [See the 51-category one-shot audit](ONE_SHOT_ACTIVITY_AUDIT.md) and [in-game review checklist](TESTING.md). These searches are candidate items in the bank, not a single recommended loadout. The draft must be reviewed and approved before a Plugin Hub release.
+
 **Search OSRS bank items by what they are, not just what they're called.**
 
 Smart Bank Search extends RuneLite's **existing bank search bar** with automatic categories; no manual tagging, separate search interface, or online service is needed.

@@ -85,6 +85,36 @@ Sources: [OSRS Wiki strategy overview](https://oldschool.runescape.wiki/w/Tempor
 
 Sources: [OSRS Wiki — GotR strategies (mirror)](https://osrsindex.com/wiki/guardians-of-the-rift-strategies?site=osrs_wiki), [OSRS Wiki — GotR](https://osrsindex.com/wiki/guardians-of-the-rift?site=osrs_wiki), [OSRS Wiki — essence pouch (mirror)](https://osrsindex.com/wiki/essence-pouch?site=osrs_wiki), [Jagex — August 2026 update](https://steamcommunity.com/app/1343370/announcements/).
 
+**Mahogany Homes — contracts and route optimization:**
+- **Real supplies:** Regular, oak, teak, or mahogany planks **according to contract level**, a few **steel bars**, and a saw + hammer. **Amy's saw** or an off-hand **Imcando hammer** can free inventory space. **Plank sack** carries up to 28 planks. Individual **Carpenter's helmet, shirt, trousers and boots** give bonus Construction XP.
+- **Four cities:** Varrock, East Ardougne, Falador and Hosidius. Include Varrock/Ardougne/Falador teleports, Xeric's talisman, ring of wealth, skills necklace, POH teleport, Ardougne cloak, Kharedst's memoirs/book of the dead and achievement diary cape.
+- **Efficient optional setup:** Rune pouch with **air + astral + cosmic** for **Astral Contact** (previously NPC Contact), saving trips back to Amy; graceful is optional since tea restores run energy after contracts. Divine rune pouch, law/dust/steam runes, air/dust/steam battlestaves and **Plank Make** supplies (nature runes, log basket, sawmill vouchers) are advanced alternatives. **No nails**, unlike Sepulchre.
+- **Precision:** No generic stamina/energy category, noncontract bars, logs or arbitrary plank-named objects.
+
+Sources: [OSRS Wiki — Mahogany Homes](https://oldschool.runescape.wiki/w/Mahogany_Homes), [OSRS Index — current recommended setups](https://osrsindex.com/wiki/mahogany-homes?site=osrs_wiki).
+
+**Hallowed Sepulchre — separate Agility XP runs from coffin-looting runs:**
+- **Fast laps:** Graceful/weight reduction and a **Saradomin item** (for obelisk run-energy restore), optionally **Hallowed ring** to reduce trap costs; food/poison protection while learning and Drakan's medallion for travel. Ring of endurance or stamina potions are optional, not essential with obelisks.
+- **Full-loot additions:** **Strange old lockpick** (or ordinary lockpick), **Mith grapple** + light **Dorgeshuun crossbow** if Hallowed grapple not owned, **vampyre dust** for braziers, and construction supplies (**planks + matching nails + saw + hammer**). **Hallowed hammer** prevents broken nails; Hallowed focus, grapple and symbol are upgrades.
+- **Magic/defense:** Rune pouch, cosmic/fire/nature runes for enchanting/alching; **holy symbol or holy blessing** for Saradomin affiliation, prayer book + symbol for curing poison, or antipoison/serpentine helm. Hallowed symbol also counts as Saradomin gear. Food remains optional for learners.
+- **Precision:** Do not include arbitrary logs, planked furniture or generic melee equipment.
+
+Sources: [Sepulchre strategies](https://osrsindex.com/wiki/hallowed-sepulchre-strategies?site=osrs_wiki), [Sepulchre mechanics](https://osrsindex.com/wiki/hallowed-sepulchre?site=osrs_wiki).
+
+**Pyramid Plunder — survivability and access:**
+- **Core:** **Pharaoh's sceptre** to teleport directly to the minigame, anti-poison/antidote or **charged serpentine helm**, food, prayer potions for Protect from Melee, and weight-reducing outfit.
+- **Choice-based:** **Snake charm** is useful at low Thieving (under ~51); **lockpick** can open doors more easily but gives less door XP and is often omitted by experienced players. **Prayer book + holy symbol** cures poison as an alternative; **regen bracelet + Hitpoints cape**, desert amulet, POH restoration, ring of dueling and stamina potion are convenience options.
+- **Precision:** Generic energy potions and irrelevant snake drops excluded. This does **not** automatically select a single optimum depending on Thieving level.
+
+Source: [Pyramid Plunder — recommended setup](https://osrsindex.com/wiki/pyramid-plunder?site=osrs_wiki).
+
+**Tithe Farm — correct tools and Humidify option:**
+- **Core:** **Spade**, **seed dibber** unless bare-handed planting is unlocked, and around **6–8 filled watering cans**, or **Gricoller's can** once purchased. **Gricoller's fertiliser and Golovanova/Bologano/Logavano seeds are supplied inside**, not bank-preparation items. Players select seeds according to Farming level (34/54/74).
+- **Bonus and advanced setup:** Every **Farmer's outfit** item is explicitly matched: strawhat, jacket/shirt (body-type variants), boro trousers and boots. Weight-reducing graceful is optional; Humidify with **astral, fire and water/steam runes** (and optionally a rune pouch) can refill cans. Stamina or super energy and Explorer's ring can help high-intensity runs, with suitable Hosidius travel teleports if available.
+- **Precision:** Regular Farming seeds/compost, seed box, herb sack, Farming cape and non-Tithe gear are excluded.
+
+Sources: [Tithe Farm/Strategies](https://oldschool.runescape.wiki/w/Tithe_farm_guide), [Tithe Farm overview](https://oldschool.runescape.wiki/w/Tithe_Farm), [Farmer outfit variants](https://oldschool.runescape.wiki/w/Auto_weeder).
+
 **Giant's Foundry kit — optimized based on OSRS Wiki strategy:**
 - **Materials:** The crucible takes 28 bars' worth of bronze, iron, steel, mithril, adamantite or runite metal, either as bars or eligible smithable equipment.
 - **Recycling:** Platebodies count for **4 units**; platelegs, plateskirts, chainbodies, kiteshields, battleaxes, warhammers and 2h swords count for **2**; full helms, square shields, scimitars, longswords and claws count for **1**. These metal items count as one fewer bar than they originally cost to smith. Decorated, ornamental and unprocessable equipment is intentionally excluded.
@@ -102,10 +132,10 @@ Sources: [OSRS Wiki: Giant's Foundry](https://oldschool.runescape.wiki/w/Giants%
 | `@tempoross` / `@temp` | Basic, dragon, crystal, infernal and barb-tail harpoons; all Angler and Spirit angler outfit pieces; rope, hammer, bucket, Imcando hammer | Optional Lightbearer, Elven signet, Humidify rune pouch/runes and fishing boosts; no generic energy, fish barrel or tackle box |
 | `@gotr` | Any pickaxe; all five essence pouch sizes (including degraded); each Raiments of the Eye piece; abyssal lantern; chisel; Varrock armour, celestial mining bonuses, Runecraft cape | Optional binding necklaces, Lunar rune pouch/runes for combinations and Astral Contact; graceful/prospector/transport; excludes generic stamina and unneeded talismans/needle |
 | `@giants foundry` / `@foundry` | Bronze, iron, steel, mithril, adamantite and **runite** bars; eligible smithable metal weapons/armour; Smiths' outfit, ice gloves, bucket, transport jewellery | No gold/silver bars, ores, ordinary smithing tools or ornamental gear |
-| `@mahogany homes` | plank, oak plank, teak plank, mahogany plank, steel bar, saw, amy's saw | stamina/energy |
-| `@hallowed sepulchre` | hallowed grapple, hallowed hammer, hallowed focus, hallowed ring, hallowed symbol, strange old lockpick, graceful | None |
-| `@pyramid plunder` | pharaoh's sceptre, lockpick, antipoison, antidote, serpentine helm, stamina potion, energy potion | high-healing food |
-| `@tithe farm` | gricoller's can, watering can, seed dibber, spade, farmer's outfit, farmer's strawhat, farming cape | None |
+| `@mahogany homes` / `@mh` | Contract-tier planks, steel bars, hammer/saw, Amy's saw, Imcando hammer, plank sack, four individual Carpenter's outfit pieces | Astral Contact runes/pouches, Varrock/Ardougne/Falador/Hosidius teleports, optional Plank Make; no generic stamina or raw logs |
+| `@hallowed sepulchre` / `@sepulchre` | Hallowed upgrades, lockpick, Saradomin items, graceful and run-energy protection | Coffin-looting setup: grapple/crossbow, planks/nails/saw/hammer, dust, enchantment runes, poison protection and food; no unrelated logs or generic Smithing |
+| `@pyramid plunder` / `@plunder` | Pharaoh's sceptre, lockpick, snake charm, antidotes/serpentine helm, prayer protection, food, graceful | Prayer book + holy symbol, regen bracelet + HP cape, desert amulet/teleports, optional stamina; no generic energy |
+| `@tithe farm` / `@tithe` | Watering cans / Gricoller's can, spade, seed dibber, all five named Farmer's outfit variants | Humidify spell runes/rune pouch, graceful, optional run-energy/travel aids; on-site seeds/fertiliser, no unrelated farming compost/seeds |
 | `@pest control` | void knight, elite void, dragon scimitar, abyssal whip, dragon defender, chinchompa, toxic blowpipe | high-healing food |
 | `@barbarian assault` | fighter torso, granite body, penance, barbarian assault, horn of glory, dragon scimitar, abyssal whip | high-healing food, melee boosts, ranged boosts |
 | `@soul wars` | soul cape, soul wars, barrage, ancient staff, ancient sceptre, blood rune, death rune | high-healing food, prayer-restoring supplies |

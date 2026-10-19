@@ -47,6 +47,26 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `@vm` | Pickaxes, numulite, Prospector, prayer and healing support, optional solo stamina |
 | `@bf` | Smeltable ores and coal, coal bag, ice gloves or Smiths gloves (i), goldsmith gauntlets, coins |
 
+### Browse every category in RuneLite
+
+v1.5 adds a small **Smart Bank Search chest icon** to RuneLite's right-hand sidebar.
+Open it to filter the **full 208-category directory** by a skill, boss, activity,
+or any alias (for example `cannon`, `@gotr`, `cerb`, or `fishing`).
+Select a result to see all its valid search names, then click **Copy @search**
+and paste that text into the existing bank search field. The directory is
+generated from the same aliases as the matching engine, so there is no
+second list to maintain. It uses no web connection or account data.
+
+### Real-item accuracy audit
+
+The v1.5 verifier runs all 208 categories through the **real Java matching
+engine** against a pinned, independent July 2026 OSRS item-name snapshot
+using [`tools/audit_osrs_item_names.py`](tools/audit_osrs_item_names.py).
+Its Markdown report is attached to successful GitHub Actions runs. The
+audit checks relevant skill boosts and known false-positive examples.
+Because this is a name-only snapshot, checks relying on RuneLite equipment
+stats and releases after July 2026 still require in-client testing.
+
 ### Search modes
 
 For quick activity searches, use the full name or intuitive shortcut: `@cannon` and `@cannon tasks` use the same Slayer trip kit; `@chinchompa` and `@chinchompa hunting` show the same trapping supplies. The existing `@cannon supplies`/`@cannonballs` still show cannon components only; `@chins`/`@chinchompas` still mean thrown weapons.

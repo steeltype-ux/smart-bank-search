@@ -151,6 +151,81 @@ public final class ActivityCategoriesSelfTest
         no("@tempoross", "Fishing hood");
 
         yes("@gotr", "pickaxe"); yes("@gotr", "chisel"); no("@gotr", "Grimy ranarr weed"); no("@gotr", "Rune platebody");
+        // Essential pouches are actually called "Small/Medium/Large/Giant pouch",
+        // and degraded versions need to remain discoverable.
+        yes("@gotr", "Small pouch");
+        yes("@gotr", "Medium pouch");
+        yes("@gotr", "Medium pouch (degraded)");
+        yes("@gotr", "Large pouch");
+        yes("@gotr", "Giant pouch");
+        yes("@gotr", "Giant pouch (degraded)");
+        yes("@gotr", "Colossal pouch");
+        yes("@gotr", "Colossal pouch (degraded)");
+        yes("@gotr", "Essence pouch");
+        // Actual Raiments of the Eye item names, including recoloured versions.
+        yes("@gotr", "Hat of the eye");
+        yes("@gotr", "Hat of the eye (blue)");
+        yes("@gotr", "Robe top of the eye");
+        yes("@gotr", "Robe top of the eye (green)");
+        yes("@gotr", "Robe bottoms of the eye");
+        yes("@gotr", "Boots of the eye");
+        // Gear for mining bonuses, rune crafting, pouch repair and travel.
+        yes("@gotr", "Rune pickaxe");
+        yes("@gotr", "Dragon pickaxe");
+        yes("@gotr", "Crystal pickaxe");
+        yes("@gotr", "Abyssal lantern");
+        yes("@gotr", "Varrock armour 4");
+        yes("@gotr", "Celestial ring");
+        yes("@gotr", "Celestial signet");
+        yes("@gotr", "Ghommal's lucky penny");
+        yes("@gotr", "Runecraft cape");
+        yes("@gotr", "Max cape");
+        yes("@gotr", "Mining cape");
+        yes("@gotr", "Prospector jacket");
+        yes("@gotr", "Graceful cape");
+        yes("@gotr", "Penance gloves");
+        yes("@gotr", "Spottier cape");
+        yes("@gotr", "Lightbearer");
+        yes("@gotr", "Amulet of the eye");
+        yes("@gotr", "Necklace of passage(5)");
+        // Optional high-effort combination rune / Astral Contact setup.
+        yes("@gotr", "Binding necklace");
+        yes("@gotr", "Rune pouch");
+        yes("@gotr", "Divine rune pouch");
+        yes("@gotr", "Air rune");
+        yes("@gotr", "Water rune");
+        yes("@gotr", "Earth rune");
+        yes("@gotr", "Fire rune");
+        yes("@gotr", "Steam rune");
+        yes("@gotr", "Smoke rune");
+        yes("@gotr", "Astral rune");
+        yes("@gotr", "Cosmic rune");
+        yes("@gotr", "Tome of fire");
+        yes("@gotr", "Tome of water");
+        yes("@gotr", "Twinflame staff");
+        yes("@gotr", "Steam battlestaff");
+        // Not needed in an ordinary game: supplied or unrelated resources,
+        // one-off pouch assembly components or unnecessary energy consumables.
+        no("@gotr", "Small fishing net");
+        no("@gotr", "Large spade");
+        no("@gotr", "Abyssal needle");
+        no("@gotr", "Elemental talisman");
+        no("@gotr", "Catalytic talisman");
+        no("@gotr", "Ring of the elements");
+        no("@gotr", "Pure essence");
+        no("@gotr", "Rune essence");
+        no("@gotr", "Daeyalt essence");
+        no("@gotr", "Guardian essence");
+        no("@gotr", "Stamina potion(4)");
+        no("@gotr", "Energy potion(4)");
+        no("@gotr", "Super energy(4)");
+        no("@gotr", "Ring of endurance");
+        no("@gotr", "Yew logs");
+        no("@gotr", "Woodcutting cape");
+        yes("gotr", "Small pouch");
+        check(CategoryMatcher.parse("@guardians of the rift", true).getCategoryName()
+            .equals(CategoryMatcher.parse("@gotr", true).getCategoryName()),
+            "GOTR aliases must have identical activity rules");
         yes("@giants foundry", "bronze bar"); yes("@giants foundry", "iron bar"); no("@giants foundry", "Grimy ranarr weed");
         // Foundry uses 28 units from either metal bars or smithable 2+ bar
         // equipment; recycled gear contributes one less bar than its smithing cost.

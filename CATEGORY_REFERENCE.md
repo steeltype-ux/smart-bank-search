@@ -272,10 +272,10 @@ The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mit
 | `@tempoross` | Harpoons, full Spirit/regular Angler sets, rope, hammer, buckets, optional Humidify and fishing upgrades (no stamina, fish barrel or tackle box) | `tempoross prep`, `temp` |
 | `@gotr` | Five pouch sizes, eye outfit pieces, pickaxes, lantern, mining bonuses, optional binding necklace and combination-rune supplies | `guardians of the rift`, `guardians rift` |
 | `@giants foundry` | Eligible metal bars, recyclable smithable gear, Smiths' uniform, cooling and travel items | `giantsfoundry`, `giant foundry`, `giant's foundry`, `foundry` |
-| `@mahogany homes` | Mahogany Homes kit | `mahoganyhomes`, `mahogany homes prep`, `mh` |
-| `@hallowed sepulchre` | Hallowed Sepulchre kit | `sepulchre`, `sepulchre prep` |
-| `@pyramid plunder` | Pyramid Plunder kit | `pyramidplunder`, `plunder prep`, `plunder` |
-| `@tithe farm` | Tithe Farm kit | `tithefarm`, `tithe farming`, `tithe` |
+| `@mahogany homes` | Contract planks/bars, tools, Carpenter's outfit, four-town teleport and optional Astral Contact/Plank Make setup | `mahoganyhomes`, `mahogany homes prep`, `mh` |
+| `@hallowed sepulchre` | Hallowed upgrades and Agility clothing; optional coffin tools, planks/nails, grapple, enchant and poison protection | `sepulchre`, `sepulchre prep` |
+| `@pyramid plunder` | Pharaoh's sceptre, snake charm, lockpick, poison/prayer prevention, food, regeneration and optional travel | `pyramidplunder`, `plunder prep`, `plunder` |
+| `@tithe farm` | Spade/dibber/watering cans, Farmer's outfit, graceful, optional Humidify, stamina and Hosidius travel | `tithefarm`, `tithe farming`, `tithe` |
 | `@pest control` | Pest Control kit | `pestcontrol`, `pc minigame`, `pest` |
 | `@barbarian assault` | Barbarian Assault kit | `barb assault`, `ba minigame`, `ba` |
 | `@soul wars` | Soul Wars kit | `soulwars` |

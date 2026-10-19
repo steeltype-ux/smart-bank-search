@@ -129,6 +129,89 @@ final class ActivityCategories
         "tome of fire", "tome of water", "steam battlestaff",
         "twinflame staff");
 
+
+    // Mahogany Homes: actual contract supplies, individual Carpenter's pieces,
+    // contractor contact, transport to the four towns and optional Plank Make.
+    // Match planks/tools exactly to avoid adding unrelated planked objects.
+    private static final Predicate<ItemFacts> MAHOGANY_HOMES_CORE = f -> {
+        String n = f.name.toLowerCase(Locale.ROOT).trim();
+        return n.equals("plank") || n.equals("oak plank")
+            || n.equals("teak plank") || n.equals("mahogany plank")
+            || n.equals("steel bar") || n.equals("saw") || n.equals("hammer")
+            || CategoryMatcher.matchesName(n, "amy's saw", "imcando hammer",
+                "plank sack", "carpenter's helmet", "carpenter's shirt",
+                "carpenter's trousers", "carpenter's boots");
+    };
+
+    private static final Predicate<ItemFacts> MAHOGANY_HOMES_TRAVEL = names(
+        "rune pouch", "divine rune pouch",
+        "air rune", "astral rune", "cosmic rune",
+        "varrock teleport", "ardougne teleport", "falador teleport",
+        "xeric's talisman", "xeric's glade", "ring of wealth",
+        "skills necklace", "teleport to house", "house teleport",
+        "achievement diary cape", "ardougne cloak",
+        "book of the dead", "kharedst's memoirs", "graceful");
+
+    private static final Predicate<ItemFacts> MAHOGANY_HOMES_ADVANCED = names(
+        "law rune", "dust rune", "steam rune", "nature rune",
+        "staff of air", "air battlestaff", "dust battlestaff",
+        "steam battlestaff", "log basket", "sawmill voucher");
+
+    // Hallowed Sepulchre: agility-only laps can skip coffin supplies; full-loot
+    // runs require construction, Ranged, Prayer and Magic challenge materials.
+    private static final Predicate<ItemFacts> SEPULCHRE_PLANKS_AND_TOOLS = f -> {
+        String n = f.name.toLowerCase(Locale.ROOT).trim();
+        return n.equals("plank") || n.equals("oak plank")
+            || n.equals("teak plank") || n.equals("mahogany plank")
+            || n.equals("hammer") || n.equals("saw")
+            || n.matches("^(bronze|iron|steel|mithril|adamantite|rune) nails$");
+    };
+
+    private static final Predicate<ItemFacts> SEPULCHRE_CORE = names(
+        "hallowed grapple", "hallowed hammer", "hallowed focus",
+        "hallowed ring", "hallowed symbol", "hallowed token",
+        "hallowed crystal shard", "strange old lockpick", "lockpick",
+        "vampyre dust", "mith grapple", "dorgeshuun crossbow",
+        "rune crossbow", "adamant crossbow", "dragon crossbow",
+        "holy symbol", "holy blessing", "holy book", "prayer book",
+        "serpentine helm", "antipoison", "superantipoison",
+        "antidote", "graceful", "boots of lightness", "spottier cape",
+        "spotted cape", "hitpoints cape", "regen bracelet",
+        "stamina potion", "ring of endurance", "drakan's medallion",
+        "cosmic rune", "fire rune", "nature rune", "rune pouch",
+        "tome of fire", "saradomin stole");
+
+    // Pyramid Plunder poison + melee protection, shortcuts to Sophanem and
+    // stat restoration. Snake charm is primarily useful at lower Thieving.
+    private static final Predicate<ItemFacts> PYRAMID_PLUNDER_CORE = names(
+        "pharaoh's sceptre", "snake charm", "serpentine helm",
+        "antipoison", "superantipoison", "antidote", "menaphite remedy",
+        "prayer potion", "super restore", "prayer book", "holy symbol",
+        "stamina potion", "ring of dueling", "desert amulet",
+        "teleport to house", "graceful", "boots of lightness",
+        "spottier cape", "spotted cape", "regen bracelet",
+        "hitpoints cape", "ardougne cloak", "dragonbone necklace",
+        "guthan's");
+    private static final Predicate<ItemFacts> PYRAMID_PLUNDER_LOCKPICK = f ->
+        "lockpick".equalsIgnoreCase(f.name.trim());
+
+    // Tithe Farm gives players its seeds and fertiliser inside the minigame:
+    // bank searches should focus on carried watering/planting equipment,
+    // the individual Farmer's outfit pieces, and optional Humidify and travel.
+    private static final Predicate<ItemFacts> TITHE_FARM_CORE = names(
+        "gricoller's can", "watering can", "seed dibber", "spade",
+        "farmer's strawhat", "farmer's jacket", "farmer's shirt",
+        "farmer's boro trousers", "farmer's boots", "graceful",
+        "stamina potion", "super energy", "ring of endurance",
+        "explorer's ring", "xeric's talisman", "skills necklace",
+        "kharedst's memoirs", "book of the dead",
+        "teleport to house", "kourend castle teleport");
+
+    private static final Predicate<ItemFacts> TITHE_FARM_HUMIDIFY = names(
+        "rune pouch", "divine rune pouch", "astral rune",
+        "fire rune", "water rune", "steam rune", "tome of fire",
+        "tome of water", "water battlestaff", "steam battlestaff");
+
     static void register(Registrar registry)
     {
         // Bosses and raids
@@ -203,13 +286,13 @@ final class ActivityCategories
         // Buckets are optional because the minigame provides them on site.
         registry.add("Giant's Foundry kit", any(FOUNDRY_METAL, FOUNDRY_EQUIPMENT),
             "giants foundry", "giantsfoundry", "giant foundry", "giant's foundry", "foundry");
-        registry.add("Mahogany Homes kit", any(names("plank", "oak plank", "teak plank", "mahogany plank", "steel bar", "saw", "amy's saw", "hammer", "imcando hammer", "plank sack", "rune pouch", "air rune", "astral rune", "cosmic rune", "varrock teleport", "ardougne teleport", "falador teleport", "xeric's talisman", "ring of wealth", "skills necklace", "teleport to house", "carpenter's outfit"), ENERGY),
+        registry.add("Mahogany Homes kit", any(MAHOGANY_HOMES_CORE, MAHOGANY_HOMES_TRAVEL, MAHOGANY_HOMES_ADVANCED),
             "mahogany homes", "mahoganyhomes", "mahogany homes prep", "mh");
-        registry.add("Hallowed Sepulchre kit", names("hallowed grapple", "hallowed hammer", "hallowed focus", "hallowed ring", "hallowed symbol", "strange old lockpick", "graceful", "stamina potion", "vampyre dust", "plank", "nails", "ring of endurance", "drakan's medallion"),
+        registry.add("Hallowed Sepulchre kit", any(SEPULCHRE_CORE, SEPULCHRE_PLANKS_AND_TOOLS, HEALS),
             "hallowed sepulchre", "sepulchre", "sepulchre prep");
-        registry.add("Pyramid Plunder kit", any(names("pharaoh's sceptre", "lockpick", "antipoison", "antidote", "serpentine helm", "stamina potion", "energy potion", "prayer potion", "super restore", "ring of dueling", "menaphite remedy"), HEALS),
+        registry.add("Pyramid Plunder kit", any(PYRAMID_PLUNDER_CORE, PYRAMID_PLUNDER_LOCKPICK, HEALS),
             "pyramid plunder", "pyramidplunder", "plunder prep", "plunder");
-        registry.add("Tithe Farm kit", names("gricoller's can", "watering can", "seed dibber", "spade", "farmer's outfit", "farmer's strawhat", "farming cape", "farming hood", "stamina potion", "graceful", "ring of endurance"),
+        registry.add("Tithe Farm kit", any(TITHE_FARM_CORE, TITHE_FARM_HUMIDIFY),
             "tithe farm", "tithefarm", "tithe farming", "tithe");
         registry.add("Pest Control kit", any(names("void knight", "elite void", "dragon scimitar", "abyssal whip", "dragon defender", "chinchompa", "toxic blowpipe", "rune pouch", "prayer potion", "ranging potion", "super combat potion", "combat potion"), HEALS),
             "pest control", "pestcontrol", "pc minigame", "pest");

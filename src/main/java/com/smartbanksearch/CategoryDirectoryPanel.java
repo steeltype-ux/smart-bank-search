@@ -100,16 +100,25 @@ public final class CategoryDirectoryPanel extends PluginPanel
             return;
         }
         StringBuilder sb = new StringBuilder(selected.title);
-        sb.append("\n\nSuggested search: @").append(selected.primaryAlias);
+        boolean focusedStrength = "Strength boosts".equals(selected.title);
+        String prefix = focusedStrength ? "" : "@";
+        sb.append("\n\nSuggested search: ").append(prefix).append(selected.primaryAlias);
         sb.append("\n\nOther shortcuts:");
         for (String alias : selected.aliases)
         {
             if (!alias.equals(selected.primaryAlias))
             {
-                sb.append("\n@").append(alias);
+                sb.append("\n").append(prefix).append(alias);
             }
         }
-        sb.append("\n\n@ shows category-only results. Without @, normal bank searches remain additive.");
+        if (focusedStrength)
+        {
+            sb.append("\n\nUse @strength for the full Strength skill category, including equipment.");
+        }
+        else
+        {
+            sb.append("\n\n@ shows category-only results. Without @, normal bank searches remain additive.");
+        }
         detail.setText(sb.toString());
         detail.setCaretPosition(0);
     }

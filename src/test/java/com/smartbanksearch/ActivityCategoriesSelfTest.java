@@ -715,6 +715,7 @@ public final class ActivityCategoriesSelfTest
         no("@nightmare zone", "Overload(4)");
         no("@nightmare zone", "Overload");
         no("@nightmare zone", "Super ranging potion (Nightmare Zone)");
+        no("@nightmare zone", "Super magic potion (Nightmare Zone)");
         no("@nightmare zone", "Black mask");
         no("@nightmare zone", "Slayer helmet");
         no("@nightmare zone", "Shark");

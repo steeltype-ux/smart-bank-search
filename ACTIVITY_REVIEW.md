@@ -2,6 +2,8 @@
 
 **Draft:** [Source PR #2](https://github.com/steeltype-ux/smart-bank-search/pull/2). **Do not merge until gameplay review.** The current official RuneLite Plugin Hub version remains unchanged.
 
+**Completed first-pass optimization of all 67 activities:** the 16 minigames are reviewed in detail below; all 51 other categories are covered in the [one-shot activity audit](ONE_SHOT_ACTIVITY_AUDIT.md). This is not a claim of gameplay validation.
+
 All 67 new searches return **candidate items already in the player's bank**. A search is not an authoritative checklist or optimal loadout. The lists below show the leading **curated matching name terms** (examples, not exact item IDs), plus shared supplies used by a kit. The implementation may match more item names than shown.
 
 ### Easier search names

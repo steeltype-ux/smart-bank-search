@@ -155,6 +155,28 @@ public class CategoryMatcherTest
         yes("@combat pots", "Super str. mix(2)");
     }
 
+    @Test public void strengthSearchFocusesBoostsWhileExclusiveStrengthRemainsBroad()
+    {
+        for (String item : new String[] {
+            "Strength potion(4)", "Strength mix(2)", "Super strength(4)",
+            "Super str. mix(2)", "Divine super strength potion(4)",
+            "Combat potion(4)", "Combat mix(2)", "Super combat potion(4)",
+            "Divine super combat potion(4)", "Zamorak brew(4)"
+        })
+        {
+            yes("strength", item);
+        }
+        no("strength", "Fighter torso");
+        no("strength", "Berserker ring");
+        no("strength", "Ranging potion(4)");
+        yes("@strength", "Fighter torso");
+        yes("@strength", "Super strength(4)");
+        yes("strength pot", "Super strength(4)");
+        assertEquals("Strength skill", CategoryMatcher.parse("@strength", true).getCategoryName());
+        assertEquals("Strength boosts", CategoryMatcher.parse("strength", true).getCategoryName());
+        assertTrue(CategoryMatcher.matches("strength gear", gear("Unknown new ring", 12,0,0,0,8,0,0,0), true));
+    }
+
     @Test public void noUnexpectedNativeOverrides()
     {
         assertFalse(CategoryMatcher.isCategoryQuery("dragon scim",true));

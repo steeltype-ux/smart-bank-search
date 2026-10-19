@@ -269,7 +269,7 @@ The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mit
 | Search | Activity | Other aliases |
 |---|---|---|
 | `@wintertodt` | Wintertodt kit: tools, warm clothing, regen bracelet, cakes/pizzas/pies and other healing | `wintertodt prep`, `wt prep`, `wt` |
-| `@tempoross` | Tempoross kit | `tempoross prep`, `temp` |
+| `@tempoross` | Harpoons, full Spirit/regular Angler sets, rope, hammer, buckets, optional Humidify and fishing upgrades (no stamina, fish barrel or tackle box) | `tempoross prep`, `temp` |
 | `@gotr` | Guardians of the Rift kit | `guardians of the rift`, `guardians rift` |
 | `@giants foundry` | Eligible metal bars, recyclable smithable gear, Smiths' uniform, cooling and travel items | `giantsfoundry`, `giant foundry`, `giant's foundry`, `foundry` |
 | `@mahogany homes` | Mahogany Homes kit | `mahoganyhomes`, `mahogany homes prep`, `mh` |

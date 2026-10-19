@@ -262,12 +262,14 @@ These **67 new categories** complement the existing 141 searches, for **208 tota
 
 ### Minigames
 
+The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mithril/adamant/rune equipment in eligible categories: platebodies, platelegs/skirts, chainbodies, kiteshields, battleaxes, warhammers, 2h swords, full helms, square shields, scimitars, longswords and claws. It excludes ore, gold/silver bars, ornamental armour, 1-bar items, regular hammers and unrelated Smithing equipment. Ice gloves / Smiths' gloves (i) and buckets help handle the hot preform. Read the [activity review guide](ACTIVITY_REVIEW.md) for metal unit values and recommended alloy ratios.
+
 | Search | Activity | Other aliases |
 |---|---|---|
 | `@wintertodt` | Wintertodt kit: tools, warm clothing, regen bracelet, cakes/pizzas/pies and other healing | `wintertodt prep`, `wt prep` |
 | `@tempoross` | Tempoross kit | `tempoross prep` |
 | `@gotr` | Guardians of the Rift kit | `guardians of the rift`, `guardians rift` |
-| `@giants foundry` | Giant's Foundry kit | `giantsfoundry`, `giant foundry` |
+| `@giants foundry` | Eligible metal bars, recyclable smithable gear, Smiths' uniform, cooling and travel items | `giantsfoundry`, `giant foundry`, `giant's foundry`, `foundry` |
 | `@mahogany homes` | Mahogany Homes kit | `mahoganyhomes`, `mahogany homes prep` |
 | `@hallowed sepulchre` | Hallowed Sepulchre kit | `sepulchre`, `sepulchre prep` |
 | `@pyramid plunder` | Pyramid Plunder kit | `pyramidplunder`, `plunder prep` |

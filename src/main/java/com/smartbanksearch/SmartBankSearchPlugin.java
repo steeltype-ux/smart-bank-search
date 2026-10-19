@@ -3,6 +3,7 @@ package com.smartbanksearch;
 import com.google.inject.Provides;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.swing.SwingUtilities;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.ItemComposition;
@@ -14,6 +15,9 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStats;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.ui.ClientToolbar;
+import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.ImageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +35,9 @@ public class SmartBankSearchPlugin extends Plugin
     @Inject private Client client;
     @Inject private ItemManager itemManager;
     @Inject private SmartBankSearchConfig config;
+    @Inject private ClientToolbar clientToolbar;
+
+    private NavigationButton categoryDirectoryButton;
 
     private String lastQuery = null;
     private boolean lastStrict;
@@ -55,11 +62,30 @@ public class SmartBankSearchPlugin extends Plugin
 
     @Override protected void startUp()
     {
+        // One compact sidebar tab; categories are read directly from the
+        // existing offline matcher rather than stored in a second catalogue.
+        SwingUtilities.invokeLater(() ->
+        {
+            categoryDirectoryButton = NavigationButton.builder()
+                .tooltip("Smart Bank Search categories")
+                .icon(ImageUtil.loadImageResource(SmartBankSearchPlugin.class,
+                    "/smartbanksearch/icon.png"))
+                .panel(new CategoryDirectoryPanel())
+                .priority(80)
+                .build();
+            clientToolbar.addNavigation(categoryDirectoryButton);
+        });
         LOG.info("[SmartBankSearch] v1.5 started; {} categories", CategoryMatcher.catalog().size());
     }
 
     @Override protected void shutDown()
     {
+        NavigationButton directory = categoryDirectoryButton;
+        categoryDirectoryButton = null;
+        if (directory != null)
+        {
+            SwingUtilities.invokeLater(() -> clientToolbar.removeNavigation(directory));
+        }
         itemCache.clear();
         parsedQuery = null;
         lastQuery = null;

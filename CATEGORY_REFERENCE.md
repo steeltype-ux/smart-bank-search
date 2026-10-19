@@ -219,6 +219,8 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 
 ## New v1.5 activity preparation kits (proposed release)
 
+
+**Short names:** Activity queries accept direct shortcuts such as `cannon`, `chinchompa`, `wt`, `temp`, `mh`, `ba`, `vm`, and `bf` (with or without `@`). `@cannon` now loads cannon **Slayer trip supplies**, including the multicannon, cannonballs, and common task support items. For cannon parts only use existing `@cannon supplies` or `@cannonballs`. `@chinchompa` shows hunting/trapping gear, while the older `@chins` and `@chinchompas` remain thrown-weapon searches. General `@clues`, `@slayer`, `@hunter` and `@barrows` retain their original meaning.
 These **67 new categories** complement the existing 141 searches, for **208 total categories**. Search any activity name below directly (additive) or prepend `@` (exclusive). These are **curated candidate supplies already in your bank**, not guaranteed best-in-slot setups or a complete gear checklist. For example, `@wintertodt` includes warm clothing, tools and supplies; `@zulrah` includes venom protection, suitable equipment and consumables. Existing `@toa`, `@cox` and `@tob` retain their earlier meaning; use the new `@toa prep`, `@cox prep` or `@tob prep` aliases for broader preparation kits.
 
 **Herb-run alias:** The existing `@herb run` category also supports `@herbrun` and `@herbruns`. These aliases use identical matching rules; nothing about herb-run item selection changes.
@@ -234,8 +236,8 @@ These **67 new categories** complement the existing 141 searches, for **208 tota
 | `@inferno` | Inferno preparation | `inferno prep` |
 | `@nex` | Nex preparation | `nex prep`, `nex trip` |
 | `@nightmare boss` | Nightmare preparation | `nightmare prep`, `phosani`, `phosani's nightmare` |
-| `@cerberus` | Cerberus preparation | `cerberus prep` |
-| `@hydra boss` | Alchemical Hydra preparation | `alchemical hydra`, `hydra prep` |
+| `@cerberus` | Cerberus preparation | `cerberus prep`, `cerb` |
+| `@hydra boss` | Alchemical Hydra preparation | `alchemical hydra`, `hydra prep`, `hydra` |
 | `@scurrius` | Scurrius preparation | `scurrius prep` |
 | `@cox prep` | CoX raid preparation | `chambers prep`, `olm prep` |
 | `@tob prep` | ToB raid preparation | `theatre of blood prep`, `theater of blood prep` |
@@ -247,18 +249,18 @@ These **67 new categories** complement the existing 141 searches, for **208 tota
 
 | Search | Activity | Other aliases |
 |---|---|---|
-| `@gargoyles` | Gargoyles task | `gargoyle task`, `gargoyles prep` |
-| `@dust devils` | Dust devils task | `dustdevils`, `dust devil task` |
-| `@nechryaels` | Nechryaels task | `nechs`, `nech task`, `nechryael task` |
-| `@aberrant spectres` | Aberrant spectres task | `spectres task`, `aberrants` |
-| `@basilisks` | Basilisks task | `basilisk knights`, `basilisk task` |
-| `@kurasks` | Kurasks task | `kurask task` |
+| `@gargoyles` | Gargoyles task | `gargoyle task`, `gargoyles prep`, `gargoyle`, `gargs` |
+| `@dust devils` | Dust devils task | `dustdevils`, `dust devil task`, `dust devil` |
+| `@nechryaels` | Nechryaels task | `nechs`, `nech task`, `nechryael task`, `nech` |
+| `@aberrant spectres` | Aberrant spectres task | `spectres task`, `aberrants`, `spectres` |
+| `@basilisks` | Basilisks task | `basilisk knights`, `basilisk task`, `basilisk` |
+| `@kurasks` | Kurasks task | `kurask task`, `kurask` |
 | `@skeletal wyverns` | Skeletal wyverns task | `wyvern task`, `skeletal wyvern` |
-| `@abyssal demons` | Abyssal demons task | `abby demons`, `abyssal task` |
-| `@demonic gorillas` | Demonic gorillas trip | `demonics`, `demonic gorilla prep` |
-| `@barrage tasks` | Burst and barrage Slayer | `barrage`, `barrage slayer`, `burst tasks`, `burst slayer` |
-| `@cannon tasks` | Cannon Slayer trips | `cannon slayer`, `cannon trip` |
-| `@kraken boss` | Kraken task | `kraken task`, `cave kraken` |
+| `@abyssal demons` | Abyssal demons task | `abby demons`, `abyssal task`, `abbys` |
+| `@demonic gorillas` | Demonic gorillas trip | `demonics`, `demonic gorilla prep`, `gorillas` |
+| `@barrage tasks` | Burst and barrage Slayer | `barrage`, `barrage slayer`, `burst tasks`, `burst slayer`, `burst` |
+| `@cannon tasks` | Cannon Slayer trips | `cannon slayer`, `cannon trip`, `cannon` |
+| `@kraken boss` | Kraken task | `kraken task`, `cave kraken`, `kraken` |
 
 ### Minigames
 
@@ -266,39 +268,39 @@ The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mit
 
 | Search | Activity | Other aliases |
 |---|---|---|
-| `@wintertodt` | Wintertodt kit: tools, warm clothing, regen bracelet, cakes/pizzas/pies and other healing | `wintertodt prep`, `wt prep` |
-| `@tempoross` | Tempoross kit | `tempoross prep` |
+| `@wintertodt` | Wintertodt kit: tools, warm clothing, regen bracelet, cakes/pizzas/pies and other healing | `wintertodt prep`, `wt prep`, `wt` |
+| `@tempoross` | Tempoross kit | `tempoross prep`, `temp` |
 | `@gotr` | Guardians of the Rift kit | `guardians of the rift`, `guardians rift` |
 | `@giants foundry` | Eligible metal bars, recyclable smithable gear, Smiths' uniform, cooling and travel items | `giantsfoundry`, `giant foundry`, `giant's foundry`, `foundry` |
-| `@mahogany homes` | Mahogany Homes kit | `mahoganyhomes`, `mahogany homes prep` |
+| `@mahogany homes` | Mahogany Homes kit | `mahoganyhomes`, `mahogany homes prep`, `mh` |
 | `@hallowed sepulchre` | Hallowed Sepulchre kit | `sepulchre`, `sepulchre prep` |
-| `@pyramid plunder` | Pyramid Plunder kit | `pyramidplunder`, `plunder prep` |
-| `@tithe farm` | Tithe Farm kit | `tithefarm`, `tithe farming` |
-| `@pest control` | Pest Control kit | `pestcontrol`, `pc minigame` |
-| `@barbarian assault` | Barbarian Assault kit | `barb assault`, `ba minigame` |
+| `@pyramid plunder` | Pyramid Plunder kit | `pyramidplunder`, `plunder prep`, `plunder` |
+| `@tithe farm` | Tithe Farm kit | `tithefarm`, `tithe farming`, `tithe` |
+| `@pest control` | Pest Control kit | `pestcontrol`, `pc minigame`, `pest` |
+| `@barbarian assault` | Barbarian Assault kit | `barb assault`, `ba minigame`, `ba` |
 | `@soul wars` | Soul Wars kit | `soulwars` |
 | `@nightmare zone` | Nightmare Zone kit | `nmz`, `nightmarezone` |
-| `@shades of mortton` | Shades of Mort'ton kit | `shades of mort'ton`, `shades minigame` |
+| `@shades of mortton` | Shades of Mort'ton kit | `shades of mort'ton`, `shades minigame`, `shades` |
 | `@fishing trawler` | Fishing Trawler kit | `trawler`, `fishing trawler prep` |
-| `@volcanic mine` | Volcanic Mine kit | `volcanicmine`, `vm mining` |
-| `@blast furnace` | Blast Furnace kit | `blastfurnace`, `bf smithing` |
+| `@volcanic mine` | Volcanic Mine kit | `volcanicmine`, `vm mining`, `vm` |
+| `@blast furnace` | Blast Furnace kit | `blastfurnace`, `bf smithing`, `bf` |
 
 ### Farming and skilling
 
 | Search | Activity | Other aliases |
 |---|---|---|
-| `@farming contracts` | Farming contracts kit | `farm contracts`, `farm contract` |
+| `@farming contracts` | Farming contracts kit | `farm contracts`, `farm contract`, `contracts` |
 | `@giant seaweed` | Giant seaweed runs | `seaweed run`, `seaweed farming` |
 | `@motherlode mine` | Motherlode Mine kit | `motherlode`, `mlm` |
 | `@bird snaring` | Bird snaring and hunter kit | `bird snare run`, `hunter birds` |
-| `@chinchompa hunting` | Chinchompa hunting kit | `red chins`, `black chins`, `chin hunting` |
+| `@chinchompa hunting` | Chinchompa hunting kit | `red chins`, `black chins`, `chin hunting`, `chinchompa`, `chin hunt` |
 
 ### Wilderness and PvP
 
 | Search | Activity | Other aliases |
 |---|---|---|
-| `@revenants` | Revenant caves kit | `revenant caves`, `rev caves`, `revs prep` |
-| `@calvarion` | Calvar'ion kit | `calvar'ion`, `calvarion prep` |
+| `@revenants` | Revenant caves kit | `revenant caves`, `rev caves`, `revs prep`, `revs` |
+| `@calvarion` | Calvar'ion kit | `calvar'ion`, `calvarion prep`, `calv` |
 | `@spindel` | Spindel kit | `spindel prep` |
 | `@artio` | Artio kit | `artio prep` |
 | `@chaos elemental` | Chaos Elemental kit | `chaosele`, `chaos ele` |

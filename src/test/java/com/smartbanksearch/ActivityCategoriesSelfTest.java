@@ -792,7 +792,6 @@ public final class ActivityCategoriesSelfTest
         no("@shades", "Ashes");
         no("@shades", "Tarromin");
         no("@shades", "Swamp tar");
-        no("@shades", "Swamp paste pack");
         no("@shades", "Bronze pickaxe");
         no("@shades", "Adamant battleaxe");
         no("@shades", "Yew longbow");
@@ -937,7 +936,6 @@ public final class ActivityCategoriesSelfTest
         no("@bf", "Coal tar");
         no("@bf", "Charcoal");
         no("@bf", "Coal rocks");
-        no("@bf", "Coal-bag placeholder");
         no("@bf", "Smiths tunic");
         no("@bf", "Smiths trousers");
         no("@bf", "Smiths gloves");

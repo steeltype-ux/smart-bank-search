@@ -29,6 +29,7 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `cannon`, `chinchompa` | Slayer cannon-trip supplies and Hunter chinchompa-trapping supplies |
 | `wt`, `temp`, `mh`, `ba`, `vm`, `bf` | Fast minigame aliases for Wintertodt, Tempoross, Mahogany Homes, Barbarian Assault, Volcanic Mine and Blast Furnace |
 | `@tempoross`, `@temp` | Spirit/regular Angler outfit, harpoons, rope and repair tools, optional fishing upgrades; excludes general stamina items |
+| `@gotr` | Small-to-colossal essence pouches, each Raiments piece, pickaxes, mining bonuses, optional binding necklace and Magic Imbue rune supplies |
 
 ### Search modes
 

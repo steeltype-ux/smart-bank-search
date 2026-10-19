@@ -20,11 +20,13 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 
 ## All 24 skills
 
+**Melee potion coverage:** `attack` now includes regular Attack potion doses (already supported), Attack/Superattack mixes, normal and Divine Super attack, Combat potion/mix, Super/Divine super combat and Zamorak brew. `combat pots` also covers ordinary Attack, Strength and Defence potions. A regular Combat potion raises **Attack and Strength**, while a Super combat potion raises **Attack, Strength and Defence**. All results depend on what is actually stored in the bank.
+
 | Search | Example results |
 |---|---|
-| `attack` | Super attack(4), melee equipment |
-| `strength` | Berserker ring, strength-boosting gear |
-| `defence` | Defence potion, armour with defence bonuses |
+| `attack` | Regular Attack potion, Super/Divine super attack, Attack mixes, Combat/Divine super combat, Zamorak brew and melee equipment |
+| `strength` | Strength potions and mixes, Combat/Super combat, Zamorak brew and strength-boosting gear |
+| `defence` | Defence potions and mixes, Super combat, Bastion/Battlemage potions and protective gear |
 | `ranged` | Masori chaps, bows, ranged-bonus items |
 | `prayer` | Dragon bones, prayer gear, Prayer potions |
 | `magic` | Occult necklace, runes, staves |

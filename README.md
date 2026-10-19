@@ -38,6 +38,10 @@ Smart Bank Search extends RuneLite's **existing bank search bar** with automatic
 | `@ba` | Barbarian Assault attacker/defensive gear and optional boosts, excluding prohibited outside runes/pouches |
 | `@soulwars` | Soul Wars PvP, anti-magic and Ancient Magicks supplies; in-game bandages/potions excluded |
 | `@nmz` | Rock cake/orb, Dharok and Obsidian setups, combat/prayer equipment; not NMZ-only potions |
+| `@shades` | Flamtaer temple items, sacred oils, named shade remains, pyre logs and coloured catacomb keys |
+| `@trawler` | Swamp paste, rope, bailing bucket, axe and hammer; excludes Angler outfit reward pieces |
+| `@vm` | Pickaxes, numulite, Prospector, prayer and healing support, optional solo stamina |
+| `@bf` | Smeltable ores and coal, coal bag, ice gloves or Smiths gloves (i), goldsmith gauntlets, coins |
 
 ### Search modes
 

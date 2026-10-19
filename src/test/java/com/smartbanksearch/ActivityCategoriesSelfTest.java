@@ -965,11 +965,11 @@ public final class ActivityCategoriesSelfTest
         yes("@wildy escape", "royal seed pod"); yes("@wildy escape", "amulet of glory"); no("@wildy escape", "Grimy ranarr weed"); no("@wildy escape", "Rune platebody");
         yes("@anti pk", "dragon claws"); yes("@anti pk", "voidwaker"); no("@anti pk", "Grimy ranarr weed"); no("@anti pk", "Rune platebody");
         yes("@clue kit", "spade"); yes("@clue kit", "clue scroll"); no("@clue kit", "Grimy ranarr weed"); no("@clue kit", "Rune platebody");
-        yes("@easy clue kit", "clue scroll (easy)"); yes("@easy clue kit", "reward casket (easy)"); no("@easy clue kit", "Grimy ranarr weed"); no("@easy clue kit", "Rune platebody");
-        yes("@medium clue kit", "clue scroll (medium)"); yes("@medium clue kit", "reward casket (medium)"); no("@medium clue kit", "Grimy ranarr weed"); no("@medium clue kit", "Rune platebody");
-        yes("@hard clue kit", "clue scroll (hard)"); yes("@hard clue kit", "reward casket (hard)"); no("@hard clue kit", "Grimy ranarr weed"); no("@hard clue kit", "Rune platebody");
-        yes("@elite clue kit", "clue scroll (elite)"); yes("@elite clue kit", "reward casket (elite)"); no("@elite clue kit", "Grimy ranarr weed"); no("@elite clue kit", "Rune platebody");
-        yes("@master clue kit", "clue scroll (master)"); yes("@master clue kit", "reward casket (master)"); no("@master clue kit", "Grimy ranarr weed"); no("@master clue kit", "Rune platebody");
+        yes("@easy clue kit", "clue scroll (easy)"); yes("@easy clue kit", "scroll box (easy)"); no("@easy clue kit", "Grimy ranarr weed"); no("@easy clue kit", "Rune platebody");
+        yes("@medium clue kit", "clue scroll (medium)"); yes("@medium clue kit", "scroll box (medium)"); no("@medium clue kit", "Grimy ranarr weed"); no("@medium clue kit", "Rune platebody");
+        yes("@hard clue kit", "clue scroll (hard)"); yes("@hard clue kit", "scroll box (hard)"); no("@hard clue kit", "Grimy ranarr weed"); no("@hard clue kit", "Rune platebody");
+        yes("@elite clue kit", "clue scroll (elite)"); yes("@elite clue kit", "scroll box (elite)"); no("@elite clue kit", "Grimy ranarr weed"); no("@elite clue kit", "Rune platebody");
+        yes("@master clue kit", "clue scroll (master)"); yes("@master clue kit", "scroll box (master)"); no("@master clue kit", "Grimy ranarr weed"); no("@master clue kit", "Rune platebody");
         yes("@quest prep", "rope"); yes("@quest prep", "spade"); no("@quest prep", "Grimy ranarr weed"); no("@quest prep", "Rune platebody");
         yes("@quest travel", "teleport to house"); yes("@quest travel", "varrock teleport"); no("@quest travel", "Grimy ranarr weed"); no("@quest travel", "Rune platebody");
         yes("@quest combat", "rune pouch"); yes("@quest combat", "anti dragon shield"); no("@quest combat", "Grimy ranarr weed"); no("@quest combat", "Rune platebody");
@@ -1064,6 +1064,11 @@ public final class ActivityCategoriesSelfTest
         check(CategoryMatcher.parse("chinchompa", true).isCategory(), "Natural chinchompa query missing");
 
         // One-shot optimization audit: new banked essentials, plus reward/spell exclusions.
+        no("@easy clue kit", "Reward casket (easy)");
+        no("@medium clue kit", "Reward casket (medium)");
+        no("@hard clue kit", "Reward casket (hard)");
+        no("@elite clue kit", "Reward casket (elite)");
+        no("@master clue kit", "Reward casket (master)");
         no("@muspah", "Greater corruption");
         no("@gwd prep", "Blood shard");
         no("@cerb", "Ghostly boots");

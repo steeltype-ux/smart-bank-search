@@ -2,12 +2,8 @@ package com.smartbanksearch;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -15,7 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -33,7 +28,6 @@ public final class CategoryDirectoryPanel extends PluginPanel
     private final JList<CategoryDirectoryModel.Entry> categoryList = new JList<>(results);
     private final JLabel countLabel = new JLabel();
     private final JTextArea detail = new JTextArea();
-    private final JButton copyButton = new JButton("Copy @search");
 
     public CategoryDirectoryPanel()
     {
@@ -62,13 +56,8 @@ public final class CategoryDirectoryPanel extends PluginPanel
 
         JPanel bottom = new JPanel(new BorderLayout(0, 6));
         bottom.add(new JScrollPane(detail), BorderLayout.CENTER);
-        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
-        buttons.add(copyButton);
-        bottom.add(buttons, BorderLayout.SOUTH);
         add(bottom, BorderLayout.SOUTH);
 
-        copyButton.setEnabled(false);
-        copyButton.addActionListener(e -> copySelectedQuery());
         categoryList.addListSelectionListener(e ->
         {
             if (!e.getValueIsAdjusting()) { updateDetail(); }
@@ -105,7 +94,6 @@ public final class CategoryDirectoryPanel extends PluginPanel
     private void updateDetail()
     {
         CategoryDirectoryModel.Entry selected = categoryList.getSelectedValue();
-        copyButton.setEnabled(selected != null);
         if (selected == null)
         {
             detail.setText("No matching categories. Try a shorter word or activity name.");
@@ -126,21 +114,4 @@ public final class CategoryDirectoryPanel extends PluginPanel
         detail.setCaretPosition(0);
     }
 
-    private void copySelectedQuery()
-    {
-        CategoryDirectoryModel.Entry selected = categoryList.getSelectedValue();
-        if (selected == null) { return; }
-        String query = "@" + selected.primaryAlias;
-        try
-        {
-            Toolkit.getDefaultToolkit().getSystemClipboard()
-                .setContents(new StringSelection(query), null);
-            copyButton.setText("Copied!");
-            SwingUtilities.invokeLater(() -> copyButton.setText("Copy @search"));
-        }
-        catch (IllegalStateException | java.awt.HeadlessException ex)
-        {
-            detail.append("\n\nCopy unavailable. Type: " + query);
-        }
-    }
 }

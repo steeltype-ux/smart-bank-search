@@ -14,6 +14,9 @@ All searches use the normal RuneLite bank search field and show only items actua
 - `herblore` — **potion-making** ingredients and tools. `herb` remains clean/grimy harvested herbs only.
 
 Use the `@` prefix for *category-only* results; without `@`, RuneLite native-name and tag matches are preserved.
+
+**Finding categories in v1.5:** Click the **Smart Bank Search chest icon in RuneLite's sidebar** and type any category name or alias. The live directory reads the 208 aliases/groups from the matcher and provides a **Copy @search** option. You do not need to memorize the full reference below.
+
 Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be registered aliases.
 
 **Accuracy note:** Equipment slots and stats are read from RuneLite where available. Most skill loadouts, Sailing and activity lists are manually curated matches by item name; this is a convenient *candidate filter*, not a complete or mandatory inventory checklist. Items missing from your bank cannot appear, and not every Sailing/new-game item is covered.

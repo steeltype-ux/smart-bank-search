@@ -71,6 +71,33 @@ You can type these **without** `@` for additive native bank search results, or w
 
 ## Minigames (16)
 
+**Pest Control — combat gear over consumables:**
+- The game refreshes stats and prayer between rounds. It rewards fast portal damage (and dealing with Spinners) more than stocking food and prayer potions. Gear options include **Void/Elite Void**, melee DPS weapons (whip, scimitar, defender, rapier, fang), ranged weapons (blowpipe, bowfa, crystal bow), and special weapons (BGS, claws, dagger, Voidwaker). Optional **chinchompas or Ancient Magicks** help with clustered pests but cost resources; include rune pouch, blood/death/water runes for that specialized setup.
+- **Optional:** ranging or super combat potion for short-round damage boosts, and **Pest control teleport** for access. Exclude generic food, brews, prayer/restore potions and unrelated run energy supplies.
+
+**Barbarian Assault — role-specific equipment, not external supplies:**
+- **Attacker:** Bring melee or ranged DPS weapons (dragon scimitar, whip, MSB, crystal bow, bowfa, Venator bow, blowpipe), damage gear and optional attack/strength/ranging potions. Attackers draw the correct arrows/runes from **attacker dispensers** and must respond to attack-style calls.
+- **Defender:** **Imcando hammer** avoids picking up the spawned hammer to repair traps; defensive gear (Dinh's bulwark, Dragonfire shield, Zamorakian hasta, Excalibur) helps while running bait.
+- **Healer/Collector:** Prioritize **high defence and free inventory slots**. The machines provide poisoned food/vials and egg bags; do not load bank food or role items before entering. Penance armour is fine aesthetically but does not provide a minigame advantage.
+- **Restrictions:** **Prayers are disabled**. External runes/ammunition and rune pouches are **not permitted**. Remove prayer potions, rune pouch and general food from the filter. **Games necklace** teleports to Barbarian Outpost. Do not show `Horn of glory` as a bank-preparation item.
+
+Sources: [OSRS Wiki: Barbarian Assault](https://oldschool.runescape.wiki/w/Barbarian_Assault), [OSRS Wiki: strategy guide](https://oldschool.runescape.wiki/w/Barb_assault_strats).
+
+**Soul Wars — bring switches and runes, collect supplies on-site:**
+- **Magic-defence gear:** Black/blessed dragonhide, Karil's and similar equipment, to resist frequent Ice Barrage attacks. **Attackers / PvP:** Ancient staff, Ancient sceptre or Kodai wand with **blood, death, water and soul runes** and a rune pouch; spec weapons such as claws, DDS, godswords, Voidwaker and ranged options such as blowpipe, bowfa or crossbows.
+- **Supply stations:** **Bandages, combat potions, barricades and explosives** are collected *after entering* and expire when the game ends. The plugin's bank search should **not** suggest food, prayer/restore potions, stat potions or these on-site items. Players should enter with inventory room for bandages.
+- **Teleport:** Amulet of glory or combat bracelet can get players toward the Edgeville entrance if they are not using the minigame teleport.
+
+Source: [OSRS Soul Wars practical strategy](https://www.osrsguide.com/soul-wars-guide-osrs/), [OSRS Wiki: Explosive potion (Soul Wars)](https://oldschool.runescape.wiki/w/Explosive_potion_%28Soul_Wars%29).
+
+**Nightmare Zone — bank gear vs point-purchased doses:**
+- **Absorption / Overload** cannot be stored in a normal bank and are withdrawn from Dominic's barrels outside the dream. Players should still prepare those *in the NMZ lobby* after retrieving relevant bank gear.
+- **Dharok training:** Full Dharok's (helm, platebody, platelegs, greataxe), **dwarven rock cake or locator orb** to reach low HP, and point-bought absorption/overload doses from barrels.
+- **AFK melee:** Obsidian helmet/platebody/platelegs, **Berserker necklace**, **Toktz-xil-ak**, or an alternate whip/defender and strength-focused outfit. **Prayer setup:** Proselyte/Initiate equipment, prayer potion, holy wrench and special weapons (Saradomin godsword or Ancient mace); ordinary super combat or ranging potions are especially relevant to early points-building.
+- **Precision:** No high-healing food, black mask for generic dreams, or unbankable absorption/overload doses. The player needs **coins in Dominic's coffer** to start games.
+
+Sources: [OSRS Wiki: Nightmare Zone](https://oldschool.runescape.wiki/w/Nmz), [OSRS Wiki: pay-to-play melee training](https://oldschool.runescape.wiki/w/Pay_to_pay_melee), [OSRS Wiki: Nightmare Zone strategies](https://oldschoolrunescape.fandom.com/wiki/Nightmare_Zone/Strategies).
+
 **Tempoross kit — reviewed and optimized:** Start with a harpoon and a rope, hammer and buckets as needed (basic supplies are available on-site). The **full four-piece Spirit angler outfit** acts as a rope, freeing an inventory space; the regular Angler outfit also grants Fishing XP but does **not** replace the rope. An **Imcando hammer** is equippable for repair work. Harpoon upgrades can improve fishing performance, while Lightbearer, Elven signet, Humidify runes/tomes and fishing boosts are for specialized approaches. Stamina/energy potions and a Ring of endurance are intentionally excluded from routine prep. **Fish barrel cannot store harpoonfish**, and tackle box is storage rather than in-encounter equipment. This is a single candidate-supplies filter, not an optimal or account-specific loadout.
 
 Sources: [OSRS Wiki strategy overview](https://oldschool.runescape.wiki/w/Tempoross/Strategies), [Spirit angler top](https://oldschool.runescape.wiki/w/Spirit_angler_top), [Tempoross Cove](https://oldschool.runescape.wiki/w/Tempoross_Cove).
@@ -136,10 +163,10 @@ Sources: [OSRS Wiki: Giant's Foundry](https://oldschool.runescape.wiki/w/Giants%
 | `@hallowed sepulchre` / `@sepulchre` | Hallowed upgrades, lockpick, Saradomin items, graceful and run-energy protection | Coffin-looting setup: grapple/crossbow, planks/nails/saw/hammer, dust, enchantment runes, poison protection and food; no unrelated logs or generic Smithing |
 | `@pyramid plunder` / `@plunder` | Pharaoh's sceptre, lockpick, snake charm, antidotes/serpentine helm, prayer protection, food, graceful | Prayer book + holy symbol, regen bracelet + HP cape, desert amulet/teleports, optional stamina; no generic energy |
 | `@tithe farm` / `@tithe` | Watering cans / Gricoller's can, spade, seed dibber, all five named Farmer's outfit variants | Humidify spell runes/rune pouch, graceful, optional run-energy/travel aids; on-site seeds/fertiliser, no unrelated farming compost/seeds |
-| `@pest control` | void knight, elite void, dragon scimitar, abyssal whip, dragon defender, chinchompa, toxic blowpipe | high-healing food |
-| `@barbarian assault` | fighter torso, granite body, penance, barbarian assault, horn of glory, dragon scimitar, abyssal whip | high-healing food, melee boosts, ranged boosts |
-| `@soul wars` | soul cape, soul wars, barrage, ancient staff, ancient sceptre, blood rune, death rune | high-healing food, prayer-restoring supplies |
-| `@nightmare zone` | dwarven rock cake, locator orb, absorption, overload, berserker ring, black mask, abyssal whip | high-healing food |
+| `@pest control` / `@pest` | Void/Elite Void, melee/ranged/magic weapons, chinchompas, special-attack gear and Pest Control teleport | Optional combat boosts and Ancient Magicks runes; **no** routine food or prayer potions; stats reset after each round |
+| `@barbarian assault` / `@ba` | Attacker weapons, armour for non-attacker roles, Imcando hammer for Defender, games necklace and offensive combat boosts | **No** food, prayer pots, rune pouches, external runes or ammo, or Horn of Glory (not bankable) |
+| `@soul wars` / `@soulwars` | Magic-defence armour, Ancient Magicks staffs and runes, rune pouch, melee/ranged alternatives, spec weapons, Soul cape | **No** food, bandages, barricades or combat potions in bank search; provided inside match |
+| `@nightmare zone` / `@nmz` | Dwarven rock cake, locator orb, Dharok/Obsidian gear, berserker necklace/ring, AFK weapons, prayer equipment | Optional ordinary combat/prayer potions and coins; **no** overload/absorption (minigame barrels), food or unrelated Slayer mask |
 | `@shades of mortton` | olive oil, sacred oil, pyre log, pyre logs, shade remains, serum 207, silver key | None |
 | `@fishing trawler` | swamp paste, rope, bailing bucket, bucket, angler outfit, angler hat, angler top | None |
 | `@volcanic mine` | pickaxe, dragon pickaxe, crystal pickaxe, rune pickaxe, numulite, mining cape, mining hood | high-healing food |

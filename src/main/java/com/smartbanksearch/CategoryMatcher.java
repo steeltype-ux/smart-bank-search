@@ -271,7 +271,15 @@ public final class CategoryMatcher
         add("Restoration potions", names("super restore", "restore potion", "sanfew serum", "rejuvenation potion"), "restores", "restore pots", "restoration pots", "super restores");
         add("Antifire potions", names("antifire", "dragonfire potion", "wyrmfire potion"), "antifire", "antifires", "anti fire", "dragonfire protection", "super antifire");
         add("Antipoisons", names("antipoison", "superantipoison", "antidote", "anti venom", "antivenom", "sanfew serum", "cure me"), "antipoison", "antipoisons", "anti poison", "antivenom", "anti venom", "poison cure");
-        add("Combat potions", names("combat potion", "super combat", "super attack", "super strength", "super defence", "ranging potion", "bastion potion", "battlemage potion", "magic potion", "divine ranging", "divine magic", "overload", "super ranging", "super magic", "dragon battleaxe"), "combat pots", "combat potions", "boost pots", "stat boosts", "boosting potions");
+        // Broad boost-drink category: include the ordinary/Barbarian-mix versions,
+        // not only expensive super/divine variants. These are item names rather
+        // than a loose "attack" substring that would pull in unrelated gear.
+        add("Combat potions", names("attack potion", "attack mix", "super attack", "superattack mix",
+            "strength potion", "strength mix", "super strength", "super str. mix",
+            "defence potion", "defence mix", "super defence", "super def. mix",
+            "combat potion", "combat mix", "super combat", "zamorak brew",
+            "ranging potion", "bastion potion", "battlemage potion", "magic potion",
+            "divine ranging", "divine magic", "overload", "super ranging", "super magic", "dragon battleaxe"), "combat pots", "combat potions", "boost pots", "stat boosts", "boosting potions");
         add("Energy / stamina", names("stamina potion", "energy potion", "super energy", "strange fruit", "purple sweets", "summer pie", "ring of endurance"), "stamina", "staminas", "run energy", "energy pots", "energy potions", "run restoration");
         add("Food", f -> edible(f.name), "food", "foods", "healing food", "eats", "edible food");
         add("Raw food / fish", names("raw", "uncooked", "raw fish", "raw shark", "raw karambwan", "raw lobster", "raw meat", "raw bird meat"), "raw food", "raw fish", "uncooked food", "uncooked fish");
@@ -345,11 +353,28 @@ public final class CategoryMatcher
 
         // 1.4 SKILL SEARCHES — all 24 OSRS skills, including Sailing. Broad skill searches
         // intentionally cover useful gear + materials; narrower "... gear" aliases keep results lean.
-        add("Attack skill", any(MELEE, names("attack cape", "attack hood", "attack potion", "super attack", "combat potion", "warrior ring", "warrior helm", "dragon defender", "avernic defender")),
+        // Regular Attack, super/divine, Barbarian mixes, and multi-stat drinks:
+        // combat boosts Attack+Strength, super combat boosts Attack+Strength+Defence.
+        add("Attack skill", any(MELEE, names(
+            "attack cape", "attack hood",
+            "attack potion", "attack mix", "super attack", "superattack mix",
+            "combat potion", "combat mix", "super combat", "divine super combat",
+            "zamorak brew",
+            "warrior ring", "warrior helm", "dragon defender", "avernic defender")),
             "attack", "attack skill", "attack training", "attack gear", "attack equipment");
-        add("Strength skill", any(f -> f.worn() && f.meleeStrength > 0, names("strength cape", "strength hood", "strength potion", "super strength", "divine super strength", "super combat", "dragon battleaxe", "berserker ring", "fighter torso", "ferocious gloves", "inquisitor's mace")),
+        add("Strength skill", any(f -> f.worn() && f.meleeStrength > 0, names(
+            "strength cape", "strength hood", "strength potion", "strength mix",
+            "super strength", "super str. mix", "divine super strength",
+            "combat potion", "combat mix", "super combat", "zamorak brew",
+            "dragon battleaxe", "berserker ring", "fighter torso",
+            "ferocious gloves", "inquisitor's mace")),
             "strength", "strength skill", "strength training", "strength equipment");
-        add("Defence skill", any(f -> f.worn() && f.defence > 0, names("defence cape", "defence hood", "defence potion", "super defence", "divine super defence", "super combat", "justiciar", "dinh's bulwark", "elysian spirit shield", "ring of suffering", "dragonfire shield")),
+        add("Defence skill", any(f -> f.worn() && f.defence > 0, names(
+            "defence cape", "defence hood", "defence potion", "defence mix",
+            "super defence", "super def. mix", "divine super defence",
+            "super combat", "bastion potion", "battlemage potion",
+            "justiciar", "dinh's bulwark", "elysian spirit shield",
+            "ring of suffering", "dragonfire shield")),
             "defence", "defense", "defence skill", "defence training", "defense gear", "defence equipment");
         add("Hitpoints skill", any(f -> edible(f.name), names("hitpoints cape", "hitpoints hood", "regen bracelet", "rapid heal", "rejuvenation pool", "sara domin brew", "saradomin brew", "anglerfish", "rejuvenation potion", "guthix rest", "phoenix necklace", "amulet of blood fury", "dwarven rock cake", "locator orb", "purple sweets")),
             "hitpoints", "hitpoints skill", "hp gear", "hp training", "hp supplies", "healing gear");

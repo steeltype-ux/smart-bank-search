@@ -287,6 +287,83 @@ final class ActivityCategories
                 "prayer potion", "super restore", "ranging potion",
                 "magic potion", "coins");
 
+
+    // Shades of Mort'ton supports temple repair, oil production, cremation and
+    // catacomb rewards. Use actual remains/key names: generic "shade remains"
+    // and "silver key" name matches catch unrelated items.
+    private static final Pattern SHADES_COMPONENT = Pattern.compile(
+        "^(?:logs|(?:oak|willow|teak|arctic pine|maple|mahogany|yew|magic|redwood) logs|"
+        + "(?:(?:oak|willow|teak|arctic|arctic pine|maple|mahogany|yew|magic|redwood) )?pyre logs|"
+        + "(?:loar|phrin|riyl|asyn|fiyr|urium) remains)$");
+    private static final Pattern SHADES_CHEST_KEY = Pattern.compile(
+        "^(?:bronze|steel|black|silver|gold) key "
+        + "(?:red|brown|crimson|black|purple)$");
+    private static final Pattern SHADES_AXE = Pattern.compile(
+        "^(?:bronze|iron|steel|black|mithril|adamant|rune|dragon|"
+        + "crystal|infernal) axe(?: [(]uncharged[)])?$");
+
+    private static final Predicate<ItemFacts> SHADES_ITEMS = f -> {
+        String name = f.name.toLowerCase(Locale.ROOT).trim();
+        return SHADES_COMPONENT.matcher(name).matches()
+            || SHADES_CHEST_KEY.matcher(name).matches()
+            || SHADES_AXE.matcher(name).matches();
+    };
+
+    private static final Predicate<ItemFacts> SHADES_TEMPLE_AND_TRAVEL = names(
+        "olive oil", "sacred oil", "serum 207", "serum 208",
+        "flamtaer hammer", "flamtaer bracelet", "flamtaer bag",
+        "imcando hammer", "swamp paste", "timber beam", "limestone brick",
+        "tinderbox", "mortar and pestle", "hammer",
+        "mort'ton teleport", "morton teleport", "barrows teleport",
+        "morytania legs", "drakan's medallion");
+
+    // Trawler rewards (Angler outfit) are not preparation tools. A common
+    // mass-world method is ten swamp-paste fixes for 50 contribution points.
+    // Ordinary buckets cannot replace bailing buckets.
+    private static final Pattern TRAWLER_AXE = Pattern.compile(
+        "^(?:bronze|iron|steel|black|mithril|adamant|rune|dragon|"
+        + "crystal|infernal|3rd age) axe(?: [(]uncharged[)])?$");
+
+    private static final Predicate<ItemFacts> TRAWLER_TOOLS = f -> {
+        String name = f.name.toLowerCase(Locale.ROOT).trim();
+        return name.equals("swamp paste") || name.equals("rope")
+            || name.equals("bailing bucket") || name.equals("hammer")
+            || name.equals("imcando hammer")
+            || TRAWLER_AXE.matcher(name).matches();
+    };
+
+    // Volcanic Mine usually needs food and protection from ranged damage.
+    // Stamina is primarily for solo/capping routes. No extra energy-potion
+    // category or mined resources; volcanic ore itself is not banked.
+    private static final Predicate<ItemFacts> VOLCANIC_MINE_GEAR = names(
+        "pickaxe", "numulite", "volcanic mine teleport", "digsite pendant",
+        "prospector", "mining cape", "mining hood", "celestial ring",
+        "celestial signet", "varrock armour 4", "regen bracelet",
+        "hitpoints cape", "max cape", "dragonbone necklace",
+        "bonecrusher necklace", "blessing", "ardougne cloak",
+        "falador shield", "ring of the gods", "ring of suffering",
+        "explorer's ring", "proselyte", "mitre", "stole",
+        "prayer potion", "super restore", "stamina potion",
+        "ring of endurance", "graceful", "desert amulet",
+        "teleport to house");
+
+    // Only actual furnace inputs, not the bars it produces or any other
+    // item whose name contains "coal", "ore", etc.
+    private static final Pattern BLAST_FURNACE_INPUT = Pattern.compile(
+        "^(?:coal|(?:copper|tin|iron|silver|gold|mithril|"
+        + "adamantite|runite) ore)$");
+
+    private static final Predicate<ItemFacts> BLAST_FURNACE_ORE = f ->
+        BLAST_FURNACE_INPUT.matcher(f.name.toLowerCase(Locale.ROOT).trim()).matches();
+
+    private static final Predicate<ItemFacts> BLAST_FURNACE_GEAR = names(
+        "coal bag", "ice gloves", "smiths gloves (i)",
+        "goldsmith gauntlets", "bucket of water", "stamina potion",
+        "ring of endurance", "graceful", "boots of lightness",
+        "spottier cape", "penance gloves", "explorer's ring",
+        "agility cape", "ring of charos (a)", "coins",
+        "smithing cape");
+
     static void register(Registrar registry)
     {
         // Bosses and raids
@@ -377,13 +454,14 @@ final class ActivityCategories
             "soul wars", "soulwars");
         registry.add("Nightmare Zone kit", any(NIGHTMARE_ZONE_GEAR, NIGHTMARE_ZONE_CONSUMABLES),
             "nightmare zone", "nmz", "nightmarezone");
-        registry.add("Shades of Mort'ton kit", names("olive oil", "sacred oil", "pyre log", "pyre logs", "shade remains", "serum 207", "silver key", "bronze key", "black key", "steel key", "gold key", "yew logs", "magic logs", "redwood logs", "tinderbox"),
+        registry.add("Shades of Mort'ton kit",
+            any(SHADES_ITEMS, SHADES_TEMPLE_AND_TRAVEL, HEALS),
             "shades of mortton", "shades of mort'ton", "shades minigame", "shades");
-        registry.add("Fishing Trawler kit", names("swamp paste", "rope", "bailing bucket", "bucket", "angler outfit", "angler hat", "angler top", "angler waders", "angler boots", "fishing cape", "fishing hood"),
+        registry.add("Fishing Trawler kit", TRAWLER_TOOLS,
             "fishing trawler", "trawler", "fishing trawler prep");
-        registry.add("Volcanic Mine kit", any(names("pickaxe", "dragon pickaxe", "crystal pickaxe", "rune pickaxe", "numulite", "mining cape", "mining hood", "prospector", "stamina potion", "energy potion", "celestial ring", "ring of endurance"), HEALS),
+        registry.add("Volcanic Mine kit", any(VOLCANIC_MINE_GEAR, HEALS),
             "volcanic mine", "volcanicmine", "vm mining", "vm");
-        registry.add("Blast Furnace kit", names("iron ore", "gold ore", "coal", "mithril ore", "adamantite ore", "runite ore", "coal bag", "ice gloves", "goldsmith gauntlets", "stamina potion", "ring of endurance", "smiths' uniform", "graceful", "bucket of water"),
+        registry.add("Blast Furnace kit", any(BLAST_FURNACE_ORE, BLAST_FURNACE_GEAR),
             "blast furnace", "blastfurnace", "bf smithing", "bf");
 
         // Farming and skilling

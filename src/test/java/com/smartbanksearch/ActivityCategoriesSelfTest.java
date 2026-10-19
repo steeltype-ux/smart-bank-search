@@ -105,6 +105,51 @@ public final class ActivityCategoriesSelfTest
         no("@wintertodt", "Pie dish");
         no("@wintertodt", "Raw shark");
         yes("@tempoross", "harpoon"); yes("@tempoross", "hammer"); no("@tempoross", "Grimy ranarr weed"); no("@tempoross", "Rune platebody");
+        // A full Spirit angler set replaces the rope, while normal Angler
+        // items remain viable until the player has upgraded.
+        yes("@tempoross", "Spirit angler headband");
+        yes("@tempoross", "Spirit angler top");
+        yes("@tempoross", "Spirit angler waders");
+        yes("@tempoross", "Spirit angler boots");
+        yes("@tempoross", "Angler hat");
+        yes("@tempoross", "Angler top");
+        yes("@tempoross", "Angler waders");
+        yes("@tempoross", "Angler boots");
+        yes("@tempoross", "Rope");
+        yes("@tempoross", "Hammer");
+        yes("@tempoross", "Bucket");
+        yes("@tempoross", "Bucket of water");
+        yes("@tempoross", "Imcando hammer");
+        yes("@tempoross", "Imcando hammer (off-hand)");
+        yes("@tempoross", "Barb-tail harpoon");
+        yes("@tempoross", "Dragon harpoon");
+        yes("@tempoross", "Crystal harpoon");
+        yes("@tempoross", "Infernal harpoon");
+        yes("@tempoross", "Lightbearer");
+        yes("@tempoross", "Elven signet");
+        yes("@tempoross", "Rune pouch");
+        yes("@tempoross", "Astral rune");
+        yes("@tempoross", "Fire rune");
+        yes("@tempoross", "Water rune");
+        yes("@tempoross", "Steam rune");
+        yes("@tempoross", "Tome of water");
+        yes("@tempoross", "Fishing potion(4)");
+        yes("@tempoross", "Admiral pie");
+        yes("@tempoross", "Fish pie");
+        no("@tempoross", "Stamina potion(4)");
+        no("@tempoross", "Super energy(4)");
+        no("@tempoross", "Energy potion(4)");
+        no("@tempoross", "Ring of endurance");
+        no("@tempoross", "Fish barrel");
+        no("@tempoross", "Fish sack barrel");
+        no("@tempoross", "Tackle box");
+        no("@tempoross", "Anglerfish");
+        no("@tempoross", "Bucket of sand");
+        no("@tempoross", "Bucket of milk");
+        no("@tempoross", "Goldsmith gauntlets");
+        no("@tempoross", "Fishing cape");
+        no("@tempoross", "Fishing hood");
+
         yes("@gotr", "pickaxe"); yes("@gotr", "chisel"); no("@gotr", "Grimy ranarr weed"); no("@gotr", "Rune platebody");
         yes("@giants foundry", "bronze bar"); yes("@giants foundry", "iron bar"); no("@giants foundry", "Grimy ranarr weed");
         // Foundry uses 28 units from either metal bars or smithable 2+ bar

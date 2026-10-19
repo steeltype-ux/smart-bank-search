@@ -3,6 +3,8 @@
 **208 built-in category groups (141 existing + 67 new activity kits)**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
 All searches use the normal RuneLite bank search field and show only items actually in your bank.
 
+**Activity optimization status:** All 67 activity search kits have been revised for the proposed v1.5 release (16 minigames and 51 other activities). See the [full 51-kit audit](ONE_SHOT_ACTIVITY_AUDIT.md) and [test checklist](TESTING.md). The suggestions are broad candidate gear, not an inferred optimal loadout; real-bank and item-ID verification remain outstanding.
+
 - `mining` — mining resources, tools, clothing and enhancements.
 - `@mining gear` — just mining-related equipment, not all your ores.
 - `fletching` — knives, logs, unfinished bows, feathers, shafts, bow strings, and more.

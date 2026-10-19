@@ -362,13 +362,19 @@ public final class CategoryMatcher
             "zamorak brew",
             "warrior ring", "warrior helm", "dragon defender", "avernic defender")),
             "attack", "attack skill", "attack training", "attack gear", "attack equipment");
+        // Bare "strength" is a focused potion/boost search; @strength remains the broad skill category.
+        add("Strength boosts", names(
+            "strength potion", "strength mix", "super strength", "super str. mix",
+            "divine super strength", "combat potion", "combat mix", "super combat",
+            "divine super combat", "zamorak brew"),
+            "strength", "strength pot", "strength pots", "str pots", "strength potions");
         add("Strength skill", any(f -> f.worn() && f.meleeStrength > 0, names(
             "strength cape", "strength hood", "strength potion", "strength mix",
             "super strength", "super str. mix", "divine super strength",
             "combat potion", "combat mix", "super combat", "zamorak brew",
             "dragon battleaxe", "berserker ring", "fighter torso",
             "ferocious gloves", "inquisitor's mace")),
-            "strength", "strength skill", "strength training", "strength equipment");
+            "strength skill", "strength training", "strength equipment");
         add("Defence skill", any(f -> f.worn() && f.defence > 0, names(
             "defence cape", "defence hood", "defence potion", "defence mix",
             "super defence", "super def. mix", "divine super defence",
@@ -454,6 +460,11 @@ public final class CategoryMatcher
         boolean exclusive = normalized.startsWith("@");
         String q = exclusive ? normalize(normalized.substring(1)) : normalized;
         if (q.isEmpty()) { return new Query(input, false, Collections.emptyList()); }
+        // Explicit @strength retains the complete Strength skill category.
+        if (exclusive && q.equals("strength"))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("strength skill")));
+        }
         Category direct = find(q, strict);
         if (direct != null) { return new Query(input, exclusive, Collections.singletonList(direct)); }
         // Two-category intersections: `ranged boots`, `prayer legs`, `magic helmets`.

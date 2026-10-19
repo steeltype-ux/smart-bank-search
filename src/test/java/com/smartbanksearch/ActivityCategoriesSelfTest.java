@@ -100,6 +100,9 @@ public final class ActivityCategoriesSelfTest
         yes("@giants foundry", "bronze bar"); yes("@giants foundry", "iron bar"); no("@giants foundry", "Grimy ranarr weed");
         // Foundry uses 28 units from either metal bars or smithable 2+ bar
         // equipment; recycled gear contributes one less bar than its smithing cost.
+        yes("@foundry", "Steel bar");
+        yes("@giant's foundry", "Runite bar");
+        check(CategoryMatcher.parse("@foundry", true).getCategoryName().equals(CategoryMatcher.parse("@giants foundry", true).getCategoryName()), "foundry alias must reuse same preparation kit");
         yes("@giants foundry", "Steel bar");
         yes("@giants foundry", "Mithril bar");
         yes("@giants foundry", "Adamantite bar");

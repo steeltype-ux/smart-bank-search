@@ -8,6 +8,7 @@
 - [ ] Run `ActivityCategoriesTest` through `gradle clean test`; capture the output and any failures.
 - [ ] Check `@herbrun` and `@herb run` show identical results in a bank with representative herb seeds, compost and teleports.
 - [ ] Test `@wintertodt`, `@tempoross`, `@gotr`, `@giants foundry`, `@mahogany homes`, `@zulrah`, `@vorkath`, `@jad`, `@revenants`, `@cluekit`, `@questprep` with actual bank contents.
+- [ ] Giant's Foundry: compare `@giants foundry`, `@giant's foundry`, and `@foundry` for identical results. Include runite bars, steel warhammers, mithril claws, rune platebodies, Smiths' outfit, ice gloves and buckets. Confirm gold/silver bars, raw ores, dragon/black metal items, decorative trims, Imcando hammer, and one-bar swords are excluded.
 - [ ] For `@wintertodt`, verify regen bracelet, cakes/chocolate cakes, pizza and pie variants, cooked hunter meat, rejuvenation potions, and ordinary healing food where banked; ensure cake tins, pizza bases and uncooked/burnt food are excluded.
 - [ ] Inspect 2+ expected positives and 2+ expected negatives per new activity; log any omissions or overly broad items. The standalone tests include fixtures but do not replace in-game testing.
 

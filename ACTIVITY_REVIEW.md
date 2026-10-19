@@ -71,6 +71,36 @@ You can type these **without** `@` for additive native bank search results, or w
 
 ## Minigames (16)
 
+**Shades of Mort'ton — four interconnected activities in one bank search:**
+- **Temple repair / Sacred oil:** Bring a **Flamtaer hammer** (far better for solo repair), **Flamtaer bracelet**, **Flamtaer bag**, swamp paste, timber beams and limestone bricks. An Imcando/ordinary hammer is an alternative. **Serum 207 / 208**, olive oil and sacred oil are useful when sanctifying oil or curing locals. Teleport scrolls and Morytania legs help with access.
+- **Pyre cremation:** Match **all six named shade remains** (Loar, Phrin, Riyl, Asyn, Fiyr, Urium) and all relevant **pyre-log tiers**, together with logs, tinderbox and suitable axes for self-processing. Pick log tier based on the shade type; low-tier logs do not cremate high-tier remains.
+- **Catacombs:** The actual keys are named by **metal and colour**, e.g., `Silver key purple`, `Gold key brown`. Restrict names to valid five metal / five colour combinations instead of all `silver key` or `gold key` items (which would match keys from unrelated quests). Existing appropriately tiered keys let players pass barriers without re-earning them.
+- **Scope:** This search is a superset of temple-repair supplies, remains/pyre materials and keys. Most players doing an individual stage need only some of these, plus optional food.
+
+Sources: [Shades of Mort'ton minigame](https://oldschool.runescape.wiki/w/Mort%27ton_shade), [Shades of Mort'ton quest](https://oldschool.runescape.wiki/w/Shades_of_morton_quest).
+
+**Fishing Trawler — optimised for actual contribution:**
+- **Mass-world Angler outfit farming:** Use **swamp paste** to patch ten leaks, reaching the **50 contribution points** required for the chance at an outfit piece. Once at 50 points, participation can stop; more contribution improves fish/heron odds, not outfit odds. A player can also repair nets with **rope**, bail with a **bailing bucket**, hammer railings or cut Kraken tentacles with an **axe**.
+- **Bring only what is relevant:** Swamp paste, rope, **bailing bucket** (distinct from ordinary bucket), hammer/Imcando hammer, and explicit hatchet tiers. Basic gear can be obtained on the ship or at the nearby store, so it is convenient, not a bank-prep requirement.
+- **Do not match:** Angler hat/top/waders/boots (these are rewards, not necessary equipment), fishing capes, generic fishing rods, fish barrel, ordinary bucket, stamina/food.
+
+Sources: [Fishing Trawler strategies](https://osrsindex.com/wiki/fishing-trawler-strategies?site=osrs_wiki), [Fishing Trawler mechanics](https://danielpgleason.com/osrs/reference/fishing-trawler-fd824660/).
+
+**Volcanic Mine — food and sustain are part of the setup:**
+- **Core:** Best available pickaxe, **numulite** for entry where payment is needed, **Prospector** outfit for Mining XP, **celestial ring / signet**, optional **Varrock armour 4 as a Prospector jacket substitute** (its ordinary double-ore effect does NOT apply here), and Volcanic Mine teleports / Digsite pendant.
+- **Survival:** Healing food, prayer potions or super restores, Regen bracelet and Hitpoints cape; useful Prayer bonus from god blessings, dragonbone/bonecrusher necklace, Proselyte, Ardougne cloak, Falador shield, or ring of the gods. Desert amulet or POH teleport restores between rounds.
+- **Options:** Stamina potion / ring of endurance / Graceful are more important for solo capping routes than typical teams; no generic energy potions. **Volcanic ore is not a normal bank resource** and should not be returned.
+
+Sources: [Volcanic Mine guide / inventory](https://oldschoolrunescape.fandom.com/wiki/Volcanic_Mine), [Pay-to-play Mining (Varrock armour exclusion)](https://osrsindex.com/wiki/pay-to-play-mining-training?site=osrs_wiki).
+
+**Blast Furnace — distinguish gold training from coal-based bars:**
+- **Gold XP method:** **Gold ore + goldsmith gauntlets**, switching to **ice gloves** to remove heated bars. **Smiths gloves (i)** combine Smiths' gloves and ice gloves; a **bucket of water** works when neither is available.
+- **Coal-based bars / profit:** Select appropriate copper + tin, iron, silver, gold, mithril, adamantite or runite ore and **coal** as required. **Coal bag** is highly recommended for steel/mithril/adamant/runite production, but not required for gold or iron.
+- **Other useful equipment:** **Coins** to pay the operating fee, stamina potions, graceful/other lightweight clothing, and optionally ring of endurance, explorer's ring or **ring of charos (a)** for fee reduction where applicable. Avoid standard Smiths' tunic/trousers/boots: the uniform speeds *anvil actions*, not Blast Furnace ore smelting. Smithing catalysts can work with coal-based metals but are deliberately omitted: nonstackable and rarely worthwhile.
+- **Precision:** Match only the real input ores/coal, not bar outputs or arbitrary ore-named gear.
+
+Sources: [Blast Furnace strategies](https://oldschool.runescape.wiki/w/Blast_Furnace%2FStrategies), [Smiths' uniform](https://oldschool.runescape.wiki/w/Smithing_armor).
+
 **Pest Control — combat gear over consumables:**
 - The game refreshes stats and prayer between rounds. It rewards fast portal damage (and dealing with Spinners) more than stocking food and prayer potions. Gear options include **Void/Elite Void**, melee DPS weapons (whip, scimitar, defender, rapier, fang), ranged weapons (blowpipe, bowfa, crystal bow), and special weapons (BGS, claws, dagger, Voidwaker). Optional **chinchompas or Ancient Magicks** help with clustered pests but cost resources; include rune pouch, blood/death/water runes for that specialized setup.
 - **Optional:** ranging or super combat potion for short-round damage boosts, and **Pest control teleport** for access. Exclude generic food, brews, prayer/restore potions and unrelated run energy supplies.
@@ -167,10 +197,10 @@ Sources: [OSRS Wiki: Giant's Foundry](https://oldschool.runescape.wiki/w/Giants%
 | `@barbarian assault` / `@ba` | Attacker weapons, armour for non-attacker roles, Imcando hammer for Defender, games necklace and offensive combat boosts | **No** food, prayer pots, rune pouches, external runes or ammo, or Horn of Glory (not bankable) |
 | `@soul wars` / `@soulwars` | Magic-defence armour, Ancient Magicks staffs and runes, rune pouch, melee/ranged alternatives, spec weapons, Soul cape | **No** food, bandages, barricades or combat potions in bank search; provided inside match |
 | `@nightmare zone` / `@nmz` | Dwarven rock cake, locator orb, Dharok/Obsidian gear, berserker necklace/ring, AFK weapons, prayer equipment | Optional ordinary combat/prayer potions and coins; **no** overload/absorption (minigame barrels), food or unrelated Slayer mask |
-| `@shades of mortton` | olive oil, sacred oil, pyre log, pyre logs, shade remains, serum 207, silver key | None |
-| `@fishing trawler` | swamp paste, rope, bailing bucket, bucket, angler outfit, angler hat, angler top | None |
-| `@volcanic mine` | pickaxe, dragon pickaxe, crystal pickaxe, rune pickaxe, numulite, mining cape, mining hood | high-healing food |
-| `@blast furnace` | iron ore, gold ore, coal, mithril ore, adamantite ore, runite ore, coal bag | None |
+| `@shades of mortton` / `@shades` | Flamtaer hammer/bracelet/bag, temple supplies, serums and oils, pyre logs, six named shade remains, accurately coloured catacomb keys, tinderbox | Optional logs/axe, food, Mort'ton travel; rejects unrelated generic keys and Smithing gear |
+| `@fishing trawler` / `@trawler` | Swamp paste (most common 50-point method), rope, bailing bucket, hammer/Imcando hammer and axe alternatives | No ordinary bucket, Angler outfit (a reward), Fishing cape or unrelated fishing supplies |
+| `@volcanic mine` / `@vm` | Pickaxes, numulite, Volcanic Mine teleports, Prospector/Celestial gear, HP sustain and prayer equipment | Healing food, prayer restores; optional solo stamina, run-energy jewellery and return teleports; no general energy potions or mining ore |
+| `@blast furnace` / `@bf` | Copper/tin/iron/silver/gold/mithril/adamantite/runite ores and coal; coal bag, goldsmith gauntlets and ice gloves/Smiths gloves (i) | Coins, bucket of water, stamina/weight reduction, optional ring of charos; no finished bars, Smiths' outfit or unrelated Smithing tools |
 
 ## Farming and skilling (5)
 

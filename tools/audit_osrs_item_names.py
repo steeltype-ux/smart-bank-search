@@ -55,6 +55,11 @@ KNOWN_FALSE_POSITIVES = {
     "Basilisks task": ("Basilisk jaw",),
     "Nightmare Zone kit": ("Overload(4)", "Absorption(4)"),
     "Fishing Trawler kit": ("Angler hat", "Angler top"),
+    "Easy clue kit": ("Reward casket (easy)",),
+    "Medium clue kit": ("Reward casket (medium)",),
+    "Hard clue kit": ("Reward casket (hard)",),
+    "Elite clue kit": ("Reward casket (elite)",),
+    "Master clue kit": ("Reward casket (master)",),
 }
 
 

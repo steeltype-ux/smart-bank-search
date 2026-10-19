@@ -76,6 +76,30 @@ final class ActivityCategories
             "smiths gloves (i)", "ice gloves", "ring of dueling", "amulet of glory"),
         f -> "bucket".equalsIgnoreCase(f.name) || "bucket of water".equalsIgnoreCase(f.name));
 
+    // Tempoross preparation is different from general Fishing gear. The Cove
+    // supplies basic tools, but a player's own upgraded harpoon and the Angler
+    // outfits are worthwhile. The full Spirit angler set replaces the rope.
+    // Do not show fish barrels (cannot hold harpoonfish), tackle boxes (storage),
+    // or generic stamina items (unnecessary for normal rounds).
+    private static final Predicate<ItemFacts> TEMPOROSS_TOOLS = f -> {
+        String n = f.name.toLowerCase(Locale.ROOT).trim();
+        return n.equals("rope") || n.equals("hammer")
+            || n.equals("bucket") || n.equals("bucket of water")
+            || CategoryMatcher.matchesName(n, "harpoon", "imcando hammer");
+    };
+
+    private static final Predicate<ItemFacts> TEMPOROSS_OUTFITS = names(
+        "angler hat", "angler top", "angler waders", "angler boots",
+        "spirit angler headband", "spirit angler top",
+        "spirit angler waders", "spirit angler boots");
+
+    // Advanced setups: harpoon-special energy, crystal charges, Humidify and
+    // optional fishing boosts. The filter cannot tell what a player has unlocked.
+    private static final Predicate<ItemFacts> TEMPOROSS_OPTIONAL = names(
+        "lightbearer", "elven signet", "rune pouch", "astral rune",
+        "fire rune", "water rune", "steam rune", "tome of fire",
+        "tome of water", "fishing potion", "admiral pie", "fish pie");
+
     static void register(Registrar registry)
     {
         // Bosses and raids
@@ -139,7 +163,8 @@ final class ActivityCategories
         // Minigames
         registry.add("Wintertodt kit", any(names("tinderbox", "bruma torch", "pyromancer", "clue hunter", "warm gloves", "firemaking cape", "firemaking hood", "axe", "hammer", "knife", "regen bracelet", "hitpoints cape", "yak hide", "santa hat", "jug of wine", "rejuvenation potion"), WINTERTODT_MULTIBITE_FOOD, HEALS),
             "wintertodt", "wintertodt prep", "wt prep", "wt");
-        registry.add("Tempoross kit", any(names("harpoon", "hammer", "rope", "bucket", "bucket of water", "angler", "spirit angler", "fishing cape", "fishing hood", "fishing barrel", "fish barrel", "infernal harpoon", "dragon harpoon", "crystal harpoon", "imcando hammer", "tackle box", "ring of endurance"), ENERGY),
+        registry.add("Tempoross kit",
+            any(TEMPOROSS_TOOLS, TEMPOROSS_OUTFITS, TEMPOROSS_OPTIONAL),
             "tempoross", "tempoross prep", "temp");
         registry.add("Guardians of the Rift kit", any(names("pickaxe", "chisel", "essence pouch", "colossal pouch", "raiments of the eye", "abyssal lantern", "abyssal needle", "binding necklace", "elemental talisman", "catalytic talisman", "celestial ring", "runecraft cape", "runecrafting cape", "hat of the eye"), ENERGY),
             "gotr", "guardians of the rift", "guardians rift");

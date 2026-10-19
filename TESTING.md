@@ -4,6 +4,13 @@
 
 ## v1.5 activity-kit regression checks
 
+**One-shot audit:** [All 51 remaining optimized activity filters](ONE_SHOT_ACTIVITY_AUDIT.md) must be individually reviewed in addition to the 16 minigame kits.
+
+- [ ] For all **51 boss/Slayer/farming/Wilderness/clue/quest categories**, verify a relevant banked weapon/tool, a situational alternative and a distinct false positive in RuneLite (normal and `@` mode). Run all 67 categories before publishing.
+- [ ] Boss/Slayer false-positive checks: Cerberus crystal drops, Basilisk jaw, Scurrrius spine, ToA thread, ToB Dawnbringer, nonexistent Ice rune and unbanked spell names must not be presented as prepared bank gear.
+- [ ] Hunter/Wilderness false-positive checks: black-chinchompa preparation finds box traps and escape gear without touching legacy `@chins`; Revenants show charged bracelet and ether; Artio escape shows actual runes or blighted sacks rather than spell-name text.
+- [ ] Farming/clue/quest checks: contract-specific seeds and saplings, seaweed spores rather than harvested seaweed, all five clue tiers, clue boxes for risky Wilderness tiers, and real fairy-ring transport items (not scenery).
+
 - [ ] Verify `@cannon` and `@cannon tasks` yield identical Slayer-trip candidates including cannon supplies, Slayer helm and prayer potions; `@cannon supplies`/`@cannonballs` remain restricted to cannon equipment, ammunition and moulds.
 - [ ] Verify `@chinchompa` and `@chinchompa hunting` match box traps and Hunter gear, while legacy `@chins`/`@chinchompas` still select thrown weapons, not traps.
 - [ ] Verify common aliases (`wt`, `temp`, `mh`, `ba`, `vm`, `bf`, `cerb`, `hydra`, `gargs`, `burst`, `revs`, `calv`, `contracts`) and farming shortcuts (`birdhouse`, `treerun`) in normal and `@` search modes.

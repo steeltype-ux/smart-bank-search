@@ -71,6 +71,10 @@ You can type these **without** `@` for additive native bank search results, or w
 
 ## Minigames (16)
 
+**Tempoross kit — reviewed and optimized:** Start with a harpoon and a rope, hammer and buckets as needed (basic supplies are available on-site). The **full four-piece Spirit angler outfit** acts as a rope, freeing an inventory space; the regular Angler outfit also grants Fishing XP but does **not** replace the rope. An **Imcando hammer** is equippable for repair work. Harpoon upgrades can improve fishing performance, while Lightbearer, Elven signet, Humidify runes/tomes and fishing boosts are for specialized approaches. Stamina/energy potions and a Ring of endurance are intentionally excluded from routine prep. **Fish barrel cannot store harpoonfish**, and tackle box is storage rather than in-encounter equipment. This is a single candidate-supplies filter, not an optimal or account-specific loadout.
+
+Sources: [OSRS Wiki strategy overview](https://oldschool.runescape.wiki/w/Tempoross/Strategies), [Spirit angler top](https://oldschool.runescape.wiki/w/Spirit_angler_top), [Tempoross Cove](https://oldschool.runescape.wiki/w/Tempoross_Cove).
+
 **Giant's Foundry kit — optimized based on OSRS Wiki strategy:**
 - **Materials:** The crucible takes 28 bars' worth of bronze, iron, steel, mithril, adamantite or runite metal, either as bars or eligible smithable equipment.
 - **Recycling:** Platebodies count for **4 units**; platelegs, plateskirts, chainbodies, kiteshields, battleaxes, warhammers and 2h swords count for **2**; full helms, square shields, scimitars, longswords and claws count for **1**. These metal items count as one fewer bar than they originally cost to smith. Decorated, ornamental and unprocessable equipment is intentionally excluded.
@@ -85,7 +89,7 @@ Sources: [OSRS Wiki: Giant's Foundry](https://oldschool.runescape.wiki/w/Giants%
 | Search | Curated examples | Shared candidate supplies |
 |---|---|---|
 | `@wintertodt` | tinderbox, bruma torch, pyromancer, warm clothing, **regen bracelet**, Hitpoints cape, cakes, chocolate cakes, pizzas, pies | multi-bite food, cooked hunter meat, single-bite high-healing food, rejuvenation potions |
-| `@tempoross` | harpoon, hammer, rope, bucket, bucket of water, angler, spirit angler | stamina/energy |
+| `@tempoross` / `@temp` | Basic, dragon, crystal, infernal and barb-tail harpoons; all Angler and Spirit angler outfit pieces; rope, hammer, bucket, Imcando hammer | Optional Lightbearer, Elven signet, Humidify rune pouch/runes and fishing boosts; no generic energy, fish barrel or tackle box |
 | `@gotr` | pickaxe, chisel, essence pouch, colossal pouch, raiments of the eye, abyssal lantern, abyssal needle | stamina/energy |
 | `@giants foundry` / `@foundry` | Bronze, iron, steel, mithril, adamantite and **runite** bars; eligible smithable metal weapons/armour; Smiths' outfit, ice gloves, bucket, transport jewellery | No gold/silver bars, ores, ordinary smithing tools or ornamental gear |
 | `@mahogany homes` | plank, oak plank, teak plank, mahogany plank, steel bar, saw, amy's saw | stamina/energy |

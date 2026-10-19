@@ -1,6 +1,8 @@
 package com.smartbanksearch;
 
+import java.util.Locale;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 /**
  * Curated, optional bank-search activity kits. These are candidate supplies
@@ -50,6 +52,29 @@ final class ActivityCategories
         || CategoryMatcher.matchesName(f.name, "cooked sunlight antelope",
             "cooked moonlight antelope", "cooked dashing kebbit", "cooked wild kebbit",
             "cooked larupia", "cooked graahk", "cooked kyatt", "cooked fox");
+
+
+    // Giant's Foundry requires 28 metal units per sword. Eligible recycled armour
+    // and weapons must be smithable from 2+ bars; they contribute smithing bars - 1.
+    // Exact item-name patterns avoid unrelated ores, unprocessable 1-bar weapons,
+    // gilded/trimmed equipment and poisoned/ornamented variants.
+    private static final Pattern FOUNDRY_BAR = Pattern.compile(
+        "^(bronze|iron|steel|mithril|adamantite|runite) bar$");
+    private static final Pattern FOUNDRY_RECYCLABLE = Pattern.compile(
+        "^(bronze|iron|steel|mithril|adamant|rune) " +
+        "(scimitar|longsword|full helm|sq shield|square shield|claws|" +
+        "warhammer|battleaxe|chainbody|kiteshield|2h sword|" +
+        "platelegs|plateskirt|platebody)$");
+
+    private static final Predicate<ItemFacts> FOUNDRY_METAL = f -> {
+        String n = f.name.toLowerCase(Locale.ROOT).trim();
+        return FOUNDRY_BAR.matcher(n).matches() || FOUNDRY_RECYCLABLE.matcher(n).matches();
+    };
+
+    private static final Predicate<ItemFacts> FOUNDRY_EQUIPMENT = any(
+        names("smiths' tunic", "smiths' trousers", "smiths' gloves", "smiths' boots",
+            "smiths gloves (i)", "ice gloves", "ring of dueling", "amulet of glory"),
+        f -> "bucket".equalsIgnoreCase(f.name) || "bucket of water".equalsIgnoreCase(f.name));
 
     static void register(Registrar registry)
     {
@@ -118,7 +143,10 @@ final class ActivityCategories
             "tempoross", "tempoross prep");
         registry.add("Guardians of the Rift kit", any(names("pickaxe", "chisel", "essence pouch", "colossal pouch", "raiments of the eye", "abyssal lantern", "abyssal needle", "binding necklace", "elemental talisman", "catalytic talisman", "celestial ring", "runecraft cape", "runecrafting cape", "hat of the eye"), ENERGY),
             "gotr", "guardians of the rift", "guardians rift");
-        registry.add("Giant's Foundry kit", names("bronze bar", "iron bar", "steel bar", "mithril bar", "adamantite bar", "rune bar", "steel platebody", "mithril platebody", "adamant platebody", "rune platebody", "smiths' uniform", "smithing cape", "imcando hammer", "ice gloves"),
+        // Metal material candidates plus only the relevant worn/portable equipment.
+        // Ice gloves / smiths gloves (i) are convenient for handling the hot preform.
+        // Buckets are optional because the minigame provides them on site.
+        registry.add("Giant's Foundry kit", any(FOUNDRY_METAL, FOUNDRY_EQUIPMENT),
             "giants foundry", "giantsfoundry", "giant foundry");
         registry.add("Mahogany Homes kit", any(names("plank", "oak plank", "teak plank", "mahogany plank", "steel bar", "saw", "amy's saw", "hammer", "imcando hammer", "plank sack", "rune pouch", "air rune", "astral rune", "cosmic rune", "varrock teleport", "ardougne teleport", "falador teleport", "xeric's talisman", "ring of wealth", "skills necklace", "teleport to house", "carpenter's outfit"), ENERGY),
             "mahogany homes", "mahoganyhomes", "mahogany homes prep");

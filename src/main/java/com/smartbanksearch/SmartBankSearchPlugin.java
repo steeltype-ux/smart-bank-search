@@ -37,7 +37,8 @@ public class SmartBankSearchPlugin extends Plugin
     @Inject private SmartBankSearchConfig config;
     @Inject private ClientToolbar clientToolbar;
 
-    private NavigationButton categoryDirectoryButton;
+    private volatile NavigationButton categoryDirectoryButton;
+    private volatile boolean directoryEnabled;
 
     private String lastQuery = null;
     private boolean lastStrict;
@@ -62,10 +63,12 @@ public class SmartBankSearchPlugin extends Plugin
 
     @Override protected void startUp()
     {
+        directoryEnabled = true;
         // One compact sidebar tab; categories are read directly from the
         // existing offline matcher rather than stored in a second catalogue.
         SwingUtilities.invokeLater(() ->
         {
+            if (!directoryEnabled) { return; }
             categoryDirectoryButton = NavigationButton.builder()
                 .tooltip("Smart Bank Search categories")
                 .icon(ImageUtil.loadImageResource(SmartBankSearchPlugin.class,
@@ -80,6 +83,9 @@ public class SmartBankSearchPlugin extends Plugin
 
     @Override protected void shutDown()
     {
+        // The callback may still be queued when a plugin is disabled quickly.
+        // Keep it from creating an orphaned sidebar button after shutdown.
+        directoryEnabled = false;
         NavigationButton directory = categoryDirectoryButton;
         categoryDirectoryButton = null;
         if (directory != null)

@@ -19,6 +19,15 @@ public final class ActivityCategoriesSelfTest
     {
         check(!CategoryMatcher.matches(query, item, true), query + " should exclude " + item);
     }
+    private static void sameActivity(String shorthand, String original, String sampleItem)
+    {
+        CategoryMatcher.Query shortQuery = CategoryMatcher.parse("@" + shorthand, true);
+        CategoryMatcher.Query originalQuery = CategoryMatcher.parse("@" + original, true);
+        check(shortQuery.isExclusive(), "Shortcut not recognized: " + shorthand);
+        check(shortQuery.getCategoryName().equals(originalQuery.getCategoryName()),
+            "Shortcut " + shorthand + " should resolve to the same category as " + original);
+        yes("@" + shorthand, sampleItem);
+    }
     public static void runAll()
     {
         checks = 0;
@@ -217,6 +226,62 @@ public final class ActivityCategoriesSelfTest
         yes("@toa", "Osmumten's fang");
         yes("@cox", "Twisted bow");
         yes("@tob", "Scythe of vitur");
+        // Human-friendly short calls use the same matcher as their longer variants.
+        sameActivity("cannon", "cannon tasks", "Dwarf multicannon");
+        sameActivity("chinchompa", "chinchompa hunting", "Box trap");
+        sameActivity("chin hunt", "chinchompa hunting", "Red chinchompa");
+        sameActivity("cerb", "cerberus", "Spectral spirit shield");
+        sameActivity("hydra", "hydra boss", "Dragon hunter lance");
+        sameActivity("gargoyle", "gargoyles", "Rock hammer");
+        sameActivity("gargs", "gargoyles", "Dual macuahuitl");
+        sameActivity("dust devil", "dust devils", "Facemask");
+        sameActivity("nech", "nechs", "Slayer helmet");
+        sameActivity("spectres", "aberrant spectres", "Nose peg");
+        sameActivity("basilisk", "basilisks", "Mirror shield");
+        sameActivity("kurask", "kurasks", "Leaf-bladed axe");
+        sameActivity("abbys", "abyssal demons", "Arclight");
+        sameActivity("gorillas", "demonic gorillas", "Arclight");
+        sameActivity("burst", "barrage tasks", "Ancient staff");
+        sameActivity("kraken", "kraken boss", "Trident of the seas");
+        sameActivity("wt", "wintertodt", "Bruma torch");
+        sameActivity("temp", "tempoross", "Harpoon");
+        sameActivity("mh", "mahogany homes", "Oak plank");
+        sameActivity("plunder", "pyramid plunder", "Pharaoh's sceptre");
+        sameActivity("tithe", "tithe farm", "Gricoller's can");
+        sameActivity("pest", "pest control", "Void knight top");
+        sameActivity("ba", "barbarian assault", "Fighter torso");
+        sameActivity("shades", "shades of mortton", "Sacred oil");
+        sameActivity("vm", "volcanic mine", "Numulite");
+        sameActivity("bf", "blast furnace", "Coal bag");
+        sameActivity("contracts", "farming contracts", "Spade");
+        sameActivity("revs", "revenants", "Bracelet of ethereum");
+        sameActivity("calv", "calvarion", "Ursine chainmace");
+        sameActivity("birdhouse", "birdhouse run", "Clockwork");
+        sameActivity("birdhouses", "birdhouse run", "Clockwork");
+        sameActivity("treerun", "tree run", "Yew sapling");
+        sameActivity("treeruns", "tree run", "Yew sapling");
+
+        // Intentional collision handling: 'cannon' now means task preparation,
+        // while the original supply-only aliases remain narrower and unchanged.
+        yes("@cannon", "Cannonball");
+        yes("@cannon", "Double ammo mould");
+        yes("@cannon", "Prayer potion(4)");
+        yes("@cannon", "Slayer helmet");
+        yes("@cannon supplies", "Double ammo mould");
+        yes("@cannonballs", "Cannonball");
+        no("@cannon supplies", "Prayer potion(4)");
+        no("@cannons", "Slayer helmet");
+        check(CategoryMatcher.parse("cannon", true).isCategory(), "Native cannon shortcut missing");
+
+        // 'chinchompa' prepares a trapping trip, but legacy 'chins' is still
+        // the thrown-weapon category, not a search for traps or hunter gear.
+        yes("@chinchompa", "Box trap");
+        yes("@chinchompa", "Black chinchompa");
+        no("@chins", "Box trap");
+        yes("@chins", "Red chinchompa");
+        no("@chinchompas", "Box trap");
+        check(CategoryMatcher.parse("chinchompa", true).isCategory(), "Natural chinchompa query missing");
+
         check(!CategoryMatcher.parse("qty > 10", true).isCategory(), "Native quantity search overridden");
         check(!CategoryMatcher.parse("ge > 1m", true).isCategory(), "Native GE search overridden");
         check(!CategoryMatcher.parse("tag:raid", true).isCategory(), "Bank Tags syntax overridden");

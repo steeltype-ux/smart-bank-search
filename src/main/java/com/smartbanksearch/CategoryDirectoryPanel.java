@@ -100,8 +100,9 @@ public final class CategoryDirectoryPanel extends PluginPanel
             return;
         }
         StringBuilder sb = new StringBuilder(selected.title);
-        boolean focusedStrength = "Strength boosts".equals(selected.title);
-        String prefix = focusedStrength ? "" : "@";
+        boolean focusedBoost = "Strength boosts".equals(selected.title)
+            || "Attack boosts".equals(selected.title) || "Defence boosts".equals(selected.title);
+        String prefix = focusedBoost ? "" : "@";
         sb.append("\n\nSuggested search: ").append(prefix).append(selected.primaryAlias);
         sb.append("\n\nOther shortcuts:");
         for (String alias : selected.aliases)
@@ -111,9 +112,11 @@ public final class CategoryDirectoryPanel extends PluginPanel
                 sb.append("\n").append(prefix).append(alias);
             }
         }
-        if (focusedStrength)
+        if (focusedBoost)
         {
-            sb.append("\n\nUse @strength for the full Strength skill category, including equipment.");
+            String skill = selected.title.split(" ")[0].toLowerCase(java.util.Locale.ROOT);
+            sb.append("\n\nUse @").append(skill)
+                .append(" for the full skill category, including equipment.");
         }
         else
         {

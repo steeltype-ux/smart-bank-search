@@ -34,6 +34,12 @@ public final class CategoryDirectoryModel
             return title + "  •  @" + primaryAlias;
         }
 
+        /** Presentation only: never change the category's canonical title or aliases. */
+        public String displayLabel(boolean favorite)
+        {
+            return (favorite ? "\u2605 " : "   ") + toString();
+        }
+
         public boolean contains(String query)
         {
             String term = clean(query);

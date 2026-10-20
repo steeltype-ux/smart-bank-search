@@ -144,16 +144,9 @@ public class SmartBankSearchPlugin extends Plugin
         ItemFacts item = itemCache.computeIfAbsent(itemId, this::readItem);
         boolean matched = parsedQuery.matches(item);
 
-        if (parsedQuery.isExclusive())
-        {
-            // Explicit `@` opt-in: suppress native name matches unrelated to category.
-            stack[intSize - 2] = matched ? 1 : 0;
-        }
-        else if (matched)
-        {
-            // Default is additive, like the successful v1.2 fix: never hide vanilla hits.
-            stack[intSize - 2] = 1;
-        }
+        // Most queries augment RuneLite's native result. Bare "prayer" is a
+        // focused exception to prevent unrelated prayer-named items appearing.
+        stack[intSize - 2] = parsedQuery.resolveBankMatch(previous, matched);
 
         if (config.diagnostics() && diagnosticsForQuery++ < 25)
         {

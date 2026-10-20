@@ -35,6 +35,7 @@ public class SmartBankSearchPlugin extends Plugin
     @Inject private Client client;
     @Inject private ItemManager itemManager;
     @Inject private SmartBankSearchConfig config;
+    @Inject private ConfigManager configManager;
     @Inject private ClientToolbar clientToolbar;
 
     private volatile NavigationButton categoryDirectoryButton;
@@ -73,7 +74,7 @@ public class SmartBankSearchPlugin extends Plugin
                 .tooltip("Smart Bank Search categories")
                 .icon(ImageUtil.loadImageResource(SmartBankSearchPlugin.class,
                     "/smartbanksearch/icon.png"))
-                .panel(new CategoryDirectoryPanel())
+                .panel(new CategoryDirectoryPanel(configManager))
                 .priority(80)
                 .build();
             clientToolbar.addNavigation(categoryDirectoryButton);

@@ -25,6 +25,27 @@ public final class CategoryMatcherSelfTest
         yes("boots", "Primordial boots"); yes("gloves", "Barrows gloves"); yes("bottoms", "Masori chaps");
         yes("dragon fighting equipment", "Anti-dragon shield"); yes("dragon fighting equipment", "Dragon hunter lance"); no("dragon fighting equipment", "Dragon platelegs");
         yes("ore", "Runite ore"); yes("logs", "Yew logs"); yes("bars", "Gold bar"); yes("runes", "Blood rune"); no("runes", "Rune platebody");
+        // Regular and combination combat boosts should be found by skill.
+        yes("attack", "Attack potion(4)");
+        yes("@attack", "Attack potion(1)");
+        yes("@attack", "Attack mix(2)");
+        yes("@attack", "Super attack(4)");
+        yes("@attack", "Divine super attack potion(4)");
+        yes("@attack", "Superattack mix(2)");
+        yes("@attack", "Combat potion(4)");
+        yes("@attack", "Combat mix(2)");
+        yes("@attack", "Super combat potion(4)");
+        yes("@attack", "Divine super combat potion(4)");
+        yes("@attack", "Zamorak brew(4)");
+        no("@attack", "Ranging potion(4)");
+        no("@attack", "Strength potion(4)");
+        yes("@strength", "Combat potion(4)");
+        yes("@strength", "Super combat potion(4)");
+        yes("@defence", "Super combat potion(4)");
+        no("@defence", "Combat potion(4)");
+        yes("@combat pots", "Attack potion(4)");
+        yes("@combat pots", "Strength potion(4)");
+        yes("@combat pots", "Defence potion(4)");
         yes("prayer pots", "Prayer potion(4)"); yes("antipoisons", "Antidote++(4)"); yes("teleport", "Games necklace(8)"); yes("teleport", "Varrock teleport");
         yes("cannon", "Cannonball"); yes("gwd", "Bandos chestplate"); yes("toa", "Osmumten's fang");
         ItemFacts c = new ItemFacts("Masori chaps",7,true,false,0,50,0,0,0,0,0,50);

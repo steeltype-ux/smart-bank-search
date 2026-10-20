@@ -1,6 +1,28 @@
 # Smart Bank Search v1.4 — Complete category reference
 
-**141 built-in category groups**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
+
+## v1.5 Skill-boost audit
+
+The skill searches below now include relevant consumable item families, not just high-level gear. Results are always filtered to what is actually in the bank.
+
+| Search | Relevant boosts and variants |
+|---|---|
+| `attack` | Attack potion/mix, Super attack/Superattack mix, Combat potion/mix, Super/Divine super combat, Zamorak brew |
+| `strength` | Strength potions/mixes, super and divine variants, Combat potions, Zamorak brew |
+| `defence` | Defence potions and mixes, Super/Divine super combat, Bastion/Battlemage, Saradomin brew |
+| `ranged` | Ranging potion/mix, Divine ranging, Bastion/Divine bastion |
+| `magic` | Magic potion/mix, Battlemage, Ancient/Forgotten brews, Wizard's mind bomb, imbued/saturated heart |
+| `mining` / `smithing` | Dwarven stout, mature Dwarven stout, spicy stew; pickaxe specials for Mining |
+| `fishing` | Fishing potion/mix, Fish pie, Admiral pie, harpoon specials, spicy stew |
+| `farming` / `herblore` | Garden pie, Botanical pie, spicy stew |
+| `hunter` / `thieving` | Hunter potion, sq'irkjuice variants, spicy stew |
+| `crafting` / `fletching` | Mushroom pie, Fletching potion, Dragonfruit pie, spicy stew |
+| `construction` | Crystal saw, House tea, spicy stew |
+| `agility` / `slayer` / `runecrafting` | Agility potion, Summer pie, Wild pie, spicy stew |
+
+For proof against actual item names, the [2026 item-name audit](tools/audit_osrs_item_names.py) runs all 208 production predicates with a pinned third-party dataset. It does not cover stat-driven slot/equipment predicates without RuneLite metadata.
+
+**208 category groups in the v1.5 candidate build (141 original + 67 new activity kits)**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
 All searches use the normal RuneLite bank search field and show only items actually in your bank.
 
 - `mining` — mining resources, tools, clothing and enhancements.
@@ -51,12 +73,16 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 |---|---|
 | `@herb run` | Herb seeds, secateurs, spade, compost/bucket, herb sack and patch teleports |
 | `@herblore run` | Alias of herb run; **farming herbs**, not potion mixing |
-| `@tree run` | Tree seeds/saplings, planting supplies and common transports |
-| `@birdhouse run` | Birdhouse materials, clockworks, logs, seed and transport items |
+| `@tree run`, `@treerun` | Tree seeds/saplings, planting supplies and common transports |
+| `@birdhouse run`, `@birdhouse` | Birdhouse materials, clockworks, logs, seed and transport items |
 | `@mining gear` | Pickaxes, prospector, Varrock armour, gloves, mining rings |
 | `@fletching gear` | Knife and fletching boosts; use `@fletching` for all supplies |
 | `@sailing repair` | Repair kits, planks, nails and boat repair tools |
 | `@sailing salvage` | Salvage-related tools and supplies |
+
+## Extended activity searches in v1.5
+
+The release candidate adds boss preparation, Slayer monster tasks, minigame kits (including Wintertodt, Tempoross and Guardians of the Rift), skilling activities, Wilderness and PvP, clue preparation, and quest travel. Search for the complete list and all aliases in [CATEGORY_REFERENCE.md](CATEGORY_REFERENCE.md). The existing herb-run filter is unchanged and also accepts `herbrun` and `herbruns`.
 
 ## Limitations and use
 

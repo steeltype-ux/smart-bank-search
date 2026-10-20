@@ -46,6 +46,22 @@ public final class CategoryMatcher
         }
         public boolean isCategory() { return !categories.isEmpty(); }
         public boolean isExclusive() { return exclusive && isCategory(); }
+        /**
+         * Combine our semantic match with RuneLite's existing bank name result.
+         * Usually this is additive. Bare "prayer" is intentionally focused:
+         * native name matching would otherwise retain unrelated items such as
+         * Prayer cape/scrolls, hiding the benefit of the Prayer restores category.
+         * @prayer still selects the full Prayer category.
+         */
+        public int resolveBankMatch(int nativeResult, boolean categoryMatched)
+        {
+            if (!isCategory()) { return nativeResult; }
+            if (isExclusive() || "prayer".equals(normalize(source)))
+            {
+                return categoryMatched ? 1 : 0;
+            }
+            return categoryMatched ? 1 : nativeResult;
+        }
         public boolean matches(ItemFacts item)
         {
             if (!isCategory() || item == null || normalize(item.name).isEmpty()) { return false; }
@@ -166,7 +182,7 @@ public final class CategoryMatcher
     {
         return s == null ? "" : s.toLowerCase(Locale.ROOT).replace('’', '\'').replace('-', ' ').replace('_', ' ').trim().replaceAll("\\s+", " ");
     }
-    private static boolean matchesName(String name, String... terms)
+    static boolean matchesName(String name, String... terms)
     {
         String n = normalize(name);
         for (String term : terms)
@@ -223,8 +239,20 @@ public final class CategoryMatcher
         add("Ammunition", any(slot(13, "arrow", "bolt", "dart", "javelin", "blessing", "quiver"), names("arrow", "arrows", "bolts", "dart", "javelin", "throwing knife", "cannonball", "chinchompa")), "ammo", "ammunition", "projectiles", "projectile");
         add("Two handed", f -> (f.slot == 3 && f.twoHanded) || matchesName(f.name, "2h sword", "two handed sword", "godsword", "halberd", "longbow", "shortbow", "maul", "scythe of vitur", "twisted bow", "bow of faerdhinen", "battlestaff"), "2h", "two handed", "two hand", "two handed weapons", "2h weapons");
         add("Melee equipment", MELEE, "melee", "melee gear", "melee equipment", "melee armour", "melee armor", "melee setup");
-        add("Ranged equipment", RANGED, "ranged", "range gear", "ranged gear", "range equipment", "ranged equipment", "range armour", "range armor", "ranged armour", "ranged armor", "range setup", "ranged setup", "ranging gear", "range");
-        add("Magic equipment", MAGIC, "magic gear", "mage", "mage gear", "magic equipment", "mage equipment", "magic armour", "magic armor", "mage armour", "mage armor", "mage setup", "magic setup", "magic");
+        add("Ranged equipment", RANGED, "range gear", "ranged gear", "range equipment", "ranged equipment", "range armour", "range armor", "ranged armour", "ranged armor", "range setup", "ranged setup", "ranging gear");
+        add("Magic equipment", MAGIC, "magic gear", "mage", "mage gear", "magic equipment", "mage equipment", "magic armour", "magic armor", "mage armour", "mage armor", "mage setup", "magic setup");
+        // Focused default queries; @magic/@ranged and @prayer retain their broad categories.
+        add("Magic boosts", names("magic potion", "magic mix", "divine magic potion",
+            "super magic potion", "super magic", "battlemage potion", "divine battlemage",
+            "imbued heart", "saturated heart", "forgotten brew", "ancient brew"),
+            "magic", "magic pot", "magic pots", "magic boosts");
+        add("Ranged boosts", names("ranging potion", "ranging mix", "divine ranging",
+            "super ranging", "super ranging mix", "bastion potion", "divine bastion",
+            "dragonfruit pie"),
+            "ranged", "range", "ranging", "ranging pot", "range pots", "ranged pots");
+        add("Prayer restores", names("prayer potion", "super restore", "sanfew serum",
+            "prayer regeneration potion", "blighted super restore", "blighted ancient brew"),
+            "prayer", "prayer restores", "prayer restore");
         add("Prayer-bonus equipment", PRAYER_GEAR, "prayer gear", "prayer equipment", "prayer armour", "prayer armor", "prayer bonus", "prayer bonus gear", "prayer outfit");
         add("Strength-bonus gear", f -> f.worn() && (f.meleeStrength > 0 || matchesName(f.name, "ferocious gloves", "bandos tassets", "torva", "berserker ring", "strength amulet", "fighter torso", "primordial boots")), "strength gear", "str gear", "strength bonus", "str bonus");
         add("Magic-damage gear", f -> f.worn() && (f.magicDamage > 0 || matchesName(f.name, "ancestral", "occult necklace", "tormented bracelet", "magus ring", "virtus")), "magic damage", "mage damage", "magic damage gear", "mage damage gear");
@@ -243,7 +271,7 @@ public final class CategoryMatcher
         add("Darts", names("dart", "darts", "dart tip", "dart tips"), "dart", "darts", "dart tips");
         add("Thrown weapons", names("throwing knife", "javelin", "chinchompa", "throwing axe", "throwing ring", "darts"), "throwing", "throwing weapons", "knives", "javelins", "chins", "chinchompas");
         add("Blowpipes", names("toxic blowpipe", "blowpipe"), "blowpipe", "blowpipes", "bp");
-        add("Cannon supplies", names("cannonball", "granite cannonball", "cannon base", "cannon stand", "cannon barrels", "cannon furnace", "dwarf multicannon", "cannonball mould", "double ammo mould"), "cannon", "cannons", "cannonballs", "cannon supplies", "multicannon");
+        add("Cannon supplies", names("cannonball", "granite cannonball", "cannon base", "cannon stand", "cannon barrels", "cannon furnace", "dwarf multicannon", "cannonball mould", "double ammo mould"), "cannons", "cannonballs", "cannon supplies", "multicannon");
         add("Staves / wands", names("staff", "staves", "wand", "battlestaff", "trident", "sceptre", "scepter", "kodai", "harmonised", "sanguinesti", "tumeken's shadow", "purging staff"), "staff", "staves", "wands", "wand", "magic staffs", "magic staves");
         add("Swords", names("sword", "scimitar", "longsword", "shortsword", "godsword", "rapier", "sabre", "saber", "blade of saeldor", "whip"), "sword", "swords", "sword weapons");
         add("Scimitars", names("scimitar", "blade of saeldor"), "scimitar", "scimitars", "scim", "scims");
@@ -271,7 +299,21 @@ public final class CategoryMatcher
         add("Restoration potions", names("super restore", "restore potion", "sanfew serum", "rejuvenation potion"), "restores", "restore pots", "restoration pots", "super restores");
         add("Antifire potions", names("antifire", "dragonfire potion", "wyrmfire potion"), "antifire", "antifires", "anti fire", "dragonfire protection", "super antifire");
         add("Antipoisons", names("antipoison", "superantipoison", "antidote", "anti venom", "antivenom", "sanfew serum", "cure me"), "antipoison", "antipoisons", "anti poison", "antivenom", "anti venom", "poison cure");
-        add("Combat potions", names("combat potion", "super combat", "super attack", "super strength", "super defence", "ranging potion", "bastion potion", "battlemage potion", "magic potion", "divine ranging", "divine magic", "overload", "super ranging", "super magic", "dragon battleaxe"), "combat pots", "combat potions", "boost pots", "stat boosts", "boosting potions");
+        // Broad boost-drink category: include the ordinary/Barbarian-mix versions,
+        // not only expensive super/divine variants. These are item names rather
+        // than a loose "attack" substring that would pull in unrelated gear.
+        add("Combat potions", names("attack potion", "attack mix", "super attack", "superattack mix",
+            "strength potion", "strength mix", "super strength", "super str. mix",
+            "defence potion", "defence mix", "super defence", "super def. mix",
+            "combat potion", "combat mix", "super combat", "zamorak brew",
+            "ranging potion", "bastion potion", "battlemage potion", "magic potion",
+            "divine ranging", "divine magic", "super ranging", "super magic",
+            "ranging mix", "magic mix", "divine bastion", "divine battlemage",
+            "forgotten brew", "ancient brew"), "combat pots", "combat potions", "boost pots", "stat boosts", "boosting potions");
+        add("Divine combat boosts", names("divine super attack", "divine super strength",
+            "divine super defence", "divine super combat", "divine ranging",
+            "divine magic", "divine bastion", "divine battlemage"),
+            "divine pots", "divine potions", "divine boosts");
         add("Energy / stamina", names("stamina potion", "energy potion", "super energy", "strange fruit", "purple sweets", "summer pie", "ring of endurance"), "stamina", "staminas", "run energy", "energy pots", "energy potions", "run restoration");
         add("Food", f -> edible(f.name), "food", "foods", "healing food", "eats", "edible food");
         add("Raw food / fish", names("raw", "uncooked", "raw fish", "raw shark", "raw karambwan", "raw lobster", "raw meat", "raw bird meat"), "raw food", "raw fish", "uncooked food", "uncooked fish");
@@ -316,7 +358,7 @@ public final class CategoryMatcher
         add("Ashes", suffix("ashes", "ash"), "ashes", "demonic ashes", "prayer ashes");
         add("Ensouled heads", names("ensouled", "ensouled head"), "ensouled", "ensouled heads", "reanimation", "reanimate heads");
         add("Prayer supplies", names("bones", "ashes", "ensouled", "prayer potion", "super restore", "sanfew serum", "burner", "marentill", "marrentill", "ectotoken", "ecto token", "dragonbone necklace", "bonecrusher", "ash sanctifier", "sanctifier", "zealot", "offering", "sunfire fanatic"), "prayer supplies", "prayer items", "prayer training", "prayer xp");
-        add("Prayer - all", any(PRAYER_GEAR, names("bones", "ashes", "ensouled", "prayer potion", "super restore", "sanfew serum", "bonecrusher", "ash sanctifier", "offering")), "prayer", "prayer stuff", "all prayer");
+        add("Prayer - all", any(PRAYER_GEAR, names("bones", "ashes", "ensouled", "prayer potion", "super restore", "sanfew serum", "bonecrusher", "ash sanctifier", "offering")), "prayer stuff", "all prayer");
         add("Clue scrolls / rewards", names("clue scroll", "reward casket", "clue casket", "clue bottle", "clue geode", "clue nest", "mimic", "master clue", "challenge scroll", "puzzle box", "light box", "ornament kit", "trimmed", "gilded", "3rd age", "third age"), "clues", "clue", "treasure trails", "clue scrolls", "clue rewards", "caskets");
         add("Keys", suffix("key", "keys"), "key", "keys", "keyrings", "key items");
         add("Quest items (recognizable)", names("quest item", "quest journal", "quest cape", "quest point cape", "silverlight", "darklight", "excalibur", "holy grail", "m'speak amulet", "ghostspeak amulet", "ghost speak amulet", "lunar staff", "dramen staff", "ivandis", "blisterwood"), "quest items", "quests", "quest gear");
@@ -345,15 +387,50 @@ public final class CategoryMatcher
 
         // 1.4 SKILL SEARCHES — all 24 OSRS skills, including Sailing. Broad skill searches
         // intentionally cover useful gear + materials; narrower "... gear" aliases keep results lean.
-        add("Attack skill", any(MELEE, names("attack cape", "attack hood", "attack potion", "super attack", "combat potion", "warrior ring", "warrior helm", "dragon defender", "avernic defender")),
-            "attack", "attack skill", "attack training", "attack gear", "attack equipment");
-        add("Strength skill", any(f -> f.worn() && f.meleeStrength > 0, names("strength cape", "strength hood", "strength potion", "super strength", "divine super strength", "super combat", "dragon battleaxe", "berserker ring", "fighter torso", "ferocious gloves", "inquisitor's mace")),
-            "strength", "strength skill", "strength training", "strength equipment");
-        add("Defence skill", any(f -> f.worn() && f.defence > 0, names("defence cape", "defence hood", "defence potion", "super defence", "divine super defence", "super combat", "justiciar", "dinh's bulwark", "elysian spirit shield", "ring of suffering", "dragonfire shield")),
-            "defence", "defense", "defence skill", "defence training", "defense gear", "defence equipment");
+        // Regular Attack, super/divine, Barbarian mixes, and multi-stat drinks:
+        // combat boosts Attack+Strength, super combat boosts Attack+Strength+Defence.
+        // Bare attack/defence searches find consumable boosts rather than all combat gear.
+        add("Attack boosts", names(
+            "attack potion", "attack mix", "super attack", "superattack mix",
+            "divine super attack", "combat potion", "combat mix", "super combat",
+            "divine super combat", "zamorak brew"),
+            "attack", "attack pot", "attack pots");
+        add("Attack skill", any(MELEE, names(
+            "attack cape", "attack hood",
+            "attack potion", "attack mix", "super attack", "superattack mix",
+            "combat potion", "combat mix", "super combat", "divine super combat",
+            "zamorak brew",
+            "warrior ring", "warrior helm", "dragon defender", "avernic defender")),
+            "attack skill", "attack training", "attack gear", "attack equipment");
+        // Bare "strength" is a focused potion/boost search; @strength remains the broad skill category.
+        add("Strength boosts", names(
+            "strength potion", "strength mix", "super strength", "super str. mix",
+            "divine super strength", "combat potion", "combat mix", "super combat",
+            "divine super combat", "zamorak brew"),
+            "strength", "strength pot", "strength pots", "str pots", "strength potions");
+        add("Strength skill", any(f -> f.worn() && f.meleeStrength > 0, names(
+            "strength cape", "strength hood", "strength potion", "strength mix",
+            "super strength", "super str. mix", "divine super strength",
+            "combat potion", "combat mix", "super combat", "zamorak brew",
+            "dragon battleaxe", "berserker ring", "fighter torso",
+            "ferocious gloves", "inquisitor's mace")),
+            "strength skill", "strength training", "strength equipment");
+        add("Defence boosts", names(
+            "defence potion", "defence mix", "super defence", "super def. mix",
+            "divine super defence", "super combat", "divine super combat",
+            "bastion potion", "divine bastion", "battlemage potion",
+            "divine battlemage", "saradomin brew"),
+            "defence", "defense", "defence pot", "defence pots", "defense pot", "defense pots");
+        add("Defence skill", any(f -> f.worn() && f.defence > 0, names(
+            "defence cape", "defence hood", "defence potion", "defence mix",
+            "super defence", "super def. mix", "divine super defence",
+            "super combat", "bastion potion", "battlemage potion", "saradomin brew",
+            "justiciar", "dinh's bulwark", "elysian spirit shield",
+            "ring of suffering", "dragonfire shield")),
+            "defence skill", "defence training", "defense gear", "defence equipment");
         add("Hitpoints skill", any(f -> edible(f.name), names("hitpoints cape", "hitpoints hood", "regen bracelet", "rapid heal", "rejuvenation pool", "sara domin brew", "saradomin brew", "anglerfish", "rejuvenation potion", "guthix rest", "phoenix necklace", "amulet of blood fury", "dwarven rock cake", "locator orb", "purple sweets")),
             "hitpoints", "hitpoints skill", "hp gear", "hp training", "hp supplies", "healing gear");
-        add("Herblore skill", any(f -> herb(f.name), names("pestle and mortar", "vial", "eye of newt", "limpwurt root", "red spiders' eggs", "snape grass", "wine of zamorak", "white berries", "mort myre fungus", "potato cactus", "unicorn horn", "dragon scale dust", "amylase crystal", "crushed nest", "goat horn dust", "kebbit teeth dust", "coconut milk", "chocolate dust", "potion (unf)", "potion(unf)", "herblore cape", "herblore hood", "botanical pie", "amulet of chemistry", "alchemist's amulet", "prescription goggles", "mixology", "mox", "aga", "lye", "harralander tar")),
+        add("Herblore skill", any(f -> herb(f.name), names("pestle and mortar", "vial", "eye of newt", "limpwurt root", "red spiders' eggs", "snape grass", "wine of zamorak", "white berries", "mort myre fungus", "potato cactus", "unicorn horn", "dragon scale dust", "amylase crystal", "crushed nest", "goat horn dust", "kebbit teeth dust", "coconut milk", "chocolate dust", "potion (unf)", "potion(unf)", "herblore cape", "herblore hood", "botanical pie", "spicy stew", "amulet of chemistry", "alchemist's amulet", "prescription goggles", "mixology", "mox", "aga", "lye", "harralander tar")),
             "herblore", "herblore training", "herblore gear", "herblore supplies", "potion making", "potion brewing", "making potions");
         add("Cooking skill", any(f -> edible(f.name), names("raw", "uncooked", "cooking gauntlets", "cooking cape", "cooking hood", "chef's hat", "chef's delight", "cooking apple", "cooking range", "spicy stew", "pot", "jug", "bowl", "pie dish", "cake tin", "flour", "pizza base", "wine", "grapes", "potato", "fish", "meat", "karambwan", "mushroom", "pastry dough", "burnt")),
             "cooking", "cooking gear", "cooking supplies", "cooking ingredients", "cooking training");
@@ -361,23 +438,23 @@ public final class CategoryMatcher
             "sailing", "sailing gear", "sailing equipment", "sailing supplies", "sailing skill", "shipbuilding", "sailing training", "sailing kit");
 
         // Extend existing v1.3 categories instead of shadowing a working category.
-        extend("Ranged equipment", names("ranging potion", "divine ranging", "bastion potion", "ranged cape", "ranging cape", "ranged hood"), "ranged skill", "ranged training", "ranging skill", "ranging supplies");
-        extend("Magic equipment", names("rune pouch", "runes", "fire rune", "water rune", "air rune", "earth rune", "blood rune", "death rune", "law rune", "nature rune", "soul rune", "chaos rune", "mind rune", "wrath rune", "magic cape", "magic hood", "magic potion", "divine magic potion", "imbued heart"), "magic skill", "magic training", "spellcasting");
+        extend("Ranged equipment", names("ranging potion", "ranging mix", "divine ranging", "bastion potion", "ranged cape", "ranging cape", "ranged hood"), "ranged skill", "ranged training", "ranging skill", "ranging supplies");
+        extend("Magic equipment", names("rune pouch", "runes", "fire rune", "water rune", "air rune", "earth rune", "blood rune", "death rune", "law rune", "nature rune", "soul rune", "chaos rune", "mind rune", "wrath rune", "magic cape", "magic hood", "magic potion", "magic mix", "divine magic potion", "battlemage potion", "ancient brew", "forgotten brew", "wizard's mind bomb", "mature wizard's mind bomb", "imbued heart", "saturated heart"), "magic skill", "magic training", "spellcasting");
         extend("Prayer - all", names("prayer cape", "prayer hood", "bonecrusher necklace", "dragonbone necklace", "ranging prayer potion"), "prayer skill", "prayer skilling");
         extend("Agility gear", names("agility cape", "agility hood", "hallowed", "graceful", "strange fruit", "marks of grace", "mark of grace", "shortcut"), "agility skill", "agility training");
-        extend("Thieving gear", names("rogue's", "rogues", "rogue equipment", "thieving hood", "thieving cape", "dodgy necklace", "lockpick", "blackjacking", "stethoscope"), "thieving skill", "thieving training");
-        extend("Farming tools", any(names("seed", "sapling", "ultracompost", "supercompost", "compost", "farmer's", "farming cape", "farming hood", "amulet of nature", "amulet of bounty", "gardening trowel", "plant cure", "watering can", "bottomless bucket", "bottomless compost bucket", "battlestaff"), names("rake", "seed dibber", "spade", "magic secateurs", "herb sack", "seed box")), "farming", "farming skill", "farming gear", "farming supplies", "farming training");
-        extend("Fishing supplies", names("fishing cape", "fishing hood", "dragon harpoon", "crystal harpoon", "infernal harpoon", "spirit angler", "rada's blessing", "anglerfish", "fishing bait", "fish barrel"), "fishing", "fishing skill", "fishing training");
-        extend("Hunting supplies", names("hunter cape", "hunter hood", "guild hunter", "hunter's kit", "hunters' kit", "hunter's spear", "hunter spear", "ring of pursuit", "strung rabbit foot", "moonlight moth", "butterfly", "impling jar", "birdhouse", "bird house", "kebbit", "box trap", "bird snare"), "hunting", "hunting skill", "hunter skill", "hunter training");
-        extend("Mining resources", names("pickaxe", "prospector", "varrock armour", "golden prospector", "mining gloves", "expert mining gloves", "superior mining gloves", "celestial ring", "celestial signet", "mining cape", "mining hood", "gem bag", "coal bag", "amethyst", "dwarven stout", "mining potion", "dragon pickaxe"), "mining skill", "mining training", "mining kit");
-        extend("Smithing tools", names("ore", "coal", "bar", "smithing cape", "smithing hood", "smiths'", "smiths uniform", "goldsmith gauntlets", "ice gloves", "blast furnace", "coal bag", "smithing catalyst", "mould", "anvil", "ammo mould"), "smithing", "smithing skill", "smithing training");
-        extend("Crafting supplies", names("crafting cape", "crafting hood", "chisel", "molten glass", "uncut", "gem", "mould", "sapphire", "ruby", "diamond", "dragonstone", "onyx", "zenyte", "opal", "jade", "topaz", "sand", "soda ash", "giant seaweed", "battlestaff", "orb", "silver bar", "gold bar", "molten glass", "leather", "dragonhide"), "crafting skill", "crafting training");
-        extend("Fletching supplies", names("knife", "fletching cape", "fletching hood", "fletching potion", "longbow (u)", "shortbow (u)", "crossbow (u)", "unstrung", "maple logs", "yew logs", "magic logs", "willow logs", "oak logs", "redwood logs", "logs", "arrow shafts", "broad arrowhead", "broad bolts", "feather", "feathers", "arrowtip", "arrowtips", "headless arrow", "bow string", "bowstring", "crossbow string", "dart tip", "bolt tip", "dragon dart tip", "crossbow limbs"), "fletching skill", "fletching training", "fletch supplies");
-        extend("Slayer gear", names("slayer cape", "slayer hood", "slayer staff", "bonecrusher", "ash sanctifier", "dragonbone necklace", "expeditious bracelet", "bracelet of slaughter", "cannon base", "cannon barrels", "cannon stand", "cannon furnace", "cannonball"), "slayer skill", "slayer training");
-        extend("Firemaking supplies", names("firemaking cape", "firemaking hood", "pyromancer", "burnt pages", "tinderbox", "logs", "bruma root", "bruma torch", "warm gloves", "firelighter", "oil lantern"), "firemaking skill", "firemaking training");
-        extend("Axes / woodcutting", names("woodcutting cape", "woodcutting hood", "lumberjack", "forester's", "forestry", "forestry kit", "log basket", "felling axe", "strung rabbit foot", "nature offerings", "secateurs attachment", "logs", "bird nest", "rations"), "woodcutting", "woodcutting gear", "woodcutting skill", "woodcutting training", "wc gear");
-        extend("Construction supplies", names("construction cape", "construction hood", "carpenter", "carpenter's outfit", "plank sack", "mahogany homes", "steel bar", "nails", "butler", "teleport to house"), "construction gear", "construction skill", "construction training");
-        extend("Runecrafting tools", any(suffix("rune", "runes"), names("pure essence", "rune essence", "daeyalt essence", "guardian essence", "runecraft cape", "runecraft hood", "raiments of the eye", "abyssal needle", "colossal pouch", "runecraft pouch", "binding necklace", "elemental talisman", "talismans", "essence pouches", "rune pouch", "tiara")), "runecrafting", "runecraft", "runecrafting skill", "runecraft training", "rc gear");
+        extend("Thieving gear", names("spicy stew", "spring sq'irkjuice", "summer sq'irkjuice", "autumn sq'irkjuice", "winter sq'irkjuice", "rogue's", "rogues", "rogue equipment", "thieving hood", "thieving cape", "dodgy necklace", "lockpick", "blackjacking", "stethoscope"), "thieving skill", "thieving training");
+        extend("Farming tools", any(names("seed", "sapling", "ultracompost", "supercompost", "compost", "farmer's", "farming cape", "farming hood", "amulet of nature", "amulet of bounty", "gardening trowel", "plant cure", "watering can", "bottomless bucket", "bottomless compost bucket", "garden pie", "spicy stew"), names("rake", "seed dibber", "spade", "magic secateurs", "herb sack", "seed box")), "farming", "farming skill", "farming gear", "farming supplies", "farming training");
+        extend("Fishing supplies", names("fishing potion", "fishing mix", "fish pie", "admiral pie", "spicy stew", "fishing cape", "fishing hood", "dragon harpoon", "crystal harpoon", "infernal harpoon", "spirit angler", "rada's blessing", "anglerfish", "fishing bait", "fish barrel"), "fishing", "fishing skill", "fishing training");
+        extend("Hunting supplies", names("hunter potion", "hunter mix", "spicy stew", "hunter cape", "hunter hood", "guild hunter", "hunter's kit", "hunters' kit", "hunter's spear", "hunter spear", "ring of pursuit", "strung rabbit foot", "moonlight moth", "butterfly", "impling jar", "birdhouse", "bird house", "kebbit", "box trap", "bird snare"), "hunting", "hunting skill", "hunter skill", "hunter training");
+        extend("Mining resources", names("pickaxe", "prospector", "varrock armour", "golden prospector", "mining gloves", "expert mining gloves", "superior mining gloves", "celestial ring", "celestial signet", "mining cape", "mining hood", "gem bag", "coal bag", "amethyst", "dwarven stout", "mining potion", "spicy stew", "dragon pickaxe"), "mining skill", "mining training", "mining kit");
+        extend("Smithing tools", names("dwarven stout", "spicy stew", "ore", "coal", "bar", "smithing cape", "smithing hood", "smiths'", "smiths uniform", "goldsmith gauntlets", "ice gloves", "blast furnace", "coal bag", "smithing catalyst", "mould", "anvil", "ammo mould"), "smithing", "smithing skill", "smithing training");
+        extend("Crafting supplies", names("mushroom pie", "spicy stew", "crafting cape", "crafting hood", "chisel", "molten glass", "uncut", "gem", "mould", "sapphire", "ruby", "diamond", "dragonstone", "onyx", "zenyte", "opal", "jade", "topaz", "sand", "soda ash", "giant seaweed", "battlestaff", "orb", "silver bar", "gold bar", "molten glass", "leather", "dragonhide"), "crafting skill", "crafting training");
+        extend("Fletching supplies", names("dragonfruit pie", "spicy stew", "knife", "fletching cape", "fletching hood", "fletching potion", "longbow (u)", "shortbow (u)", "crossbow (u)", "unstrung", "maple logs", "yew logs", "magic logs", "willow logs", "oak logs", "redwood logs", "logs", "arrow shafts", "broad arrowhead", "broad bolts", "feather", "feathers", "arrowtip", "arrowtips", "headless arrow", "bow string", "bowstring", "crossbow string", "dart tip", "bolt tip", "dragon dart tip", "crossbow limbs"), "fletching skill", "fletching training", "fletch supplies");
+        extend("Slayer gear", names("wild pie", "spicy stew", "slayer cape", "slayer hood", "slayer staff", "bonecrusher", "ash sanctifier", "dragonbone necklace", "expeditious bracelet", "bracelet of slaughter", "cannon base", "cannon barrels", "cannon stand", "cannon furnace", "cannonball"), "slayer skill", "slayer training");
+        extend("Firemaking supplies", names("spicy stew", "firemaking cape", "firemaking hood", "pyromancer", "burnt pages", "tinderbox", "logs", "bruma root", "bruma torch", "warm gloves", "firelighter", "oil lantern"), "firemaking skill", "firemaking training");
+        extend("Axes / woodcutting", names("spicy stew", "woodcutting cape", "woodcutting hood", "lumberjack", "forester's", "forestry", "forestry kit", "log basket", "felling axe", "strung rabbit foot", "nature offerings", "secateurs attachment", "logs", "bird nest", "rations"), "woodcutting", "woodcutting gear", "woodcutting skill", "woodcutting training", "wc gear");
+        extend("Construction supplies", names("crystal saw", "spicy stew", "cup of tea", "construction cape", "construction hood", "carpenter", "carpenter's outfit", "plank sack", "mahogany homes", "steel bar", "nails", "butler", "teleport to house"), "construction gear", "construction skill", "construction training");
+        extend("Runecrafting tools", any(suffix("rune", "runes"), names("spicy stew", "pure essence", "rune essence", "daeyalt essence", "guardian essence", "runecraft cape", "runecraft hood", "raiments of the eye", "abyssal needle", "colossal pouch", "runecraft pouch", "binding necklace", "elemental talisman", "talismans", "essence pouches", "rune pouch", "tiara")), "runecrafting", "runecraft", "runecrafting skill", "runecraft training", "rc gear");
 
         // More precise gear-only or activity kits for planning a quick trip from the bank.
         add("Mining gear only", names("pickaxe", "prospector", "varrock armour", "mining gloves", "expert mining gloves", "superior mining gloves", "celestial ring", "celestial signet", "mining cape", "mining hood", "gem bag", "coal bag", "amulet of glory", "dwarven stout"),
@@ -391,16 +468,19 @@ public final class CategoryMatcher
             f -> matchesName(f.name, "seed") && matchesName(f.name, "guam", "marrentill", "tarromin", "harralander", "ranarr", "toadflax", "irit", "avantoe", "kwuarm", "snapdragon", "cadantine", "lantadyme", "dwarf", "torstol"),
             // Common quick herb-patch teleports. Avoid showing every single teleport item.
             names("ectophial", "ardougne cloak", "explorer's ring", "stony basalt", "icy basalt", "trollheim teleport", "catherby teleport", "camelot teleport", "falador teleport", "ardougne teleport", "fenkenstrain's castle teleport", "salve graveyard teleport", "kharyrll teleport", "xeric's talisman", "xeric's glade", "skills necklace", "ring of the elements", "amulet of glory", "farming guild teleport", "spirit tree", "drakan's medallion", "harmony island teleport", "teleport to house", "rune pouch")),
-            "herb run", "herb runs", "herb farming run", "herb farm run", "quick herb run", "herblore run", "farm run", "farming run", "herb run gear", "herb run setup", "herb run kit");
+            "herb run", "herb runs", "herbrun", "herbruns", "herb farming run", "herb farm run", "quick herb run", "herblore run", "farm run", "farming run", "herb run gear", "herb run setup", "herb run kit");
         add("Tree run kit", any(names("spade", "gardening trowel", "plant pot", "watering can", "ultracompost", "supercompost", "compost", "basket", "sack", "farming cape", "farming hood", "stamina potion", "seed dibber", "ring of wealth", "skills necklace", "teleport to house", "spirit tree", "crystal teleport seed", "amulet of glory"),
             f -> matchesName(f.name, "sapling") || (matchesName(f.name, "seed") && matchesName(f.name, "oak", "willow", "maple", "yew", "magic", "palm", "dragonfruit", "papaya", "pineapple", "calquat", "teak", "mahogany", "redwood", "celastrus", "hespori"))),
-            "tree run", "tree runs", "fruit tree run", "tree farm run", "tree farming run", "tree run gear", "tree run setup");
+            "tree run", "tree runs", "treerun", "treeruns", "fruit tree run", "tree farm run", "tree farming run", "tree run gear", "tree run setup");
         add("Birdhouse run kit", names("bird house", "birdhouse", "clockwork", "hammer", "chisel", "logs", "seed", "digsite pendant", "fossil island", "mushroom meadow", "verdant valley", "ruby necklace", "stamina potion", "hunter cape", "hunter hood", "teleport to house"),
-            "birdhouse run", "birdhouse runs", "bird house run", "birdhouse kit", "birdhouse setup");
+            "birdhouse run", "birdhouse runs", "birdhouse", "birdhouses", "bird house run", "birdhouse kit", "birdhouse setup");
         add("Sailing repair kit", names("repair kit", "sailcloth", "rigging", "boat building supplies", "hammer", "saw", "nails", "plank", "swamp paste", "shipwright", "sailing cape"),
             "sailing repair", "boat repairs", "ship repair", "boat repair kit");
         add("Sailing salvage kit", names("salvaging hook", "salvage", "shipwreck", "cargo hold", "repair kit", "sailing cape", "ship's log", "captain's logbook"),
             "sailing salvage", "salvaging gear", "shipwreck salvage", "salvaging setup");
+
+        // Activity preparation kits are kept separate from general item categories.
+        ActivityCategories.register(CategoryMatcher::add);
     }
 
     private static Category find(String q, boolean strict)
@@ -426,6 +506,25 @@ public final class CategoryMatcher
         boolean exclusive = normalized.startsWith("@");
         String q = exclusive ? normalize(normalized.substring(1)) : normalized;
         if (q.isEmpty()) { return new Query(input, false, Collections.emptyList()); }
+        // The @ form of bare combat skill names keeps the original broad skill search.
+        if (exclusive && (q.equals("strength") || q.equals("attack") || q.equals("defence") || q.equals("defense")))
+        {
+            String skill = q.equals("defense") ? "defence" : q;
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get(skill + " skill")));
+        }
+        // Bare keywords focus on supplies while @ retains the familiar broad categories.
+        if (exclusive && (q.equals("magic") || q.equals("mage")))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("magic gear")));
+        }
+        if (exclusive && (q.equals("ranged") || q.equals("range") || q.equals("ranging")))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("ranged gear")));
+        }
+        if (exclusive && q.equals("prayer"))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("all prayer")));
+        }
         Category direct = find(q, strict);
         if (direct != null) { return new Query(input, exclusive, Collections.singletonList(direct)); }
         // Two-category intersections: `ranged boots`, `prayer legs`, `magic helmets`.
@@ -433,8 +532,16 @@ public final class CategoryMatcher
         {
             if (q.charAt(i) != ' ') { continue; }
             // Composite terms require COMPLETE aliases: avoids transient search flicker.
-            Category left = BY_ALIAS.get(q.substring(0, i));
+            String first = q.substring(0, i);
+            Category left = BY_ALIAS.get(first);
             Category right = BY_ALIAS.get(q.substring(i + 1));
+            // Compound skill + slot searches should match gear, not consumables.
+            if (right != null)
+            {
+                if (first.equals("ranged") || first.equals("range")) { left = BY_ALIAS.get("ranged gear"); }
+                else if (first.equals("magic")) { left = BY_ALIAS.get("magic gear"); }
+                else if (first.equals("prayer")) { left = BY_ALIAS.get("prayer gear"); }
+            }
             if (left != null && right != null && left != right)
             {
                 return new Query(input, exclusive, Arrays.asList(left, right));

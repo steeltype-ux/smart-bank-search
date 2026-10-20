@@ -1,7 +1,9 @@
-# Smart Bank Search v1.4 — Complete category reference
+# Smart Bank Search v1.5 — Complete category reference
 
-**141 built-in category groups**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
+**208 built-in category groups (141 existing + 67 new activity kits)**, including coverage for **all 24 OSRS skills** and activity-specific bank searches.
 All searches use the normal RuneLite bank search field and show only items actually in your bank.
+
+**Activity optimization status:** All 67 activity search kits have been revised for the proposed v1.5 release (16 minigames and 51 other activities). See the [full 51-kit audit](ONE_SHOT_ACTIVITY_AUDIT.md) and [test checklist](TESTING.md). The suggestions are broad candidate gear, not an inferred optimal loadout; real-bank and item-ID verification remain outstanding.
 
 - `mining` — mining resources, tools, clothing and enhancements.
 - `@mining gear` — just mining-related equipment, not all your ores.
@@ -12,17 +14,22 @@ All searches use the normal RuneLite bank search field and show only items actua
 - `herblore` — **potion-making** ingredients and tools. `herb` remains clean/grimy harvested herbs only.
 
 Use the `@` prefix for *category-only* results; without `@`, RuneLite native-name and tag matches are preserved.
+
+**Finding categories in v1.5:** Click the **Smart Bank Search chest icon in RuneLite's sidebar** and type any category name or alias. The live directory reads the 208 aliases/groups from the matcher and provides a **Copy @search** option. You do not need to memorize the full reference below.
+
 Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be registered aliases.
 
 **Accuracy note:** Equipment slots and stats are read from RuneLite where available. Most skill loadouts, Sailing and activity lists are manually curated matches by item name; this is a convenient *candidate filter*, not a complete or mandatory inventory checklist. Items missing from your bank cannot appear, and not every Sailing/new-game item is covered.
 
 ## All 24 skills
 
+**Melee potion coverage:** `attack` now includes regular Attack potion doses (already supported), Attack/Superattack mixes, normal and Divine Super attack, Combat potion/mix, Super/Divine super combat and Zamorak brew. `combat pots` also covers ordinary Attack, Strength and Defence potions. A regular Combat potion raises **Attack and Strength**, while a Super combat potion raises **Attack, Strength and Defence**. All results depend on what is actually stored in the bank.
+
 | Search | Example results |
 |---|---|
-| `attack` | Super attack(4), melee equipment |
-| `strength` | Berserker ring, strength-boosting gear |
-| `defence` | Defence potion, armour with defence bonuses |
+| `attack` | Regular Attack potion, Super/Divine super attack, Attack mixes, Combat/Divine super combat, Zamorak brew and melee equipment |
+| `strength` | Strength potions and mixes, Combat/Super combat, Zamorak brew and strength-boosting gear |
+| `defence` | Defence potions and mixes, Super combat, Bastion/Battlemage potions and protective gear |
 | `ranged` | Masori chaps, bows, ranged-bonus items |
 | `prayer` | Dragon bones, prayer gear, Prayer potions |
 | `magic` | Occult necklace, runes, staves |
@@ -199,7 +206,7 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 - **Cosmetics / ornament kits** — `cosmetic`, `cosmetics`, `fashionscape`, `ornament kits`, `orn kits`, `fashion`
 - **Pets and pet items** — `pets`, `pet items`, `pet supplies`
 - **Consumables** — `consumables`, `supplies`, `useables`, `usables`
-### Skills and activity loadouts (new in v1.4)
+### Skills and existing activity loadouts (introduced in v1.4)
 
 - **Attack skill** — `attack`, `attack skill`, `attack training`, `attack gear`, `attack equipment`
 - **Strength skill** — `strength`, `strength skill`, `strength training`, `strength equipment`
@@ -215,3 +222,113 @@ Combine TWO categories with `@ranged boots` or `@prayer legs`; the terms must be
 - **Birdhouse run kit** — `birdhouse run`, `birdhouse runs`, `bird house run`, `birdhouse kit`, `birdhouse setup`
 - **Sailing repair kit** — `sailing repair`, `boat repairs`, `ship repair`, `boat repair kit`
 - **Sailing salvage kit** — `sailing salvage`, `salvaging gear`, `shipwreck salvage`, `salvaging setup`
+
+
+## New v1.5 activity preparation kits (proposed release)
+
+
+**Short names:** Activity queries accept direct shortcuts such as `cannon`, `chinchompa`, `wt`, `temp`, `mh`, `ba`, `vm`, and `bf` (with or without `@`). `@cannon` now loads cannon **Slayer trip supplies**, including the multicannon, cannonballs, and common task support items. For cannon parts only use existing `@cannon supplies` or `@cannonballs`. `@chinchompa` shows hunting/trapping gear, while the older `@chins` and `@chinchompas` remain thrown-weapon searches. General `@clues`, `@slayer`, `@hunter` and `@barrows` retain their original meaning.
+These **67 new categories** complement the existing 141 searches, for **208 total categories**. Search any activity name below directly (additive) or prepend `@` (exclusive). These are **curated candidate supplies already in your bank**, not guaranteed best-in-slot setups or a complete gear checklist. For example, `@wintertodt` includes warm clothing, tools and supplies; `@zulrah` includes venom protection, suitable equipment and consumables. Existing `@toa`, `@cox` and `@tob` retain their earlier meaning; use the new `@toa prep`, `@cox prep` or `@tob prep` aliases for broader preparation kits.
+
+**Herb-run alias:** The existing `@herb run` category also supports `@herbrun` and `@herbruns`. These aliases use identical matching rules; nothing about herb-run item selection changes.
+
+### Bosses and raids
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@zulrah` | Zulrah preparation | `zulrah prep`, `zulrah gear` |
+| `@vorkath` | Vorkath preparation | `vorkath prep`, `vorkath gear` |
+| `@muspah` | Phantom Muspah preparation | `phantom muspah`, `muspah prep` |
+| `@jad` | Fight Caves preparation | `fight caves`, `jad prep`, `fight caves prep` |
+| `@inferno` | Inferno preparation | `inferno prep` |
+| `@nex` | Nex preparation | `nex prep`, `nex trip` |
+| `@nightmare boss` | Nightmare preparation | `nightmare prep`, `phosani`, `phosani's nightmare` |
+| `@cerberus` | Cerberus preparation | `cerberus prep`, `cerb` |
+| `@hydra boss` | Alchemical Hydra preparation | `alchemical hydra`, `hydra prep`, `hydra` |
+| `@scurrius` | Scurrius preparation | `scurrius prep` |
+| `@cox prep` | CoX raid preparation | `chambers prep`, `olm prep` |
+| `@tob prep` | ToB raid preparation | `theatre of blood prep`, `theater of blood prep` |
+| `@toa prep` | ToA raid preparation | `tombs of amascut prep`, `raids 3 prep` |
+| `@barrows prep` | Barrows run preparation | `barrows run`, `barrows trip` |
+| `@gwd prep` | God Wars trip preparation | `god wars prep`, `godwars prep` |
+
+### Slayer tasks
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@gargoyles` | Gargoyles task | `gargoyle task`, `gargoyles prep`, `gargoyle`, `gargs` |
+| `@dust devils` | Dust devils task | `dustdevils`, `dust devil task`, `dust devil` |
+| `@nechryaels` | Nechryaels task | `nechs`, `nech task`, `nechryael task`, `nech` |
+| `@aberrant spectres` | Aberrant spectres task | `spectres task`, `aberrants`, `spectres` |
+| `@basilisks` | Basilisks task | `basilisk knights`, `basilisk task`, `basilisk` |
+| `@kurasks` | Kurasks task | `kurask task`, `kurask` |
+| `@skeletal wyverns` | Skeletal wyverns task | `wyvern task`, `skeletal wyvern` |
+| `@abyssal demons` | Abyssal demons task | `abby demons`, `abyssal task`, `abbys` |
+| `@demonic gorillas` | Demonic gorillas trip | `demonics`, `demonic gorilla prep`, `gorillas` |
+| `@barrage tasks` | Burst and barrage Slayer | `barrage`, `barrage slayer`, `burst tasks`, `burst slayer`, `burst` |
+| `@cannon tasks` | Cannon Slayer trips | `cannon slayer`, `cannon trip`, `cannon` |
+| `@kraken boss` | Kraken task | `kraken task`, `cave kraken`, `kraken` |
+
+### Minigames
+
+The **Giant's Foundry** filter supports bars or recyclable bronze/iron/steel/mithril/adamant/rune equipment in eligible categories: platebodies, platelegs/skirts, chainbodies, kiteshields, battleaxes, warhammers, 2h swords, full helms, square shields, scimitars, longswords and claws. It excludes ore, gold/silver bars, ornamental armour, 1-bar items, regular hammers and unrelated Smithing equipment. Ice gloves / Smiths' gloves (i) and buckets help handle the hot preform. Read the [activity review guide](ACTIVITY_REVIEW.md) for metal unit values and recommended alloy ratios.
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@wintertodt` | Wintertodt kit: tools, warm clothing, regen bracelet, cakes/pizzas/pies and other healing | `wintertodt prep`, `wt prep`, `wt` |
+| `@tempoross` | Harpoons, full Spirit/regular Angler sets, rope, hammer, buckets, optional Humidify and fishing upgrades (no stamina, fish barrel or tackle box) | `tempoross prep`, `temp` |
+| `@gotr` | Five pouch sizes, eye outfit pieces, pickaxes, lantern, mining bonuses, optional binding necklace and combination-rune supplies | `guardians of the rift`, `guardians rift` |
+| `@giants foundry` | Eligible metal bars, recyclable smithable gear, Smiths' uniform, cooling and travel items | `giantsfoundry`, `giant foundry`, `giant's foundry`, `foundry` |
+| `@mahogany homes` | Contract planks/bars, tools, Carpenter's outfit, four-town teleport and optional Astral Contact/Plank Make setup | `mahoganyhomes`, `mahogany homes prep`, `mh` |
+| `@hallowed sepulchre` | Hallowed upgrades and Agility clothing; optional coffin tools, planks/nails, grapple, enchant and poison protection | `sepulchre`, `sepulchre prep` |
+| `@pyramid plunder` | Pharaoh's sceptre, snake charm, lockpick, poison/prayer prevention, food, regeneration and optional travel | `pyramidplunder`, `plunder prep`, `plunder` |
+| `@tithe farm` | Spade/dibber/watering cans, Farmer's outfit, graceful, optional Humidify, stamina and Hosidius travel | `tithefarm`, `tithe farming`, `tithe` |
+| `@pest control` | Combat weapons, Void gear, optional boosts and Ancients; no routine food or Prayer potions | `pestcontrol`, `pc minigame`, `pest` |
+| `@barbarian assault` | Attacker and defence gear, Imcando hammer, limited combat boosts; no outside runes, rune pouches or food | `barb assault`, `ba minigame`, `ba` |
+| `@soul wars` | Magic-defence armour, Ancient Magicks runes and PvP equipment; in-game bandages and potions excluded | `soulwars` |
+| `@nightmare zone` | Low-HP tools, Dharok/Obsidian sets, prayer/combat setup and coins; NMZ-only overload/absorption excluded | `nmz`, `nightmarezone` |
+| `@shades of mortton` | Temple construction, Flamtaer gear, oils, all named remains/pyre logs and coloured shade keys | `shades of mort'ton`, `shades minigame`, `shades` |
+| `@fishing trawler` | Swamp paste, rope, bailing bucket, hammer and axes; excludes Angler outfit rewards | `trawler`, `fishing trawler prep` |
+| `@volcanic mine` | Mining/prayer gear, food, numulite, teleport and optional solo stamina; excludes generic ore/energy | `volcanicmine`, `vm mining`, `vm` |
+| `@blast furnace` | Exact smeltable ores and coal, coal bag, cooling gloves, goldsmith gauntlets, coins, stamina | `blastfurnace`, `bf smithing`, `bf` |
+
+### Farming and skilling
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@farming contracts` | Farming contracts kit | `farm contracts`, `farm contract`, `contracts` |
+| `@giant seaweed` | Giant seaweed runs | `seaweed run`, `seaweed farming` |
+| `@motherlode mine` | Motherlode Mine kit | `motherlode`, `mlm` |
+| `@bird snaring` | Bird snaring and hunter kit | `bird snare run`, `hunter birds` |
+| `@chinchompa hunting` | Chinchompa hunting kit | `red chins`, `black chins`, `chin hunting`, `chinchompa`, `chin hunt` |
+
+### Wilderness and PvP
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@revenants` | Revenant caves kit | `revenant caves`, `rev caves`, `revs prep`, `revs` |
+| `@calvarion` | Calvar'ion kit | `calvar'ion`, `calvarion prep`, `calv` |
+| `@spindel` | Spindel kit | `spindel prep` |
+| `@artio` | Artio kit | `artio prep` |
+| `@chaos elemental` | Chaos Elemental kit | `chaosele`, `chaos ele` |
+| `@chaos altar` | Chaos Altar prayer kit | `wildy altar`, `wilderness altar` |
+| `@wildy bosses` | Wilderness bosses kit | `wilderness bosses`, `wildybosses` |
+| `@wildy escape` | Wilderness escape kit | `wilderness escape`, `pvp escape` |
+| `@anti pk` | Anti-PK kit | `antipk`, `antipking` |
+
+### Clues and quests
+
+| Search | Activity | Other aliases |
+|---|---|---|
+| `@clue kit` | Clue solving kit | `cluekit`, `clue prep`, `clue solving` |
+| `@easy clue kit` | Easy clue kit | `easy clue prep`, `easyclue` |
+| `@medium clue kit` | Medium clue kit | `medium clue prep`, `mediumclue` |
+| `@hard clue kit` | Hard clue kit | `hard clue prep`, `hardclue` |
+| `@elite clue kit` | Elite clue kit | `elite clue prep`, `eliteclue` |
+| `@master clue kit` | Master clue kit | `master clue prep`, `masterclue` |
+| `@quest prep` | General quest preparation | `questprep`, `quest toolkit` |
+| `@quest travel` | Quest travel kit | `quest teleports`, `questtravel` |
+| `@quest combat` | Quest combat supplies | `quest fight prep`, `questcombat` |
+| `@fairy rings` | Fairy ring travel kit | `fairy ring kit`, `fairyrings` |
+
+These filters do not withdraw, bank, equip or move items. They cannot know your account unlocks or preferred setup. Use shorter/broader named categories when an activity-specific selection omits an item, and report missing or overinclusive item matches through GitHub Issues.

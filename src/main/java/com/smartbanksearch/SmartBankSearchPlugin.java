@@ -3,6 +3,7 @@ package com.smartbanksearch;
 import com.google.inject.Provides;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.swing.SwingUtilities;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.ItemComposition;
@@ -14,6 +15,9 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStats;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.ui.ClientToolbar;
+import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.ImageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +35,11 @@ public class SmartBankSearchPlugin extends Plugin
     @Inject private Client client;
     @Inject private ItemManager itemManager;
     @Inject private SmartBankSearchConfig config;
+    @Inject private ConfigManager configManager;
+    @Inject private ClientToolbar clientToolbar;
+
+    private volatile NavigationButton categoryDirectoryButton;
+    private volatile boolean directoryEnabled;
 
     private String lastQuery = null;
     private boolean lastStrict;
@@ -55,11 +64,35 @@ public class SmartBankSearchPlugin extends Plugin
 
     @Override protected void startUp()
     {
-        LOG.info("[SmartBankSearch] v1.4 started; {} categories", CategoryMatcher.catalog().size());
+        directoryEnabled = true;
+        // One compact sidebar tab; categories are read directly from the
+        // existing offline matcher rather than stored in a second catalogue.
+        SwingUtilities.invokeLater(() ->
+        {
+            if (!directoryEnabled) { return; }
+            categoryDirectoryButton = NavigationButton.builder()
+                .tooltip("Smart Bank Search categories")
+                .icon(ImageUtil.loadImageResource(SmartBankSearchPlugin.class,
+                    "/smartbanksearch/icon.png"))
+                .panel(new CategoryDirectoryPanel(configManager))
+                .priority(80)
+                .build();
+            clientToolbar.addNavigation(categoryDirectoryButton);
+        });
+        LOG.info("[SmartBankSearch] v1.5 started; {} categories", CategoryMatcher.catalog().size());
     }
 
     @Override protected void shutDown()
     {
+        // The callback may still be queued when a plugin is disabled quickly.
+        // Keep it from creating an orphaned sidebar button after shutdown.
+        directoryEnabled = false;
+        NavigationButton directory = categoryDirectoryButton;
+        categoryDirectoryButton = null;
+        if (directory != null)
+        {
+            SwingUtilities.invokeLater(() -> clientToolbar.removeNavigation(directory));
+        }
         itemCache.clear();
         parsedQuery = null;
         lastQuery = null;
@@ -94,8 +127,9 @@ public class SmartBankSearchPlugin extends Plugin
             diagnosticsForQuery = 0;
             if (config.diagnostics())
             {
-                LOG.info("[SmartBankSearch] query='{}' resolved='{}' exclusive={}",
-                    search, parsedQuery.getCategoryName(), parsedQuery.isExclusive());
+                // Never persist the player's typed bank query to diagnostic logs.
+                LOG.info("[SmartBankSearch] category='{}' exclusive={}",
+                    parsedQuery.getCategoryName(), parsedQuery.isExclusive());
             }
         }
         if (!parsedQuery.isCategory())
@@ -111,21 +145,15 @@ public class SmartBankSearchPlugin extends Plugin
         ItemFacts item = itemCache.computeIfAbsent(itemId, this::readItem);
         boolean matched = parsedQuery.matches(item);
 
-        if (parsedQuery.isExclusive())
-        {
-            // Explicit `@` opt-in: suppress native name matches unrelated to category.
-            stack[intSize - 2] = matched ? 1 : 0;
-        }
-        else if (matched)
-        {
-            // Default is additive, like the successful v1.2 fix: never hide vanilla hits.
-            stack[intSize - 2] = 1;
-        }
+        // Most queries augment RuneLite's native result. Bare "prayer" is a
+        // focused exception to prevent unrelated prayer-named items appearing.
+        stack[intSize - 2] = parsedQuery.resolveBankMatch(previous, matched);
 
         if (config.diagnostics() && diagnosticsForQuery++ < 25)
         {
-            LOG.info("[SmartBankSearch] id={} name='{}' slot={} categoryMatch={} native={} final={}",
-                itemId, item.name, item.slot, matched, previous, stack[intSize - 2]);
+            // Item names are unnecessary for diagnostics and can reveal bank contents.
+            LOG.info("[SmartBankSearch] slot={} categoryMatch={} native={} final={}",
+                item.slot, matched, previous, stack[intSize - 2]);
         }
     }
 

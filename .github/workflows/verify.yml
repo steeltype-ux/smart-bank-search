@@ -21,5 +21,16 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
         with:
           gradle-version: '8.14.3'
+      - name: Security boundary and secrets audit
+        run: python3 tools/check_release_security.py
       - name: Compile and run tests
         run: gradle clean test --no-daemon
+      - name: Audit real OSRS item names against all categories
+        run: python3 tools/audit_osrs_item_names.py --report build/reports/osrs-item-name-audit.md --strict
+      - name: Upload item-name audit for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: osrs-item-name-audit
+          path: build/reports/osrs-item-name-audit.md
+          if-no-files-found: ignore

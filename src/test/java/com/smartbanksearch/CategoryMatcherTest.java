@@ -102,6 +102,227 @@ public class CategoryMatcherTest
         yes("wilderness", "Blighted super restore(4)");
         yes("cannonballs", "Cannonball"); yes("spec weapons", "Dragon claws");
     }
+    @Test public void attackSearchIncludesAllActualAttackBoostPotionTiers()
+    {
+        // Regular Attack was already a term, but the super-combat and mixes
+        // were missing from the Attack skill category.
+        for (String item : new String[] {
+            "Attack potion(1)", "Attack potion(2)", "Attack potion(3)", "Attack potion(4)",
+            "Attack mix(1)", "Attack mix(2)",
+            "Super attack(1)", "Super attack(4)",
+            "Divine super attack potion(4)",
+            "Superattack mix(2)",
+            "Combat potion(1)", "Combat potion(4)", "Combat mix(2)",
+            "Super combat potion(1)", "Super combat potion(4)",
+            "Divine super combat potion(4)", "Zamorak brew(4)"
+        })
+        {
+            yes("@attack", item);
+            yes("attack", item);
+            yes("@combat pots", item);
+        }
+        for (String item : new String[] {
+            "Ranging potion(4)", "Magic potion(4)",
+            "Strength potion(4)", "Super strength(4)",
+            "Defence potion(4)", "Super defence(4)",
+            "Bastion potion(4)", "Battlemage potion(4)",
+            "Prayer potion(4)", "Raw shark", "Rune platebody"
+        })
+        {
+            no("@attack", item);
+        }
+        // The multi-stat boosts should also be visible for Strength/Defence.
+        for (String item : new String[] {
+            "Combat potion(4)", "Combat mix(2)",
+            "Super combat potion(4)", "Divine super combat potion(4)",
+            "Zamorak brew(4)"
+        })
+        {
+            yes("@strength", item);
+        }
+        for (String item : new String[] {
+            "Super combat potion(4)", "Divine super combat potion(4)",
+            "Bastion potion(4)", "Divine bastion potion(4)",
+            "Battlemage potion(4)", "Divine battlemage potion(4)"
+        })
+        {
+            yes("@defence", item);
+        }
+        no("@defence", "Combat potion(4)"); // Only Attack and Strength.
+        no("@defence", "Zamorak brew(4)"); // Decreases Defence.
+        yes("@combat pots", "Defence potion(4)");
+        yes("@combat pots", "Strength potion(4)");
+        yes("@combat pots", "Super str. mix(2)");
+    }
+
+    @Test public void strengthSearchFocusesBoostsWhileExclusiveStrengthRemainsBroad()
+    {
+        for (String item : new String[] {
+            "Strength potion(4)", "Strength mix(2)", "Super strength(4)",
+            "Super str. mix(2)", "Divine super strength potion(4)",
+            "Combat potion(4)", "Combat mix(2)", "Super combat potion(4)",
+            "Divine super combat potion(4)", "Zamorak brew(4)"
+        })
+        {
+            yes("strength", item);
+        }
+        no("strength", "Fighter torso");
+        no("strength", "Berserker ring");
+        no("strength", "Ranging potion(4)");
+        yes("@strength", "Fighter torso");
+        yes("@strength", "Super strength(4)");
+        yes("strength pot", "Super strength(4)");
+        assertEquals("Strength skill", CategoryMatcher.parse("@strength", true).getCategoryName());
+        assertEquals("Strength boosts", CategoryMatcher.parse("strength", true).getCategoryName());
+        assertTrue(CategoryMatcher.matches("strength gear", gear("Unknown new ring", 12,0,0,0,8,0,0,0), true));
+    }
+
+    @Test public void attackAndDefenceSearchesFocusConsumableBoosts()
+    {
+        for (String item : new String[] {
+            "Attack potion(4)", "Attack mix(2)", "Super attack(4)",
+            "Superattack mix(2)", "Divine super attack potion(4)",
+            "Combat potion(4)", "Combat mix(2)", "Super combat potion(4)",
+            "Divine super combat potion(4)", "Zamorak brew(4)"
+        })
+        {
+            yes("attack", item);
+        }
+        for (String item : new String[] {
+            "Defence potion(4)", "Defence mix(2)", "Super defence(4)",
+            "Super def. mix(2)", "Divine super defence potion(4)",
+            "Super combat potion(4)", "Divine super combat potion(4)",
+            "Bastion potion(4)", "Divine bastion potion(4)",
+            "Battlemage potion(4)", "Divine battlemage potion(4)",
+            "Saradomin brew(4)"
+        })
+        {
+            yes("defence", item);
+            yes("defense", item);
+        }
+        no("attack", "Dragon defender");
+        no("attack", "Strength potion(4)");
+        no("defence", "Justiciar chestguard");
+        no("defence", "Attack potion(4)");
+        yes("@attack", "Dragon defender");
+        yes("@defence", "Justiciar chestguard");
+        yes("@defense", "Justiciar chestguard");
+        yes("attack pot", "Super attack(4)");
+        yes("defence pot", "Super defence(4)");
+        assertEquals("Attack boosts", CategoryMatcher.parse("attack", true).getCategoryName());
+        assertEquals("Defence boosts", CategoryMatcher.parse("defence", true).getCategoryName());
+        assertEquals("Attack skill", CategoryMatcher.parse("@attack", true).getCategoryName());
+        assertEquals("Defence skill", CategoryMatcher.parse("@defence", true).getCategoryName());
+    }
+
+    @Test public void focusedMagicRangedPrayerAndExplicitBroadQueries()
+    {
+        for (String item : new String[] {
+            "Magic potion(4)", "Divine magic potion(4)", "Magic mix(2)",
+            "Battlemage potion(4)", "Divine battlemage potion(4)",
+            "Imbued heart", "Saturated heart", "Forgotten brew(4)"
+        }) { yes("magic", item); }
+        no("magic", "Ancestral robe top");
+        no("magic", "Prayer potion(4)");
+        yes("@magic", "Ancestral robe top");
+        for (String item : new String[] {
+            "Ranging potion(4)", "Ranging mix(2)", "Divine ranging potion(4)",
+            "Bastion potion(4)", "Divine bastion potion(4)"
+        }) { yes("ranged", item); yes("range", item); }
+        no("ranged", "Masori chaps");
+        no("ranged", "Magic potion(4)");
+        yes("@ranged", "Masori chaps");
+        for (String item : new String[] {
+            "Prayer potion(4)", "Super restore(4)", "Sanfew serum(4)",
+            "Prayer regeneration potion(4)"
+        }) { yes("prayer", item); }
+        no("prayer", "Dragon bones");
+        yes("@prayer", "Dragon bones");
+        yes("@prayer", "Prayer potion(4)");
+        assertEquals("Magic equipment", CategoryMatcher.parse("@magic", true).getCategoryName());
+        assertEquals("Ranged equipment", CategoryMatcher.parse("@ranged", true).getCategoryName());
+        assertTrue(CategoryMatcher.parse("@prayer", true).isExclusive());
+        yes("magic gear", "Mystic robe top");
+        yes("ranged gear", "Rune crossbow");
+    }
+
+    @Test public void divinePotionFamiliesAndDoseVariants()
+    {
+        for (String prefix : new String[] {
+            "Divine super attack potion", "Divine super strength potion",
+            "Divine super defence potion", "Divine super combat potion",
+            "Divine ranging potion", "Divine magic potion",
+            "Divine bastion potion", "Divine battlemage potion"
+        })
+        {
+            for (int dose = 1; dose <= 4; dose++)
+            {
+                yes("@divine pots", prefix + "(" + dose + ")");
+            }
+        }
+        no("@divine pots", "Prayer potion(4)");
+        no("@divine pots", "Super restore(4)");
+    }
+
+    @Test public void allCatalogAliasesResolveToTheirCategoryOrBroadSkillOverride()
+    {
+        Map<String, java.util.List<String>> catalog = CategoryMatcher.catalog();
+        for (Map.Entry<String, java.util.List<String>> entry : catalog.entrySet())
+        {
+            for (String alias : entry.getValue())
+            {
+                assertTrue("Alias not recognized: " + alias,
+                    CategoryMatcher.isCategoryQuery(alias, true));
+                // These six bare-skill names intentionally switch to broad mode with @.
+                boolean broad = "strength".equals(alias) || "attack".equals(alias)
+                    || "defence".equals(alias) || "defense".equals(alias)
+                    || "magic".equals(alias) || "ranged".equals(alias)
+                    || "range".equals(alias) || "ranging".equals(alias)
+                    || "prayer".equals(alias);
+                if (!broad)
+                {
+                    assertEquals("Alias maps to incorrect category: " + alias,
+                        entry.getKey(), CategoryMatcher.parse("@" + alias, true).getCategoryName());
+                }
+            }
+        }
+    }
+
+    @Test public void barePrayerSuppressesNativeUnrelatedMatches()
+    {
+        CategoryMatcher.Query focused = CategoryMatcher.parse("prayer", true);
+        assertEquals("Prayer restores", focused.getCategoryName());
+        assertFalse(focused.isExclusive()); // No @ is required for the focused behavior.
+
+        // RuneLite's original name search would retain these prayer-named items.
+        for (String item : new String[] {"Prayer cape", "Prayer scroll", "Prayer hood"})
+        {
+            assertFalse(focused.matches(ItemFacts.nameOnly(item)));
+            assertEquals("Bare prayer must hide unrelated native result: " + item,
+                0, focused.resolveBankMatch(1, false));
+        }
+
+        // These have no 'prayer' in their names and must still appear.
+        for (String item : new String[] {"Super restore(4)", "Sanfew serum(4)"})
+        {
+            assertTrue(focused.matches(ItemFacts.nameOnly(item)));
+            assertEquals("Bare prayer must add matching restore: " + item,
+                1, focused.resolveBankMatch(0, true));
+        }
+
+        // @prayer remains the broad opt-in for bones, equipment and supplies.
+        CategoryMatcher.Query broad = CategoryMatcher.parse("@prayer", true);
+        assertTrue(broad.isExclusive());
+        assertTrue(broad.matches(ItemFacts.nameOnly("Dragon bones")));
+        assertEquals(1, broad.resolveBankMatch(0, true));
+        assertEquals(0, broad.resolveBankMatch(1, false));
+
+        // No change to existing additive searches, gear shortcuts, or unknown queries.
+        assertEquals(1, CategoryMatcher.parse("strength", true).resolveBankMatch(1, false));
+        assertEquals(1, CategoryMatcher.parse("prayer gear", true).resolveBankMatch(1, false));
+        assertEquals(1, CategoryMatcher.parse("nonexistent category", true).resolveBankMatch(1, false));
+    }
+
     @Test public void noUnexpectedNativeOverrides()
     {
         assertFalse(CategoryMatcher.isCategoryQuery("dragon scim",true));

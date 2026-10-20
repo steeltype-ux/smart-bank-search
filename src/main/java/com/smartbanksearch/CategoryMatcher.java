@@ -223,7 +223,7 @@ public final class CategoryMatcher
         add("Ammunition", any(slot(13, "arrow", "bolt", "dart", "javelin", "blessing", "quiver"), names("arrow", "arrows", "bolts", "dart", "javelin", "throwing knife", "cannonball", "chinchompa")), "ammo", "ammunition", "projectiles", "projectile");
         add("Two handed", f -> (f.slot == 3 && f.twoHanded) || matchesName(f.name, "2h sword", "two handed sword", "godsword", "halberd", "longbow", "shortbow", "maul", "scythe of vitur", "twisted bow", "bow of faerdhinen", "battlestaff"), "2h", "two handed", "two hand", "two handed weapons", "2h weapons");
         add("Melee equipment", MELEE, "melee", "melee gear", "melee equipment", "melee armour", "melee armor", "melee setup");
-        add("Ranged equipment", RANGED, "ranged", "range gear", "ranged gear", "range equipment", "ranged equipment", "range armour", "range armor", "ranged armour", "ranged armor", "range setup", "ranged setup", "ranging gear");
+        add("Ranged equipment", RANGED, "range gear", "ranged gear", "range equipment", "ranged equipment", "range armour", "range armor", "ranged armour", "ranged armor", "range setup", "ranged setup", "ranging gear");
         add("Magic equipment", MAGIC, "magic gear", "mage", "mage gear", "magic equipment", "mage equipment", "magic armour", "magic armor", "mage armour", "mage armor", "mage setup", "magic setup");
         // Focused default queries; @magic/@ranged and @prayer retain their broad categories.
         add("Magic boosts", names("magic potion", "magic mix", "divine magic potion",

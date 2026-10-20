@@ -43,8 +43,8 @@ public final class ActivityCategoriesSelfTest
                 check(q.getCategoryName().equals(title), "Incorrect alias owner: " + alias);
             }
         });
-        check(count[0] == 67, "Expected 67 new activities");
-        check(CategoryMatcher.catalog().size() >= 212, "Expected at least 212 total categories");
+        check(count[0] == 71, "Expected 71 activity kits");
+        check(CategoryMatcher.catalog().size() >= 219, "Expected at least 219 total categories");
         yes("@herb run", "Ranarr seed");
         yes("@herbrun", "Ranarr seed");
         yes("@herbruns", "Bottomless compost bucket");
@@ -54,7 +54,52 @@ public final class ActivityCategoriesSelfTest
         check(CategoryMatcher.parse("@herbrun", true).getCategoryName()
             .equals(CategoryMatcher.parse("@herb run", true).getCategoryName()), "herbrun must use existing kit");
 
-        // Two curated inclusions and negative controls for all 67 activity kits.
+        // Karuulm floor heat: all three real boot choices should appear in each kit.
+        for (String task : new String[] {
+            "@wyrms", "@drakes", "@hydras", "@sulphur lizards"
+        })
+        {
+            yes(task, "Boots of stone");
+            yes(task, "Boots of brimstone");
+            yes(task, "Granite boots");
+            yes(task, "Rada's blessing 4");
+            yes(task, "Slayer helmet (i)");
+            no(task, "Wyrm bones");
+            no(task, "Rune platebody");
+        }
+        sameActivity("wyrm task", "wyrms", "Dragon hunter lance");
+        sameActivity("drake task", "drakes", "Super antifire potion(4)");
+        sameActivity("hydra task", "hydras", "Antipoison(4)");
+        sameActivity("sulfur lizards", "sulphur lizards", "Cannonball");
+
+        yes("@wyrms", "Rune crossbow");
+        yes("@wyrms", "Super restore(4)");
+        no("@wyrms", "Antifire potion(4)"); // Wyrms do not breathe dragonfire.
+        no("@wyrms", "Cannonball"); // Karuulm Wyrm chamber excludes cannons.
+        no("@wyrms", "Dragon sword"); // A loot drop, not preparation equipment.
+
+        yes("@drakes", "Antifire potion(4)");
+        yes("@drakes", "Dragonfire shield");
+        yes("@drakes", "Super antifire potion(4)");
+        no("@drakes", "Drake's claw"); // A drop, not something to bring.
+
+        yes("@hydras", "Superantipoison(4)");
+        yes("@hydras", "Cannonball");
+        yes("@hydras", "Dragon hunter crossbow");
+        no("@hydras", "Hydra bones");
+        no("@hydras", "Hydra's eye");
+        // Keep the older @hydra and @hydra boss shortcuts for the boss kit.
+        check(CategoryMatcher.parse("@hydra", true).getCategoryName()
+            .equals("Alchemical Hydra preparation"), "@hydra boss alias changed");
+        check(CategoryMatcher.parse("@hydras", true).getCategoryName()
+            .equals("Hydras task"), "@hydras should target regular Slayer Hydras");
+
+        yes("@sulphur lizards", "Cannon base");
+        yes("@sulphur lizards", "Granite cannonball");
+        no("@sulphur lizards", "Ice cooler");
+        no("@sulphur lizards", "Lizard");
+
+        // Two curated inclusions and negative controls for all 71 activity kits.
         yes("@zulrah", "anti venom"); yes("@zulrah", "antivenom"); no("@zulrah", "Grimy ranarr weed"); no("@zulrah", "Rune platebody");
         yes("@vorkath", "dragon hunter crossbow"); yes("@vorkath", "dragon hunter lance"); no("@vorkath", "Grimy ranarr weed"); no("@vorkath", "Rune platebody");
         yes("@muspah", "sapphire dragon bolts"); yes("@muspah", "sapphire bolts"); no("@muspah", "Grimy ranarr weed"); no("@muspah", "Rune platebody");

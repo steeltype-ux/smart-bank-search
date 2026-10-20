@@ -33,12 +33,12 @@ final class ActivityCategories
     // Reusable supply groups. No generic 'potion', 'gear', 'seed', or 'food'
     // substring matching: avoid dragging unrelated items into every kit.
     private static final Predicate<ItemFacts> HEALS = f -> !CategoryMatcher.matchesName(f.name, "raw", "burnt", "uncooked", "rotten") && CategoryMatcher.matchesName(f.name, "shark", "anglerfish", "manta ray", "dark crab", "sea turtle", "cooked karambwan", "karambwan", "tuna potato", "monkfish", "purple sweets", "pineapple pizza", "summer pie", "wild pie");
-    private static final Predicate<ItemFacts> PRAYER = names("prayer potion", "super restore", "sanfew serum", "holy wrench", "blighted super restore");
+    private static final Predicate<ItemFacts> PRAYER = names("prayer potion", "super restore", "sanfew serum", "holy wrench", "blighted super restore", "prayer regeneration potion");
     private static final Predicate<ItemFacts> BREWS = names("saradomin brew", "guthix rest");
     private static final Predicate<ItemFacts> ENERGY = names("stamina potion", "super energy", "energy potion", "ring of endurance", "graceful");
-    private static final Predicate<ItemFacts> MELEE_BOOST = names("super combat potion", "divine super combat", "super attack", "super strength", "combat potion");
-    private static final Predicate<ItemFacts> RANGE_BOOST = names("ranging potion", "divine ranging", "bastion potion", "divine bastion");
-    private static final Predicate<ItemFacts> MAGE_BOOST = names("magic potion", "divine magic", "imbued heart", "saturated heart");
+    private static final Predicate<ItemFacts> MELEE_BOOST = names("super combat potion", "divine super combat", "super attack", "divine super attack", "super strength", "divine super strength", "combat potion", "attack potion", "strength potion");
+    private static final Predicate<ItemFacts> RANGE_BOOST = names("ranging potion", "ranging mix", "divine ranging", "bastion potion", "divine bastion");
+    private static final Predicate<ItemFacts> MAGE_BOOST = names("magic potion", "magic mix", "divine magic", "battlemage potion", "divine battlemage", "forgotten brew", "ancient brew", "imbued heart", "saturated heart");
     private static final Predicate<ItemFacts> SLAYER = names("slayer helmet", "slayer helm", "black mask", "bracelet of slaughter", "expeditious bracelet");
     private static final Predicate<ItemFacts> WILDY = names("blighted", "royal seed pod", "burning amulet", "looting bag", "wilderness sword", "amulet of glory", "ring of dueling");
 

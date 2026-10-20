@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import net.runelite.client.config.ConfigManager;
 import java.util.List;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -62,6 +63,21 @@ public final class CategoryDirectoryPanel extends PluginPanel
         add(top, BorderLayout.NORTH);
 
         categoryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        categoryList.setCellRenderer(new DefaultListCellRenderer()
+        {
+            @Override
+            public java.awt.Component getListCellRendererComponent(
+                JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
+            {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof CategoryDirectoryModel.Entry)
+                {
+                    CategoryDirectoryModel.Entry entry = (CategoryDirectoryModel.Entry) value;
+                    setText(entry.displayLabel(favorites.contains(entry.title)));
+                }
+                return this;
+            }
+        });
         categoryList.setVisibleRowCount(14);
         JScrollPane scroll = new JScrollPane(categoryList);
         scroll.setPreferredSize(new Dimension(200, 320));
@@ -165,6 +181,10 @@ public final class CategoryDirectoryPanel extends PluginPanel
         configManager.setConfiguration("smartbanksearch", "favoriteCategories",
             String.join("|", favorites));
         if (favoritesOnly.isSelected()) { updateResults(); }
-        else { updateDetail(); }
+        else
+        {
+            categoryList.repaint(); // Refresh star immediately without changing selection.
+            updateDetail();
+        }
     }
 }

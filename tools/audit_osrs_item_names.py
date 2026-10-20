@@ -132,7 +132,7 @@ def run_exact_java_matcher(items, directory):
 
 def report(snapshot_date, source_count, items, matched):
     names = {name for _, name in items}
-    expected_categories = 212
+    expected_categories = 215
     if len(matched) > expected_categories:
         raise RuntimeError("Unexpected category count; inspect source")
     counts = Counter({category: len(group) for category, group in matched.items()})

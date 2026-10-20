@@ -223,8 +223,20 @@ public final class CategoryMatcher
         add("Ammunition", any(slot(13, "arrow", "bolt", "dart", "javelin", "blessing", "quiver"), names("arrow", "arrows", "bolts", "dart", "javelin", "throwing knife", "cannonball", "chinchompa")), "ammo", "ammunition", "projectiles", "projectile");
         add("Two handed", f -> (f.slot == 3 && f.twoHanded) || matchesName(f.name, "2h sword", "two handed sword", "godsword", "halberd", "longbow", "shortbow", "maul", "scythe of vitur", "twisted bow", "bow of faerdhinen", "battlestaff"), "2h", "two handed", "two hand", "two handed weapons", "2h weapons");
         add("Melee equipment", MELEE, "melee", "melee gear", "melee equipment", "melee armour", "melee armor", "melee setup");
-        add("Ranged equipment", RANGED, "ranged", "range gear", "ranged gear", "range equipment", "ranged equipment", "range armour", "range armor", "ranged armour", "ranged armor", "range setup", "ranged setup", "ranging gear", "range");
-        add("Magic equipment", MAGIC, "magic gear", "mage", "mage gear", "magic equipment", "mage equipment", "magic armour", "magic armor", "mage armour", "mage armor", "mage setup", "magic setup", "magic");
+        add("Ranged equipment", RANGED, "ranged", "range gear", "ranged gear", "range equipment", "ranged equipment", "range armour", "range armor", "ranged armour", "ranged armor", "range setup", "ranged setup", "ranging gear");
+        add("Magic equipment", MAGIC, "magic gear", "mage", "mage gear", "magic equipment", "mage equipment", "magic armour", "magic armor", "mage armour", "mage armor", "mage setup", "magic setup");
+        // Focused default queries; @magic/@ranged and @prayer retain their broad categories.
+        add("Magic boosts", names("magic potion", "magic mix", "divine magic potion",
+            "super magic potion", "super magic", "battlemage potion", "divine battlemage",
+            "imbued heart", "saturated heart", "forgotten brew", "ancient brew"),
+            "magic", "magic pot", "magic pots", "magic boosts");
+        add("Ranged boosts", names("ranging potion", "ranging mix", "divine ranging",
+            "super ranging", "super ranging mix", "bastion potion", "divine bastion",
+            "dragonfruit pie"),
+            "ranged", "range", "ranging", "ranging pot", "range pots", "ranged pots");
+        add("Prayer restores", names("prayer potion", "super restore", "sanfew serum",
+            "prayer regeneration potion", "blighted super restore", "blighted ancient brew"),
+            "prayer", "prayer restores", "prayer restore");
         add("Prayer-bonus equipment", PRAYER_GEAR, "prayer gear", "prayer equipment", "prayer armour", "prayer armor", "prayer bonus", "prayer bonus gear", "prayer outfit");
         add("Strength-bonus gear", f -> f.worn() && (f.meleeStrength > 0 || matchesName(f.name, "ferocious gloves", "bandos tassets", "torva", "berserker ring", "strength amulet", "fighter torso", "primordial boots")), "strength gear", "str gear", "strength bonus", "str bonus");
         add("Magic-damage gear", f -> f.worn() && (f.magicDamage > 0 || matchesName(f.name, "ancestral", "occult necklace", "tormented bracelet", "magus ring", "virtus")), "magic damage", "mage damage", "magic damage gear", "mage damage gear");
@@ -279,7 +291,13 @@ public final class CategoryMatcher
             "defence potion", "defence mix", "super defence", "super def. mix",
             "combat potion", "combat mix", "super combat", "zamorak brew",
             "ranging potion", "bastion potion", "battlemage potion", "magic potion",
-            "divine ranging", "divine magic", "super ranging", "super magic"), "combat pots", "combat potions", "boost pots", "stat boosts", "boosting potions");
+            "divine ranging", "divine magic", "super ranging", "super magic",
+            "ranging mix", "magic mix", "divine bastion", "divine battlemage",
+            "forgotten brew", "ancient brew"), "combat pots", "combat potions", "boost pots", "stat boosts", "boosting potions");
+        add("Divine combat boosts", names("divine super attack", "divine super strength",
+            "divine super defence", "divine super combat", "divine ranging",
+            "divine magic", "divine bastion", "divine battlemage"),
+            "divine pots", "divine potions", "divine boosts");
         add("Energy / stamina", names("stamina potion", "energy potion", "super energy", "strange fruit", "purple sweets", "summer pie", "ring of endurance"), "stamina", "staminas", "run energy", "energy pots", "energy potions", "run restoration");
         add("Food", f -> edible(f.name), "food", "foods", "healing food", "eats", "edible food");
         add("Raw food / fish", names("raw", "uncooked", "raw fish", "raw shark", "raw karambwan", "raw lobster", "raw meat", "raw bird meat"), "raw food", "raw fish", "uncooked food", "uncooked fish");
@@ -324,7 +342,7 @@ public final class CategoryMatcher
         add("Ashes", suffix("ashes", "ash"), "ashes", "demonic ashes", "prayer ashes");
         add("Ensouled heads", names("ensouled", "ensouled head"), "ensouled", "ensouled heads", "reanimation", "reanimate heads");
         add("Prayer supplies", names("bones", "ashes", "ensouled", "prayer potion", "super restore", "sanfew serum", "burner", "marentill", "marrentill", "ectotoken", "ecto token", "dragonbone necklace", "bonecrusher", "ash sanctifier", "sanctifier", "zealot", "offering", "sunfire fanatic"), "prayer supplies", "prayer items", "prayer training", "prayer xp");
-        add("Prayer - all", any(PRAYER_GEAR, names("bones", "ashes", "ensouled", "prayer potion", "super restore", "sanfew serum", "bonecrusher", "ash sanctifier", "offering")), "prayer", "prayer stuff", "all prayer");
+        add("Prayer - all", any(PRAYER_GEAR, names("bones", "ashes", "ensouled", "prayer potion", "super restore", "sanfew serum", "bonecrusher", "ash sanctifier", "offering")), "prayer stuff", "all prayer");
         add("Clue scrolls / rewards", names("clue scroll", "reward casket", "clue casket", "clue bottle", "clue geode", "clue nest", "mimic", "master clue", "challenge scroll", "puzzle box", "light box", "ornament kit", "trimmed", "gilded", "3rd age", "third age"), "clues", "clue", "treasure trails", "clue scrolls", "clue rewards", "caskets");
         add("Keys", suffix("key", "keys"), "key", "keys", "keyrings", "key items");
         add("Quest items (recognizable)", names("quest item", "quest journal", "quest cape", "quest point cape", "silverlight", "darklight", "excalibur", "holy grail", "m'speak amulet", "ghostspeak amulet", "ghost speak amulet", "lunar staff", "dramen staff", "ivandis", "blisterwood"), "quest items", "quests", "quest gear");
@@ -477,6 +495,19 @@ public final class CategoryMatcher
         {
             String skill = q.equals("defense") ? "defence" : q;
             return new Query(input, true, Collections.singletonList(BY_ALIAS.get(skill + " skill")));
+        }
+        // Bare keywords focus on supplies while @ retains the familiar broad categories.
+        if (exclusive && (q.equals("magic") || q.equals("mage")))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("magic gear")));
+        }
+        if (exclusive && (q.equals("ranged") || q.equals("range") || q.equals("ranging")))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("ranged gear")));
+        }
+        if (exclusive && q.equals("prayer"))
+        {
+            return new Query(input, true, Collections.singletonList(BY_ALIAS.get("all prayer")));
         }
         Category direct = find(q, strict);
         if (direct != null) { return new Query(input, exclusive, Collections.singletonList(direct)); }

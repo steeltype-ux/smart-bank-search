@@ -25,7 +25,9 @@ public final class CategoryNameAudit
         Rule(String title, String alias)
         {
             this.title = title;
-            parsed = CategoryMatcher.parse("@" + alias, true);
+            // Focused boost categories use the unprefixed alias; @skill is deliberately broad.
+            boolean focused = title.endsWith(" boosts") || title.equals("Prayer restores");
+            parsed = CategoryMatcher.parse((focused ? "" : "@") + alias, true);
             if (!parsed.isCategory() || !parsed.getCategoryName().equals(title))
             {
                 throw new IllegalStateException("Unresolved alias: " + alias + " (" + title + ")");

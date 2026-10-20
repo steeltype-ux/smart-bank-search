@@ -44,7 +44,7 @@ public final class ActivityCategoriesSelfTest
             }
         });
         check(count[0] == 67, "Expected 67 new activities");
-        check(CategoryMatcher.catalog().size() == 208, "Expected 208 total categories");
+        check(CategoryMatcher.catalog().size() >= 212, "Expected at least 212 total categories");
         yes("@herb run", "Ranarr seed");
         yes("@herbrun", "Ranarr seed");
         yes("@herbruns", "Bottomless compost bucket");

@@ -2,6 +2,12 @@ package com.smartbanksearch;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.Arrays;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import net.runelite.client.config.ConfigManager;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -23,15 +29,25 @@ import net.runelite.client.ui.PluginPanel;
 public final class CategoryDirectoryPanel extends PluginPanel
 {
     private final CategoryDirectoryModel directory = new CategoryDirectoryModel();
+    private final ConfigManager configManager;
+    private final Set<String> favorites = new LinkedHashSet<>();
+    private final JCheckBox favoritesOnly = new JCheckBox("Favorites only");
+    private final JButton favoriteButton = new JButton("Favorite");
     private final JTextField searchField = new JTextField();
     private final DefaultListModel<CategoryDirectoryModel.Entry> results = new DefaultListModel<>();
     private final JList<CategoryDirectoryModel.Entry> categoryList = new JList<>(results);
     private final JLabel countLabel = new JLabel();
     private final JTextArea detail = new JTextArea();
 
-    public CategoryDirectoryPanel()
+    public CategoryDirectoryPanel(ConfigManager configManager)
     {
         super();
+        this.configManager = configManager;
+        String saved = configManager.getConfiguration("smartbanksearch", "favoriteCategories");
+        if (saved != null && !saved.trim().isEmpty())
+        {
+            favorites.addAll(Arrays.asList(saved.split("\\|")));
+        }
         setLayout(new BorderLayout(0, 8));
         setBorder(new EmptyBorder(8, 8, 8, 8));
 
@@ -39,7 +55,10 @@ public final class CategoryDirectoryPanel extends PluginPanel
         top.add(new JLabel("Find a bank-search category"), BorderLayout.NORTH);
         searchField.setToolTipText("Type a skill, boss, activity, or shortcut, e.g. @gotr");
         top.add(searchField, BorderLayout.CENTER);
-        top.add(countLabel, BorderLayout.SOUTH);
+        JPanel filters = new JPanel(new BorderLayout());
+        filters.add(countLabel, BorderLayout.WEST);
+        filters.add(favoritesOnly, BorderLayout.EAST);
+        top.add(filters, BorderLayout.SOUTH);
         add(top, BorderLayout.NORTH);
 
         categoryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -56,8 +75,11 @@ public final class CategoryDirectoryPanel extends PluginPanel
 
         JPanel bottom = new JPanel(new BorderLayout(0, 6));
         bottom.add(new JScrollPane(detail), BorderLayout.CENTER);
+        bottom.add(favoriteButton, BorderLayout.SOUTH);
         add(bottom, BorderLayout.SOUTH);
 
+        favoritesOnly.addActionListener(e -> updateResults());
+        favoriteButton.addActionListener(e -> toggleFavorite());
         categoryList.addListSelectionListener(e ->
         {
             if (!e.getValueIsAdjusting()) { updateDetail(); }
@@ -74,7 +96,11 @@ public final class CategoryDirectoryPanel extends PluginPanel
 
     private void updateResults()
     {
-        List<CategoryDirectoryModel.Entry> filtered = directory.filter(searchField.getText());
+        List<CategoryDirectoryModel.Entry> filtered = new java.util.ArrayList<>(directory.filter(searchField.getText()));
+        if (favoritesOnly.isSelected())
+        {
+            filtered.removeIf(entry -> !favorites.contains(entry.title));
+        }
         results.clear();
         for (CategoryDirectoryModel.Entry entry : filtered)
         {
@@ -94,14 +120,18 @@ public final class CategoryDirectoryPanel extends PluginPanel
     private void updateDetail()
     {
         CategoryDirectoryModel.Entry selected = categoryList.getSelectedValue();
+        favoriteButton.setEnabled(selected != null);
+        favoriteButton.setText(selected != null && favorites.contains(selected.title) ? "Unfavorite" : "Favorite");
         if (selected == null)
         {
             detail.setText("No matching categories. Try a shorter word or activity name.");
             return;
         }
         StringBuilder sb = new StringBuilder(selected.title);
-        boolean focusedBoost = "Strength boosts".equals(selected.title)
-            || "Attack boosts".equals(selected.title) || "Defence boosts".equals(selected.title);
+        boolean focusedBoost = selected.title.equals("Strength boosts")
+            || selected.title.equals("Attack boosts") || selected.title.equals("Defence boosts")
+            || selected.title.equals("Magic boosts") || selected.title.equals("Ranged boosts")
+            || selected.title.equals("Prayer restores");
         String prefix = focusedBoost ? "" : "@";
         sb.append("\n\nSuggested search: ").append(prefix).append(selected.primaryAlias);
         sb.append("\n\nOther shortcuts:");
@@ -116,14 +146,25 @@ public final class CategoryDirectoryPanel extends PluginPanel
         {
             String skill = selected.title.split(" ")[0].toLowerCase(java.util.Locale.ROOT);
             sb.append("\n\nUse @").append(skill)
-                .append(" for the full skill category, including equipment.");
+                .append(" for the broad category (equipment and other useful items).");
         }
         else
         {
             sb.append("\n\n@ shows category-only results. Without @, normal bank searches remain additive.");
         }
+        sb.append("\n\n").append(CategoryDescriptions.forTitle(selected.title));
         detail.setText(sb.toString());
         detail.setCaretPosition(0);
     }
 
+    private void toggleFavorite()
+    {
+        CategoryDirectoryModel.Entry selected = categoryList.getSelectedValue();
+        if (selected == null) { return; }
+        if (!favorites.add(selected.title)) { favorites.remove(selected.title); }
+        configManager.setConfiguration("smartbanksearch", "favoriteCategories",
+            String.join("|", favorites));
+        if (favoritesOnly.isSelected()) { updateResults(); }
+        else { updateDetail(); }
+    }
 }

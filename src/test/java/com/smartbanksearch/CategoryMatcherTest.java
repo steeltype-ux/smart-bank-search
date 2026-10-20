@@ -274,7 +274,7 @@ public class CategoryMatcherTest
                 assertTrue("Alias not recognized: " + alias,
                     CategoryMatcher.isCategoryQuery(alias, true));
                 // These six bare-skill names intentionally switch to broad mode with @.
-                String broad = "strength".equals(alias) || "attack".equals(alias)
+                boolean broad = "strength".equals(alias) || "attack".equals(alias)
                     || "defence".equals(alias) || "defense".equals(alias)
                     || "magic".equals(alias) || "ranged".equals(alias)
                     || "range".equals(alias) || "ranging".equals(alias)

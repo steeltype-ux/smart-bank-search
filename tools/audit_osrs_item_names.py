@@ -63,6 +63,10 @@ KNOWN_FALSE_POSITIVES = {
     "Defence skill": ("Combat potion(4)",),
     "Giant seaweed runs": ("Giant seaweed", "Drift net"),
     "Cerberus preparation": ("Primordial crystal", "Pegasian crystal", "Eternal crystal"),
+    "Wyrms task": ("Wyrm bones", "Dragon sword", "Antifire potion(4)", "Cannonball"),
+    "Drakes task": ("Drake bones", "Drake's claw"),
+    "Hydras task": ("Hydra bones", "Hydra's eye"),
+    "Sulphur lizards task": ("Ice cooler", "Small lizard"),
     "Basilisks task": ("Basilisk jaw",),
     "Nightmare Zone kit": ("Overload(4)", "Absorption(4)"),
     "Fishing Trawler kit": ("Angler hat", "Angler top"),
@@ -132,7 +136,7 @@ def run_exact_java_matcher(items, directory):
 
 def report(snapshot_date, source_count, items, matched):
     names = {name for _, name in items}
-    expected_categories = 215
+    expected_categories = 219
     if len(matched) > expected_categories:
         raise RuntimeError("Unexpected category count; inspect source")
     counts = Counter({category: len(group) for category, group in matched.items()})

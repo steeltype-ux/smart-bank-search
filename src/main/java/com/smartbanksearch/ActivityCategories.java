@@ -40,6 +40,17 @@ final class ActivityCategories
     private static final Predicate<ItemFacts> RANGE_BOOST = names("ranging potion", "ranging mix", "divine ranging", "bastion potion", "divine bastion");
     private static final Predicate<ItemFacts> MAGE_BOOST = names("magic potion", "magic mix", "divine magic", "battlemage potion", "divine battlemage", "forgotten brew", "ancient brew", "imbued heart", "saturated heart");
     private static final Predicate<ItemFacts> SLAYER = names("slayer helmet", "slayer helm", "black mask", "bracelet of slaughter", "expeditious bracelet");
+    // These boots prevent lethal floor heat in Karuulm Slayer Dungeon.
+    // Elite Kourend & Kebos Diary completion makes them optional; the plugin
+    // cannot inspect diary progress, so they remain candidate kit items.
+    private static final Predicate<ItemFacts> KARUULM_BOOTS =
+        names("boots of stone", "boots of brimstone", "granite boots");
+    private static final Predicate<ItemFacts> KARUULM_TRAVEL =
+        names("rada's blessing 3", "rada's blessing 4", "skills necklace", "farming cape");
+    private static final Predicate<ItemFacts> CANNON_SUPPLIES =
+        names("cannonball", "granite cannonball", "cannon base", "cannon stand",
+            "cannon barrels", "cannon furnace");
+
     private static final Predicate<ItemFacts> WILDY = names("blighted", "royal seed pod", "burning amulet", "looting bag", "wilderness sword", "amulet of glory", "ring of dueling");
 
     // Wintertodt warmth: each food bite that normally heals >=4 HP restores 35%
@@ -383,7 +394,7 @@ final class ActivityCategories
             "nightmare boss", "nightmare prep", "phosani", "phosani's nightmare");
         registry.add("Cerberus preparation", any(names("spectral spirit shield", "arclight", "emberlight", "scythe of vitur", "abyssal bludgeon", "dragon claws", "slayer helmet", "black mask", "key master teleport", "devout boots", "primordial boots", "pegasian boots", "eternal boots", "lightbearer", "abyssal whip", "prayer potion"), HEALS, PRAYER, BREWS, MELEE_BOOST),
             "cerberus", "cerberus prep", "cerb");
-        registry.add("Alchemical Hydra preparation", any(names("dragon hunter crossbow", "dragon hunter lance", "twisted bow", "bow of faerdhinen", "toxic blowpipe", "ranging potion", "antipoison", "slayer helmet", "brimstone ring", "brimstone boots", "boots of stone", "boots of brimstone", "dragon arrow", "amethyst arrow", "avernic defender", "divine ranging potion", "ring of suffering", "dragon hunter wand", "manta ray"), HEALS, PRAYER, BREWS, RANGE_BOOST),
+        registry.add("Alchemical Hydra preparation", any(names("dragon hunter crossbow", "dragon hunter lance", "twisted bow", "bow of faerdhinen", "toxic blowpipe", "ranging potion", "antipoison", "slayer helmet", "brimstone ring", "boots of stone", "boots of brimstone", "granite boots", "dragon arrow", "amethyst arrow", "avernic defender", "divine ranging potion", "ring of suffering", "dragon hunter wand", "manta ray"), HEALS, PRAYER, BREWS, RANGE_BOOST),
             "hydra boss", "alchemical hydra", "hydra prep", "hydra");
         registry.add("Scurrius preparation", any(names("bone mace", "bone shortbow", "bone staff", "rune pouch", "varrock teleport", "prayer potion", "ancient mace", "divine super combat", "ranging potion", "monk's robe"), HEALS, PRAYER, MELEE_BOOST, RANGE_BOOST),
             "scurrius", "scurrius prep");
@@ -399,6 +410,54 @@ final class ActivityCategories
             "gwd prep", "god wars prep", "godwars prep");
 
         // Slayer tasks
+        // Karuulm Slayer Dungeon: floor heat is independent of combat damage.
+        // Wyrms can also be fought outside Karuulm, where these boots are not needed.
+        registry.add("Wyrms task", any(
+            KARUULM_BOOTS, KARUULM_TRAVEL, SLAYER, HEALS, PRAYER, MELEE_BOOST, RANGE_BOOST,
+            names("dragon hunter lance", "dragon hunter crossbow", "dragon hunter wand",
+                "rune crossbow", "toxic blowpipe", "bow of faerdhinen",
+                "blessed d'hide", "black d'hide", "dragon defender",
+                "earth rune", "air rune", "rune pouch", "nature rune", "fire rune",
+                "bonecrusher", "slayer ring", "herb sack", "seed box")),
+            "wyrms", "wyrm", "wyrm task", "wyrms task", "wyrm prep", "wyrms prep");
+
+        // Drakes' ranged attacks and volcanic breath differ from Wyrms.
+        // Optional antifire supplies mitigate their volcanic breath.
+        registry.add("Drakes task", any(
+            KARUULM_BOOTS, KARUULM_TRAVEL, SLAYER, HEALS, PRAYER, MELEE_BOOST, RANGE_BOOST,
+            names("dragon hunter lance", "dragon hunter crossbow", "dragon hunter wand",
+                "dragonfire shield", "dragonfire ward", "anti-dragon shield",
+                "antifire potion", "super antifire", "extended antifire",
+                "extended super antifire", "rune crossbow", "toxic blowpipe",
+                "dragon defender", "rune pouch", "bonecrusher", "herb sack",
+                "nature rune", "fire rune", "cannonball")),
+            "drakes", "drake", "drake task", "drakes task", "drake prep", "drakes prep");
+
+        // Standard Hydras are a separate kit from the Alchemical Hydra boss.
+        // Keep @hydra mapped to the boss for backwards compatibility; use
+        // @hydras or @hydra task for ordinary Slayer Hydras.
+        registry.add("Hydras task", any(
+            KARUULM_BOOTS, KARUULM_TRAVEL, SLAYER, HEALS, PRAYER, RANGE_BOOST,
+            CANNON_SUPPLIES,
+            names("dragon hunter lance", "dragon hunter crossbow", "dragon hunter wand",
+                "bow of faerdhinen", "toxic blowpipe", "rune crossbow",
+                "antipoison", "superantipoison", "antidote", "antivenom", "anti-venom",
+                "sanfew serum", "serpentine helm", "rune pouch",
+                "nature rune", "fire rune", "bonecrusher")),
+            "hydras", "hydra task", "hydras task", "regular hydras", "normal hydras",
+            "normal hydra", "hydra slayer");
+
+        // Sulphur lizards are the Karuulm alternative for a Lizards task.
+        // Unlike desert lizards, they do NOT need ice coolers.
+        registry.add("Sulphur lizards task", any(
+            KARUULM_BOOTS, KARUULM_TRAVEL, SLAYER, HEALS, PRAYER, MELEE_BOOST,
+            CANNON_SUPPLIES,
+            names("dragon scimitar", "abyssal whip", "dragon defender", "herb sack",
+                "gem bag", "slayer ring", "rune pouch", "nature rune", "fire rune")),
+            "sulphur lizards", "sulphur lizard", "sulphur lizards task",
+            "sulphur lizard task", "sulfur lizards", "sulfur lizard task",
+            "karuulm lizards");
+
         registry.add("Gargoyles task", any(names("rock hammer", "rock thrownhammer", "granite hammer", "dual macuahuitl", "slayer ring", "guthan", "abyssal whip", "rune pouch", "herb sack", "gem bag", "nature rune", "fire rune", "dust rune", "ash sanctifier", "bracelet of slaughter", "expeditious bracelet", "dragon defender", "dragon scimitar", "strength potion", "guthan's"), SLAYER, HEALS, PRAYER, MELEE_BOOST),
             "gargoyles", "gargoyle task", "gargoyles prep", "gargoyle", "gargs");
         registry.add("Dust devils task", any(names("facemask", "masked earmuffs", "slayer helmet", "black mask", "ancient staff", "ancient sceptre", "kodai wand", "blood rune", "death rune", "water rune", "rune pouch", "ash sanctifier", "smoke battlestaff", "virtus", "ancestral", "occult necklace", "bracelet of slaughter", "expeditious bracelet", "lightbearer", "teleport to house", "dust rune", "smoke rune", "fire rune"), PRAYER, MAGE_BOOST),

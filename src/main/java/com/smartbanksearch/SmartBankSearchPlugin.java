@@ -127,8 +127,9 @@ public class SmartBankSearchPlugin extends Plugin
             diagnosticsForQuery = 0;
             if (config.diagnostics())
             {
-                LOG.info("[SmartBankSearch] query='{}' resolved='{}' exclusive={}",
-                    search, parsedQuery.getCategoryName(), parsedQuery.isExclusive());
+                // Never persist the player's typed bank query to diagnostic logs.
+                LOG.info("[SmartBankSearch] category='{}' exclusive={}",
+                    parsedQuery.getCategoryName(), parsedQuery.isExclusive());
             }
         }
         if (!parsedQuery.isCategory())
@@ -150,8 +151,9 @@ public class SmartBankSearchPlugin extends Plugin
 
         if (config.diagnostics() && diagnosticsForQuery++ < 25)
         {
-            LOG.info("[SmartBankSearch] id={} name='{}' slot={} categoryMatch={} native={} final={}",
-                itemId, item.name, item.slot, matched, previous, stack[intSize - 2]);
+            // Item names are unnecessary for diagnostics and can reveal bank contents.
+            LOG.info("[SmartBankSearch] slot={} categoryMatch={} native={} final={}",
+                item.slot, matched, previous, stack[intSize - 2]);
         }
     }
 

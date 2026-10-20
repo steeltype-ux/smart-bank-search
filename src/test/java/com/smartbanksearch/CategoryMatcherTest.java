@@ -288,6 +288,41 @@ public class CategoryMatcherTest
         }
     }
 
+    @Test public void barePrayerSuppressesNativeUnrelatedMatches()
+    {
+        CategoryMatcher.Query focused = CategoryMatcher.parse("prayer", true);
+        assertEquals("Prayer restores", focused.getCategoryName());
+        assertFalse(focused.isExclusive()); // No @ is required for the focused behavior.
+
+        // RuneLite's original name search would retain these prayer-named items.
+        for (String item : new String[] {"Prayer cape", "Prayer scroll", "Prayer hood"})
+        {
+            assertFalse(focused.matches(ItemFacts.nameOnly(item)));
+            assertEquals("Bare prayer must hide unrelated native result: " + item,
+                0, focused.resolveBankMatch(1, false));
+        }
+
+        // These have no 'prayer' in their names and must still appear.
+        for (String item : new String[] {"Super restore(4)", "Sanfew serum(4)"})
+        {
+            assertTrue(focused.matches(ItemFacts.nameOnly(item)));
+            assertEquals("Bare prayer must add matching restore: " + item,
+                1, focused.resolveBankMatch(0, true));
+        }
+
+        // @prayer remains the broad opt-in for bones, equipment and supplies.
+        CategoryMatcher.Query broad = CategoryMatcher.parse("@prayer", true);
+        assertTrue(broad.isExclusive());
+        assertTrue(broad.matches(ItemFacts.nameOnly("Dragon bones")));
+        assertEquals(1, broad.resolveBankMatch(0, true));
+        assertEquals(0, broad.resolveBankMatch(1, false));
+
+        // No change to existing additive searches, gear shortcuts, or unknown queries.
+        assertEquals(1, CategoryMatcher.parse("strength", true).resolveBankMatch(1, false));
+        assertEquals(1, CategoryMatcher.parse("prayer gear", true).resolveBankMatch(1, false));
+        assertEquals(1, CategoryMatcher.parse("nonexistent category", true).resolveBankMatch(1, false));
+    }
+
     @Test public void noUnexpectedNativeOverrides()
     {
         assertFalse(CategoryMatcher.isCategoryQuery("dragon scim",true));

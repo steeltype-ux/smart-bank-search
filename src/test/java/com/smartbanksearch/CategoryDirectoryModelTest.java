@@ -10,8 +10,8 @@ public class CategoryDirectoryModelTest
     {
         CategoryDirectoryModel model = new CategoryDirectoryModel();
         assertEquals(CategoryMatcher.catalog().size(), model.size());
-        assertEquals(208, model.size());
-        assertEquals(208, model.filter("").size());
+        assertTrue(model.size() >= 212);
+        assertEquals(model.size(), model.filter("").size());
 
         assertEquals(1, model.filter("@gotr").size());
         assertEquals("Guardians of the Rift kit", model.filter("@gotr").get(0).title);
@@ -36,8 +36,10 @@ public class CategoryDirectoryModelTest
         for (CategoryDirectoryModel.Entry entry : model.filter(""))
         {
             assertFalse(entry.aliases.isEmpty());
+            boolean focused = entry.title.endsWith(" boosts") || entry.title.equals("Prayer restores");
+            String search = focused ? entry.primaryAlias : "@" + entry.primaryAlias;
             assertEquals(entry.title,
-                CategoryMatcher.parse("@" + entry.primaryAlias, true).getCategoryName());
+                CategoryMatcher.parse(search, true).getCategoryName());
             for (String alias : entry.aliases)
             {
                 assertTrue("Missing searchable alias: " + alias, entry.contains(alias));

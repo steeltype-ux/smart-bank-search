@@ -46,6 +46,22 @@ public final class CategoryMatcher
         }
         public boolean isCategory() { return !categories.isEmpty(); }
         public boolean isExclusive() { return exclusive && isCategory(); }
+        /**
+         * Combine our semantic match with RuneLite's existing bank name result.
+         * Usually this is additive. Bare "prayer" is intentionally focused:
+         * native name matching would otherwise retain unrelated items such as
+         * Prayer cape/scrolls, hiding the benefit of the Prayer restores category.
+         * @prayer still selects the full Prayer category.
+         */
+        public int resolveBankMatch(int nativeResult, boolean categoryMatched)
+        {
+            if (!isCategory()) { return nativeResult; }
+            if (isExclusive() || "prayer".equals(normalize(source)))
+            {
+                return categoryMatched ? 1 : 0;
+            }
+            return categoryMatched ? 1 : nativeResult;
+        }
         public boolean matches(ItemFacts item)
         {
             if (!isCategory() || item == null || normalize(item.name).isEmpty()) { return false; }

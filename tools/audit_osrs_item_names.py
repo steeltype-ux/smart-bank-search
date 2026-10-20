@@ -24,6 +24,12 @@ SNAPSHOT = (
 # Each family is a proven OSRS item-name stem that genuinely boosts its skill.
 # These are *name-only* checks; equipment metadata cannot be inferred here.
 BOOST_FAMILIES = {
+    "Attack boosts": ("Attack potion", "Super attack", "Combat potion", "Super combat potion", "Zamorak brew"),
+    "Strength boosts": ("Strength potion", "Super strength", "Combat potion", "Super combat potion"),
+    "Defence boosts": ("Defence potion", "Super defence", "Super combat potion", "Bastion potion", "Saradomin brew"),
+    "Magic boosts": ("Magic potion", "Battlemage potion", "Forgotten brew"),
+    "Ranged boosts": ("Ranging potion", "Bastion potion"),
+    "Prayer restores": ("Prayer potion", "Super restore", "Sanfew serum"),
     "Attack skill": ("Attack potion", "Super attack", "Combat potion", "Super combat potion", "Zamorak brew"),
     "Strength skill": ("Strength potion", "Super strength", "Combat potion", "Super combat potion", "Zamorak brew"),
     "Defence skill": ("Defence potion", "Super defence", "Super combat potion", "Bastion potion", "Saradomin brew"),
@@ -48,6 +54,11 @@ BOOST_FAMILIES = {
 KNOWN_FALSE_POSITIVES = {
     "Farming tools": ("Air battlestaff", "Fire battlestaff"),
     "Combat potions": ("Dragon battleaxe", "Overload(4)"),
+    "Magic boosts": ("Ancestral robe top", "Prayer potion(4)"),
+    "Ranged boosts": ("Masori chaps", "Magic potion(4)"),
+    "Prayer restores": ("Dragon bones", "Ranging potion(4)"),
+    "Attack boosts": ("Dragon defender", "Strength potion(4)"),
+    "Defence boosts": ("Justiciar chestguard", "Attack potion(4)"),
     "Attack skill": ("Saradomin brew(4)", "Magic potion(4)"),
     "Defence skill": ("Combat potion(4)",),
     "Giant seaweed runs": ("Giant seaweed", "Drift net"),
@@ -121,7 +132,7 @@ def run_exact_java_matcher(items, directory):
 
 def report(snapshot_date, source_count, items, matched):
     names = {name for _, name in items}
-    expected_categories = 208
+    expected_categories = 212
     if len(matched) > expected_categories:
         raise RuntimeError("Unexpected category count; inspect source")
     counts = Counter({category: len(group) for category, group in matched.items()})

@@ -56,9 +56,15 @@ public final class CategoryDirectoryPanel extends PluginPanel
         top.add(new JLabel("Find a bank-search category"), BorderLayout.NORTH);
         searchField.setToolTipText("Type a skill, boss, activity, or shortcut, e.g. @gotr");
         top.add(searchField, BorderLayout.CENTER);
-        JPanel filters = new JPanel(new BorderLayout());
-        filters.add(countLabel, BorderLayout.WEST);
-        filters.add(favoritesOnly, BorderLayout.EAST);
+        // Stack status and filter vertically so labels never collide in narrow
+        // RuneLite sidebars, regardless of font scaling or category count.
+        JPanel filters = new JPanel();
+        filters.setLayout(new javax.swing.BoxLayout(filters, javax.swing.BoxLayout.Y_AXIS));
+        countLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        favoritesOnly.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        filters.add(countLabel);
+        filters.add(javax.swing.Box.createVerticalStrut(4));
+        filters.add(favoritesOnly);
         top.add(filters, BorderLayout.SOUTH);
         add(top, BorderLayout.NORTH);
 

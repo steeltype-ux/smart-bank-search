@@ -58,12 +58,17 @@ public final class CategoryDirectoryPanel extends PluginPanel
         top.add(searchField, BorderLayout.CENTER);
         // Stack status and filter vertically so labels never collide in narrow
         // RuneLite sidebars, regardless of font scaling or category count.
+        // Stacked controls keep both labels readable on narrow RuneLite sidebars.
         JPanel filters = new JPanel();
         filters.setLayout(new javax.swing.BoxLayout(filters, javax.swing.BoxLayout.Y_AXIS));
+        filters.setOpaque(false);
+        filters.setBorder(new EmptyBorder(3, 0, 0, 0));
         countLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
         favoritesOnly.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        favoritesOnly.setOpaque(false);
+        favoritesOnly.setToolTipText("Show only categories you've starred");
         filters.add(countLabel);
-        filters.add(javax.swing.Box.createVerticalStrut(4));
+        filters.add(javax.swing.Box.createVerticalStrut(5));
         filters.add(favoritesOnly);
         top.add(filters, BorderLayout.SOUTH);
         add(top, BorderLayout.NORTH);

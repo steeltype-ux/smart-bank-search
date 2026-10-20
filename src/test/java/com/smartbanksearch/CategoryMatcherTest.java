@@ -215,6 +215,79 @@ public class CategoryMatcherTest
         assertEquals("Defence skill", CategoryMatcher.parse("@defence", true).getCategoryName());
     }
 
+    @Test public void focusedMagicRangedPrayerAndExplicitBroadQueries()
+    {
+        for (String item : new String[] {
+            "Magic potion(4)", "Divine magic potion(4)", "Magic mix(2)",
+            "Battlemage potion(4)", "Divine battlemage potion(4)",
+            "Imbued heart", "Saturated heart", "Forgotten brew(4)"
+        }) { yes("magic", item); }
+        no("magic", "Ancestral robe top");
+        no("magic", "Prayer potion(4)");
+        yes("@magic", "Ancestral robe top");
+        for (String item : new String[] {
+            "Ranging potion(4)", "Ranging mix(2)", "Divine ranging potion(4)",
+            "Bastion potion(4)", "Divine bastion potion(4)"
+        }) { yes("ranged", item); yes("range", item); }
+        no("ranged", "Masori chaps");
+        no("ranged", "Magic potion(4)");
+        yes("@ranged", "Masori chaps");
+        for (String item : new String[] {
+            "Prayer potion(4)", "Super restore(4)", "Sanfew serum(4)",
+            "Prayer regeneration potion(4)"
+        }) { yes("prayer", item); }
+        no("prayer", "Dragon bones");
+        yes("@prayer", "Dragon bones");
+        yes("@prayer", "Prayer potion(4)");
+        assertEquals("Magic equipment", CategoryMatcher.parse("@magic", true).getCategoryName());
+        assertEquals("Ranged equipment", CategoryMatcher.parse("@ranged", true).getCategoryName());
+        assertTrue(CategoryMatcher.parse("@prayer", true).isExclusive());
+        yes("magic gear", "Mystic robe top");
+        yes("ranged gear", "Rune crossbow");
+    }
+
+    @Test public void divinePotionFamiliesAndDoseVariants()
+    {
+        for (String prefix : new String[] {
+            "Divine super attack potion", "Divine super strength potion",
+            "Divine super defence potion", "Divine super combat potion",
+            "Divine ranging potion", "Divine magic potion",
+            "Divine bastion potion", "Divine battlemage potion"
+        })
+        {
+            for (int dose = 1; dose <= 4; dose++)
+            {
+                yes("@divine pots", prefix + "(" + dose + ")");
+            }
+        }
+        no("@divine pots", "Prayer potion(4)");
+        no("@divine pots", "Super restore(4)");
+    }
+
+    @Test public void allCatalogAliasesResolveToTheirCategoryOrBroadSkillOverride()
+    {
+        Map<String, java.util.List<String>> catalog = CategoryMatcher.catalog();
+        for (Map.Entry<String, java.util.List<String>> entry : catalog.entrySet())
+        {
+            for (String alias : entry.getValue())
+            {
+                assertTrue("Alias not recognized: " + alias,
+                    CategoryMatcher.isCategoryQuery(alias, true));
+                // These six bare-skill names intentionally switch to broad mode with @.
+                String broad = "strength".equals(alias) || "attack".equals(alias)
+                    || "defence".equals(alias) || "defense".equals(alias)
+                    || "magic".equals(alias) || "ranged".equals(alias)
+                    || "range".equals(alias) || "ranging".equals(alias)
+                    || "prayer".equals(alias);
+                if (!broad)
+                {
+                    assertEquals("Alias maps to incorrect category: " + alias,
+                        entry.getKey(), CategoryMatcher.parse("@" + alias, true).getCategoryName());
+                }
+            }
+        }
+    }
+
     @Test public void noUnexpectedNativeOverrides()
     {
         assertFalse(CategoryMatcher.isCategoryQuery("dragon scim",true));

@@ -78,9 +78,11 @@ public final class CategoryDirectoryPanel extends PluginPanel
                 return this;
             }
         });
-        categoryList.setVisibleRowCount(14);
+        categoryList.setVisibleRowCount(25);
         JScrollPane scroll = new JScrollPane(categoryList);
-        scroll.setPreferredSize(new Dimension(200, 320));
+        // Use more of the available RuneLite sidebar height, while leaving
+        // the details and Favorite button visible underneath the list.
+        scroll.setPreferredSize(new Dimension(200, 560));
         add(scroll, BorderLayout.CENTER);
 
         detail.setEditable(false);

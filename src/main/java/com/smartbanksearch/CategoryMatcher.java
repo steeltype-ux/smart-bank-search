@@ -516,8 +516,16 @@ public final class CategoryMatcher
         {
             if (q.charAt(i) != ' ') { continue; }
             // Composite terms require COMPLETE aliases: avoids transient search flicker.
-            Category left = BY_ALIAS.get(q.substring(0, i));
+            String first = q.substring(0, i);
+            Category left = BY_ALIAS.get(first);
             Category right = BY_ALIAS.get(q.substring(i + 1));
+            // Compound skill + slot searches should match gear, not consumables.
+            if (right != null)
+            {
+                if (first.equals("ranged") || first.equals("range")) { left = BY_ALIAS.get("ranged gear"); }
+                else if (first.equals("magic")) { left = BY_ALIAS.get("magic gear"); }
+                else if (first.equals("prayer")) { left = BY_ALIAS.get("prayer gear"); }
+            }
             if (left != null && right != null && left != right)
             {
                 return new Query(input, exclusive, Arrays.asList(left, right));

@@ -30,6 +30,24 @@ public class CategoryDirectoryModelTest
         assertEquals(0, model.filter("this-is-not-a-real-category-12345").size());
     }
 
+    @Test public void favoriteStarIsVisibleWithoutChangingCategorySearchData()
+    {
+        CategoryDirectoryModel model = new CategoryDirectoryModel();
+        CategoryDirectoryModel.Entry gotr = model.filter("@gotr").get(0);
+
+        String normalLabel = gotr.displayLabel(false);
+        String favoriteLabel = gotr.displayLabel(true);
+        assertTrue("Favorited category must show a star", favoriteLabel.startsWith("\u2605 "));
+        assertFalse("Non-favorite category must not show a star", normalLabel.contains("\u2605"));
+        assertTrue(favoriteLabel.endsWith(gotr.toString()));
+        assertTrue(normalLabel.endsWith(gotr.toString()));
+
+        // Decoration must not change canonical data or category matching.
+        assertEquals("Guardians of the Rift kit", gotr.title);
+        assertTrue(gotr.contains("@gotr"));
+        assertEquals(1, model.filter("@gotr").size());
+    }
+
     @Test public void primaryAliasAlwaysResolvesToDisplayedCategory()
     {
         CategoryDirectoryModel model = new CategoryDirectoryModel();
